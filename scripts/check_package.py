@@ -34,6 +34,16 @@ def check_skill_frontmatter() -> None:
             raise ValueError(f"skill name does not match directory: {path}")
 
 
+def check_readme_skill_map() -> None:
+    readme = (PLUGIN / "README.md").read_text()
+    skills = sorted(path.parent.name for path in (PLUGIN / "skills").glob("*/SKILL.md"))
+    missing = [name for name in skills if f"| `{name}` |" not in readme]
+    if missing:
+        raise ValueError(f"README skill map is incomplete: {', '.join(missing)}")
+    if "[complete lifecycle and skill reference](docs/lifecycle.md)" not in readme:
+        raise ValueError("README does not link to the complete lifecycle and skill reference")
+
+
 def check_commands() -> None:
     expected = {"aidlc", "build", "frame", "intake", "land", "verify"}
     commands = {path.stem: path for path in (PLUGIN / "commands").glob("*.md")}
@@ -88,6 +98,7 @@ def check_boundary() -> None:
 def main() -> int:
     check_json()
     check_skill_frontmatter()
+    check_readme_skill_map()
     check_commands()
     check_evals()
     check_local_links()

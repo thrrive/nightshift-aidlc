@@ -84,6 +84,34 @@ return to Frame; and red landing signals or requested changes return to Build. E
 one explicit outcome: `advance`, `rewind`, `needs_human`, or `stuck`; the mission stays unchanged
 until its observable completion criteria are met.
 
+## Skill map
+
+The kit contains fourteen focused skills. Six are user-facing entrypoints (`aidlc`, `intake`,
+`frame`, `build`, `verify`, and `land`); the others are composable specialists called by their
+owning phase. You can run a major phase independently when you already have the required handoff,
+but only `aidlc` routes between major phases.
+
+| Skill | Role |
+|---|---|
+| `aidlc` | Owns the mission, routes every major-phase transition, and pauses at human gates. |
+| `intake` | Turns a plain-language request into observable completion criteria and lifecycle limits. |
+| `frame` | Runs the complete pre-code loop and returns a plan for human approval. |
+| `investigate` | Reads the repository and gathers requirements, constraints, conventions, and open questions. |
+| `blueprint` | Designs the component and contract changes, rollout, observability, and verification shape. |
+| `plan` | Produces the ordered implementation plan and definition of done the human will approve. |
+| `redteam` | Attacks the blueprint and plan for correctness, security, scope, isolation, and proof gaps. |
+| `build` | Owns the approved plan through an isolated, verified, reviewable change. |
+| `implement` | Writes the scoped change against the approved plan and repository conventions. |
+| `self-review` | Reviews the diff in fresh context for defects, drift, and plan or design gaps. |
+| `verify` | Proves the exact revision through its approved browser, API, CLI, library, or custom checks. |
+| `land` | Owns the reviewed change through checks, feedback, merge authorization, and the requested done state. |
+| `pr-drive` | Triages checks and review feedback into fixes, responses, rewinds, or human decisions. |
+| `release-gate` | Combines review, verification, and release evidence, then observes the authorized result. |
+
+Read the **[complete lifecycle and skill reference](docs/lifecycle.md)** for composition rules,
+rewind paths, flags, handoffs, workspace isolation, and human gates. The canonical executable
+contracts live in each packaged `skills/<name>/SKILL.md`.
+
 ## Portable by design
 
 Nightshift AIDLC keeps lifecycle skills independent from host integrations. Skills define the
@@ -143,7 +171,8 @@ behavior and extension seams.
 - [Coding Is Not the Job Anymore. Engineering Still Is.](https://mihirsambhus.substack.com/p/coding-is-not-the-job-anymore-engineering)
   — the precursor on why verification, coherence, taste, and accountability become more important
   as code gets cheaper to produce.
-- [`docs/lifecycle.md`](docs/lifecycle.md) — the phase machine and its rewind paths.
+- [`docs/lifecycle.md`](docs/lifecycle.md) — the complete skill reference, phase machine, and
+  rewind paths.
 - [`docs/handoff-contract.md`](docs/handoff-contract.md) — the durable mission and outcome contract.
 - [`docs/host-capabilities.md`](docs/host-capabilities.md) — the portable boundary between skills
   and agent hosts.
