@@ -35,54 +35,54 @@ Use it when you want more autonomy without lowering the bar for evidence or huma
 
 ```mermaid
 flowchart LR
-    I["Intent"] --> M["Mission<br/>done state + proof"]
-    M --> F["Frame"]
-    F --> PG{"Plan approved?"}
-    PG -- "refine" --> F
-    PG -- "yes" --> B["Build"]
-    B --> L["Land<br/>PR · checks · release evidence"]
-    B -.->|plan, requirements,<br/>or design gap| F
-    B -.->|implementation defect| B
-    L --> MG{"Merge authorized?"}
-    L -.->|changes needed| B
-    MG -- "changes" --> B
-    MG -- "yes" --> D["Done state<br/>observably proven"]
-
-    classDef human fill:#f59e0b,color:#111827,stroke:#b45309,stroke-width:2px
-    classDef work fill:#2563eb,color:#ffffff,stroke:#1e3a8a
-    classDef proof fill:#7c3aed,color:#ffffff,stroke:#4c1d95
-    class PG,MG human
-    class I,M,F,B,L work
-    class D proof
+    AIDLC["aidlc orchestrator<br/>holds mission and owns every transition"]
+    IN["intake<br/>create mission"]
+    subgraph FR["FRAME"]
+        direction TB
+        FI["investigate"] --> FC["clarify"] --> FB["blueprint"] --> FP["plan"] --> FRT["redteam"]
+        FRT -.->|material gap| FB
+        FRT -.->|plan gap| FP
+    end
+    PG{"human plan approval"}
+    subgraph BU["BUILD"]
+        direction TB
+        BI["implement"] --> BS["self-review"] --> BV["verify"]
+        BV -.->|product failure| BI
+    end
+    subgraph LA["LAND"]
+        direction TB
+        LP["pr-drive"] --> LV["verify kept green"] --> LG["release-gate"]
+    end
+    MG{"human merge decision"}
+    OB["observe production"]
+    DN["complete"]
+    AIDLC -.-> IN
+    AIDLC -.-> FR
+    AIDLC -.-> BU
+    AIDLC -.-> LA
+    IN --> FR --> PG
+    PG -->|approve| BU
+    PG -->|edit or reject| FR
+    BU --> LA --> MG
+    LA -.->|red signal with evidence| BU
+    MG -->|merge| OB --> DN
+    MG -->|changes required| BU
+    classDef orchestrator fill:#4f9b73,color:#000000,stroke:#7f8c8d
+    classDef phase fill:#628ecb,color:#000000,stroke:#7f8c8d
+    classDef gate fill:#c67b2f,color:#000000,stroke:#7f8c8d
+    classDef evidence fill:#7d68b1,color:#000000,stroke:#7f8c8d
+    class AIDLC orchestrator
+    class IN,FI,FC,FB,FP,FRT,BI,BS,LP phase
+    class PG,MG gate
+    class BV,LV,LG,OB,DN evidence
+    linkStyle default stroke:#7f8c8d,color:#7f8c8d
 ```
 
-Frame and Build each run an inner loop:
-
-```mermaid
-flowchart LR
-    subgraph F["INSIDE FRAME"]
-        direction LR
-        FI["Investigate"] --> FD["Design"] --> FP["Plan"] --> FR["Red-team"]
-        FR -.->|gap found · revise| FI
-    end
-
-    subgraph B["INSIDE BUILD"]
-        direction LR
-        BI["Implement"] --> BR["Review"] --> BV["Verify"]
-        BV -.->|implementation defect · fix| BI
-    end
-
-    classDef work fill:#2563eb,color:#ffffff,stroke:#1e3a8a
-    classDef proof fill:#7c3aed,color:#ffffff,stroke:#4c1d95
-    class FI,FD,FP,FR,BI,BR work
-    class BV proof
-```
-
-Red-team findings revise the Frame. Implementation defects found by review or verification return
-to implementation inside Build. When Build or verification proves the requirements, design, or
-plan is wrong, the outer loop returns the mission to Frame. Each phase reports one explicit
-outcome: `advance`, `rewind`, `needs_human`, or `stuck`; the mission stays unchanged until its
-observable completion criteria are met.
+This is the same phase machine documented in [`docs/lifecycle.md`](docs/lifecycle.md). Red-team
+findings revise the Frame; product failures stay inside Build; requirements, design, or plan gaps
+return to Frame; and red landing signals or requested changes return to Build. Each phase reports
+one explicit outcome: `advance`, `rewind`, `needs_human`, or `stuck`; the mission stays unchanged
+until its observable completion criteria are met.
 
 ## Portable by design
 
