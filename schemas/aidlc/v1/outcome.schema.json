@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nightshift:aidlc:v1:outcome",
+  "title": "AIDLC v1 phase outcome",
+  "description": "A phase report consumed by the AIDLC orchestrator. Phase-specific evidence may extend this object.",
+  "type": "object",
+  "required": ["mission", "outcome"],
+  "properties": {
+    "mission": {
+      "$ref": "urn:nightshift:aidlc:v1:mission"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["advance", "rewind", "needs_human", "stuck"]
+    },
+    "then": {
+      "type": "string",
+      "enum": ["frame", "build", "land", "complete"]
+    },
+    "rewind_to": {
+      "type": "string",
+      "enum": ["investigate", "blueprint", "plan", "redteam", "build"]
+    },
+    "outputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "pr": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "commits": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "deploy": {
+          "type": ["string", "null"],
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "workstreams": {
+      "$ref": "urn:nightshift:aidlc:v1:workstreams"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "advance"
+          }
+        },
+        "required": ["outcome"]
+      },
+      "then": {
+        "required": ["then"],
+        "not": {
+          "required": ["rewind_to"]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "rewind"
+          }
+        },
+        "required": ["outcome"]
+      },
+      "then": {
+        "required": ["rewind_to"],
+        "not": {
+          "required": ["then"]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "needs_human"
+          }
+        },
+        "required": ["outcome"]
+      },
+      "then": {
+        "anyOf": [
+          {
+            "required": ["note"]
+          },
+          {
+            "required": ["questions"]
+          }
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": ["then"]
+            },
+            {
+              "required": ["rewind_to"]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "stuck"
+          }
+        },
+        "required": ["outcome"]
+      },
+      "then": {
+        "required": ["blockers"],
+        "properties": {
+          "blockers": {
+            "minItems": 1
+          }
+        },
+        "not": {
+          "anyOf": [
+            {
+              "required": ["then"]
+            },
+            {
+              "required": ["rewind_to"]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

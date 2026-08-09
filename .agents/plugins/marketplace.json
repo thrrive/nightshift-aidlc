@@ -1,0 +1,20 @@
+{
+  "name": "nightshift-aidlc",
+  "interface": {
+    "displayName": "Nightshift AIDLC"
+  },
+  "plugins": [
+    {
+      "name": "nightshift",
+      "source": {
+        "source": "local",
+        "path": "./plugins/nightshift"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "mission": {
+    "ask": "Add a CSV export button",
+    "done_state": "pr-ready",
+    "done_when": ["The change is implemented and one pull request is open"],
+    "halts": []
+  },
+  "outcome": "needs_human",
+  "note": "The export's data-retention policy is not specified.",
+  "questions": ["Should generated exports expire after 24 hours or 7 days?"]
+}

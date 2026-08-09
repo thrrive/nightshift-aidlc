@@ -1,0 +1,13 @@
+{
+  "mission": {
+    "title": "Produce migration report",
+    "ask": "Analyze the migration and stop after the report",
+    "done_state": "custom",
+    "done_when": ["A reviewed migration-risk report exists"],
+    "halts": ["frame-only"]
+  },
+  "outcome": "advance",
+  "then": "complete",
+  "outputs": ["migration-risk.md"],
+  "note": "The requested report is complete."
+}

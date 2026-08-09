@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nightshift:aidlc:v1:mission",
+  "title": "AIDLC v1 mission",
+  "description": "The durable user goal carried unchanged through every AIDLC phase.",
+  "type": "object",
+  "required": ["ask", "done_state", "done_when"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ask": {
+      "type": "string",
+      "minLength": 1
+    },
+    "done_state": {
+      "type": "string",
+      "enum": [
+        "stable-production",
+        "merged",
+        "pr-ready",
+        "frame-approved",
+        "staging-stable",
+        "custom"
+      ]
+    },
+    "done_when": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "halts": {
+      "type": "array",
+      "default": [],
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "additionalProperties": false
+}

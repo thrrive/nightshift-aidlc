@@ -1,0 +1,24 @@
+{
+  "name": "nightshift",
+  "version": "0.1.0",
+  "description": "Portable AIDLC phase machine for taking a software change from requirements to an evidence-backed done state.",
+  "author": {
+    "name": "Mihir Sambhus",
+    "url": "https://github.com/thrrive"
+  },
+  "homepage": "https://github.com/thrrive/nightshift-aidlc",
+  "repository": "https://github.com/thrrive/nightshift-aidlc",
+  "license": "MIT",
+  "keywords": ["aidlc", "agent", "software-development", "skills"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Nightshift AIDLC",
+    "shortDescription": "Frame, build, verify, and land software changes.",
+    "longDescription": "A host-neutral software-delivery phase machine with explicit human gates, verification evidence, and portable capability contracts.",
+    "developerName": "Mihir Sambhus",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/thrrive/nightshift-aidlc",
+    "defaultPrompt": "Take this software change through the AIDLC lifecycle."
+  }
+}

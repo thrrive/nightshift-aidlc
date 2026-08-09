@@ -1,0 +1,13 @@
+{
+  "name": "nightshift",
+  "version": "0.1.0",
+  "description": "Portable AIDLC phase machine for taking a software change from requirements to an evidence-backed done state.",
+  "author": {
+    "name": "Mihir Sambhus",
+    "url": "https://github.com/thrrive"
+  },
+  "homepage": "https://github.com/thrrive/nightshift-aidlc",
+  "repository": "https://github.com/thrrive/nightshift-aidlc",
+  "license": "MIT",
+  "keywords": ["aidlc", "agent", "software-development", "skills"]
+}

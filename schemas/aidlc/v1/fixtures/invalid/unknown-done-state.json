@@ -1,0 +1,9 @@
+{
+  "mission": {
+    "ask": "Add a CSV export button",
+    "done_state": "ship-it-sometime",
+    "done_when": ["The change is done"]
+  },
+  "outcome": "advance",
+  "then": "build"
+}

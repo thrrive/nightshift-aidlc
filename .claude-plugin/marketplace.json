@@ -1,0 +1,15 @@
+{
+  "name": "nightshift-aidlc",
+  "description": "Marketplace for the portable Nightshift AIDLC skill kit.",
+  "owner": {
+    "name": "Mihir Sambhus"
+  },
+  "plugins": [
+    {
+      "name": "nightshift",
+      "description": "Portable requirements, build, verification, review, and landing phase machine.",
+      "version": "0.1.0",
+      "source": "./plugins/nightshift"
+    }
+  ]
+}

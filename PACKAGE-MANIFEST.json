@@ -1,0 +1,383 @@
+{
+  "files": [
+    {
+      "path": ".agents/plugins/marketplace.json",
+      "sha256": "d182bfe5f21d9154310b525c574982afb1ca5078248ec817ad099fcbff938660"
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "sha256": "cdacc02dc4304e4033842b13a9146ef03be4d8e5b0510055a5b5341669923e3c"
+    },
+    {
+      "path": ".github/workflows/package.yml",
+      "sha256": "3747ffefe76218d1e181a563ed25b1747efacc4dc8c7d31fbdee4144b8461c08"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "529b9202dbda74d1a2418640575c940a70765b03181be073d848ad510d82cec8"
+    },
+    {
+      "path": "COMPATIBILITY.md",
+      "sha256": "57c26e5650481746ebc9bdb64c61d1d5523a7b190154553de99ee32a3987338c"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "f696ef26d849d4f9c0b254e5af6d72dc42d0509afb66c6949d3bd12bb3754b48"
+    },
+    {
+      "path": "EXTENDING.md",
+      "sha256": "a77711aa3d400a537ed4a453a2aeaf08eca5444c0205dcf735b7c76df20decaf"
+    },
+    {
+      "path": "INSTALL.md",
+      "sha256": "2f6ef537c7e3018abdf64ec486af2936c83f3ef9f5d4160eef7ebb6aefa2edba"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "199dbc2510ec8e957090d86c79916e866d93aaa0e1af86ef0b4f42836ebd191b"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "sha256": "7fdcd0b3712cdf0a016d8885fd2bd2df8162ad02fcdb863ab85016ad636a02fe"
+    },
+    {
+      "path": "README.md",
+      "sha256": "0c21a4efc55b9f487276528ac4d36b1f12e0b42e91bd2c33428968505a63e4b0"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "016dd0f030d35d8b86f407452afed43a89dbd9aca7966dd9afe8be208cfe5e8d"
+    },
+    {
+      "path": "docs/handoff-contract.md",
+      "sha256": "4930f3061945e981e357aba1e0540ea32a779451c540a91acff15e1a7ba381ff"
+    },
+    {
+      "path": "docs/host-capabilities.md",
+      "sha256": "8b076e1eff2b4901a678c908d9873747e1dac5c537950a43ef11314d46c4373a"
+    },
+    {
+      "path": "docs/lifecycle.md",
+      "sha256": "8b4b794de33ae76130572c005daf701a5fe20abe792132be96de8041b72a2106"
+    },
+    {
+      "path": "plugins/nightshift/.claude-plugin/plugin.json",
+      "sha256": "f782eed7eaaec08eb792d29be8c04f8205333b71d04f0782236fe2b651848bdd"
+    },
+    {
+      "path": "plugins/nightshift/.codex-plugin/plugin.json",
+      "sha256": "a67a0b5ae387d618f9e80172ba5e9fb2365fabe5f367a1aeaa89fb8b80cb0bf3"
+    },
+    {
+      "path": "plugins/nightshift/CHANGELOG.md",
+      "sha256": "529b9202dbda74d1a2418640575c940a70765b03181be073d848ad510d82cec8"
+    },
+    {
+      "path": "plugins/nightshift/COMPATIBILITY.md",
+      "sha256": "57c26e5650481746ebc9bdb64c61d1d5523a7b190154553de99ee32a3987338c"
+    },
+    {
+      "path": "plugins/nightshift/CONTRIBUTING.md",
+      "sha256": "f696ef26d849d4f9c0b254e5af6d72dc42d0509afb66c6949d3bd12bb3754b48"
+    },
+    {
+      "path": "plugins/nightshift/EXTENDING.md",
+      "sha256": "a77711aa3d400a537ed4a453a2aeaf08eca5444c0205dcf735b7c76df20decaf"
+    },
+    {
+      "path": "plugins/nightshift/INSTALL.md",
+      "sha256": "2f6ef537c7e3018abdf64ec486af2936c83f3ef9f5d4160eef7ebb6aefa2edba"
+    },
+    {
+      "path": "plugins/nightshift/LICENSE",
+      "sha256": "199dbc2510ec8e957090d86c79916e866d93aaa0e1af86ef0b4f42836ebd191b"
+    },
+    {
+      "path": "plugins/nightshift/PROVENANCE.md",
+      "sha256": "7fdcd0b3712cdf0a016d8885fd2bd2df8162ad02fcdb863ab85016ad636a02fe"
+    },
+    {
+      "path": "plugins/nightshift/README.md",
+      "sha256": "0c21a4efc55b9f487276528ac4d36b1f12e0b42e91bd2c33428968505a63e4b0"
+    },
+    {
+      "path": "plugins/nightshift/SECURITY.md",
+      "sha256": "016dd0f030d35d8b86f407452afed43a89dbd9aca7966dd9afe8be208cfe5e8d"
+    },
+    {
+      "path": "plugins/nightshift/commands/aidlc.md",
+      "sha256": "11a0c94f5a948c7a5a4a00de94837431436d4464e55dfc0667f55b178b0ba237"
+    },
+    {
+      "path": "plugins/nightshift/commands/build.md",
+      "sha256": "ee7633b6b62e2e7b49b1f34926bff405051002589ce83ef2fe72b942bd0f8823"
+    },
+    {
+      "path": "plugins/nightshift/commands/frame.md",
+      "sha256": "486a04308e7460a3a4bf81b8e003cab548968989ae23b9615b5197c93eab8f4a"
+    },
+    {
+      "path": "plugins/nightshift/commands/intake.md",
+      "sha256": "9475cadaf2abb50965c341617323be1bf1f90279a94ddf0eab44b7d35d3a65e4"
+    },
+    {
+      "path": "plugins/nightshift/commands/land.md",
+      "sha256": "2cdefeb70c0eba429f219684eeea87557df34be1860806ca14026fb4b8d5a57e"
+    },
+    {
+      "path": "plugins/nightshift/commands/verify.md",
+      "sha256": "1c5a3ecffd7ff6dfeef499729f5b2aac5cd8e2191219596213695997d5342871"
+    },
+    {
+      "path": "plugins/nightshift/docs/handoff-contract.md",
+      "sha256": "4930f3061945e981e357aba1e0540ea32a779451c540a91acff15e1a7ba381ff"
+    },
+    {
+      "path": "plugins/nightshift/docs/host-capabilities.md",
+      "sha256": "8b076e1eff2b4901a678c908d9873747e1dac5c537950a43ef11314d46c4373a"
+    },
+    {
+      "path": "plugins/nightshift/docs/lifecycle.md",
+      "sha256": "8b4b794de33ae76130572c005daf701a5fe20abe792132be96de8041b72a2106"
+    },
+    {
+      "path": "plugins/nightshift/evals/build-verification-rewind/graders/criteria.md",
+      "sha256": "90d76e67959f4c57d8743ef126b74637f994f3b8f6a9dee7a947a6c3239712c1"
+    },
+    {
+      "path": "plugins/nightshift/evals/build-verification-rewind/prompt.md",
+      "sha256": "a015d9388a8914cc126258bd76077bf11b7bb8dacf4df404e0a2644ca2fae2a0"
+    },
+    {
+      "path": "plugins/nightshift/evals/frame-plan-gate/graders/criteria.md",
+      "sha256": "2096975889d61f63e6e59d571e7db5b4f310b19ec122fb5c8d7d71403cdb0039"
+    },
+    {
+      "path": "plugins/nightshift/evals/frame-plan-gate/prompt.md",
+      "sha256": "cb618ee9f6d6c449402550299fad1b517783f7a8fd2299b49eadf462c1b22fac"
+    },
+    {
+      "path": "plugins/nightshift/evals/land-review-rewind/graders/criteria.md",
+      "sha256": "b97735e812d9850971ee9754234b5e44a8e44c6711bfbdfbf3044a0874672499"
+    },
+    {
+      "path": "plugins/nightshift/evals/land-review-rewind/prompt.md",
+      "sha256": "e79e08d307084854cd14371ac043a200bd017f96005e4e6f36dde0d91b87f73e"
+    },
+    {
+      "path": "plugins/nightshift/evals/orchestrator-human-gate/graders/criteria.md",
+      "sha256": "4d180eb7eae3aa219823e692114db477582c27a8bd662ae29501f7858b4176e7"
+    },
+    {
+      "path": "plugins/nightshift/evals/orchestrator-human-gate/prompt.md",
+      "sha256": "b2dafc729f9231d10b71eedc35edf0606e9c08890ecd76aead2737fe255172f3"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/README.md",
+      "sha256": "f60d335256320b9c18e8310be7074ab4b89bd11a19a45890f0c7b8e8460917bc"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/invalid/advance-without-next-phase.json",
+      "sha256": "2238aeaa73976d6cde586789f49a85b65893e29a4487add9a84e44b6956396ba"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/invalid/rewind-without-target.json",
+      "sha256": "518ff3f630fd64ae505c35fcf9d0505c29ec88d733a819583899d36a11670587"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/invalid/stuck-without-blocker.json",
+      "sha256": "38372278074bac33232709064234989beff6215e271c2617e4baec9cc9cfaf71"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/invalid/unknown-done-state.json",
+      "sha256": "748e3f4089b328f880e79a84eb0ac4aa031850c105baf54f59eb9ff82f02a7ff"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/invalid/unsafe-workstream-path.json",
+      "sha256": "497d45674bbb136c8ab220138e2619b65a47c1f0699b7236106d3a00e9adda4c"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/valid/advance.json",
+      "sha256": "3203e0d62bb57617a9d8ea8aaaf1bdbc1e1464dd2f3d80490d75edd8d705fd39"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/valid/custom-done-state.json",
+      "sha256": "aa97cdc72ee0a5b57c3907e438b941bba8d39fc3f3dc676e1b500955e47c40df"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/valid/needs-human.json",
+      "sha256": "f079a0c52a16346ce7f674e77cedb2df5e11a63f76dcce15d6bca12bec8a9569"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/valid/no-deploy.json",
+      "sha256": "f0fe73ca66e5e7fd47d4a5e15f5724e8b3b146802fcd37e5bb623bc4a32dfdf6"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/valid/rewind.json",
+      "sha256": "04e4e3837ddfdc0375de242b85b3e4ea72fd1215334ea05412be934d9045eda6"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/valid/stuck.json",
+      "sha256": "78aa510fbeb7ffa60bdc5e901091ad10c2662d873f51e4166cb396423303a851"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/valid/workstreams.json",
+      "sha256": "936a6a355a44838fb910666852f379e4f03c9aa19c9908529df9519e59805e40"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/mission.schema.json",
+      "sha256": "a82bde67847b499917450a56f780e584e1edb069212c15eb45c88d9d472829a5"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/outcome.schema.json",
+      "sha256": "3feb6aaacee7783dbad066d2c37e3eabaf76c92a6177541abe730d52deaf3252"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v1/workstreams.schema.json",
+      "sha256": "f2c284dd428bf91664b16d269d3bca043325cf1770959025aa82887382ebaeef"
+    },
+    {
+      "path": "plugins/nightshift/skills/aidlc/SKILL.md",
+      "sha256": "d8e848fcaeb8530f9a7ba2db2aa3ce1adcfb3c561a5ba477d48ab9416d5e67ce"
+    },
+    {
+      "path": "plugins/nightshift/skills/aidlc/references/routing-contract.md",
+      "sha256": "023e0fca244fb1d1531d3871e0711536628fcca2d4149da8f480e3c10fc4c684"
+    },
+    {
+      "path": "plugins/nightshift/skills/blueprint/SKILL.md",
+      "sha256": "6a773dee5bed8fc4ee357ce1588291fa71eb764a0d554b64b51f2fc049fcd163"
+    },
+    {
+      "path": "plugins/nightshift/skills/build/SKILL.md",
+      "sha256": "68907b7dac97f3be570d6b846b69f03f75972d8d98f0d3d992c21c921b641519"
+    },
+    {
+      "path": "plugins/nightshift/skills/frame/SKILL.md",
+      "sha256": "80bd967ec3dd3598273b948fcb752d402bcdc2d69918c439740941a590e3819a"
+    },
+    {
+      "path": "plugins/nightshift/skills/implement/SKILL.md",
+      "sha256": "bcbf46a17d5a3663901ca1f47391c13bf006d1400b018b7c2309c925db70c721"
+    },
+    {
+      "path": "plugins/nightshift/skills/intake/SKILL.md",
+      "sha256": "5e5644ef82f2fd4f2ea9bcaab7d51deea35d6a7db8502a455c2fb10d18b8d219"
+    },
+    {
+      "path": "plugins/nightshift/skills/investigate/SKILL.md",
+      "sha256": "e1e7ba1cee90005223a5d1600e281ed5ebe419717998032850012aecb5712fb1"
+    },
+    {
+      "path": "plugins/nightshift/skills/land/SKILL.md",
+      "sha256": "51cfb20684527b1952b1b55d68975dafad5661da6ac840da555675f7a439dc4d"
+    },
+    {
+      "path": "plugins/nightshift/skills/plan/SKILL.md",
+      "sha256": "f1c4fd33fa748f70f4cd47fabc98decdee05ba261e379ff9a6e5717e83408c00"
+    },
+    {
+      "path": "plugins/nightshift/skills/plan/references/plan-template.md",
+      "sha256": "d0f6dcf1f19d1d2f7ec736456a090fefdc822508d8673447263e0d8a2a44ab10"
+    },
+    {
+      "path": "plugins/nightshift/skills/pr-drive/SKILL.md",
+      "sha256": "4fcf0177d2dcc98653c93b4b032dbaa909075a51502ca08da9baa66d8a2e1025"
+    },
+    {
+      "path": "plugins/nightshift/skills/redteam/SKILL.md",
+      "sha256": "aef0181e333ef1d28842bb89a5762d7b9a8466c0c8ef33a28608172b9cdbaad1"
+    },
+    {
+      "path": "plugins/nightshift/skills/release-gate/SKILL.md",
+      "sha256": "fc9f93b165cc0d9a7fd15d77b8ea7154d31f0be4e5ba167ca1c6cde4a69afa4f"
+    },
+    {
+      "path": "plugins/nightshift/skills/self-review/SKILL.md",
+      "sha256": "3de74e3e6f70146b4e4f42c7316c09d0fa442bd5b480fac3100f6d90b95be635"
+    },
+    {
+      "path": "plugins/nightshift/skills/self-review/references/findings-record.md",
+      "sha256": "2603dde9833208f0d8c6d50e669fb1203ddbe0c271dade9e06a99757b2b29a4b"
+    },
+    {
+      "path": "plugins/nightshift/skills/verify/SKILL.md",
+      "sha256": "141409aaaf8ced230209b7b8008d5a23f19a375efa47224480865e619228652d"
+    },
+    {
+      "path": "schemas/aidlc/v1/README.md",
+      "sha256": "f60d335256320b9c18e8310be7074ab4b89bd11a19a45890f0c7b8e8460917bc"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/invalid/advance-without-next-phase.json",
+      "sha256": "2238aeaa73976d6cde586789f49a85b65893e29a4487add9a84e44b6956396ba"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/invalid/rewind-without-target.json",
+      "sha256": "518ff3f630fd64ae505c35fcf9d0505c29ec88d733a819583899d36a11670587"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/invalid/stuck-without-blocker.json",
+      "sha256": "38372278074bac33232709064234989beff6215e271c2617e4baec9cc9cfaf71"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/invalid/unknown-done-state.json",
+      "sha256": "748e3f4089b328f880e79a84eb0ac4aa031850c105baf54f59eb9ff82f02a7ff"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/invalid/unsafe-workstream-path.json",
+      "sha256": "497d45674bbb136c8ab220138e2619b65a47c1f0699b7236106d3a00e9adda4c"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/valid/advance.json",
+      "sha256": "3203e0d62bb57617a9d8ea8aaaf1bdbc1e1464dd2f3d80490d75edd8d705fd39"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/valid/custom-done-state.json",
+      "sha256": "aa97cdc72ee0a5b57c3907e438b941bba8d39fc3f3dc676e1b500955e47c40df"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/valid/needs-human.json",
+      "sha256": "f079a0c52a16346ce7f674e77cedb2df5e11a63f76dcce15d6bca12bec8a9569"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/valid/no-deploy.json",
+      "sha256": "f0fe73ca66e5e7fd47d4a5e15f5724e8b3b146802fcd37e5bb623bc4a32dfdf6"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/valid/rewind.json",
+      "sha256": "04e4e3837ddfdc0375de242b85b3e4ea72fd1215334ea05412be934d9045eda6"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/valid/stuck.json",
+      "sha256": "78aa510fbeb7ffa60bdc5e901091ad10c2662d873f51e4166cb396423303a851"
+    },
+    {
+      "path": "schemas/aidlc/v1/fixtures/valid/workstreams.json",
+      "sha256": "936a6a355a44838fb910666852f379e4f03c9aa19c9908529df9519e59805e40"
+    },
+    {
+      "path": "schemas/aidlc/v1/mission.schema.json",
+      "sha256": "a82bde67847b499917450a56f780e584e1edb069212c15eb45c88d9d472829a5"
+    },
+    {
+      "path": "schemas/aidlc/v1/outcome.schema.json",
+      "sha256": "3feb6aaacee7783dbad066d2c37e3eabaf76c92a6177541abe730d52deaf3252"
+    },
+    {
+      "path": "schemas/aidlc/v1/workstreams.schema.json",
+      "sha256": "f2c284dd428bf91664b16d269d3bca043325cf1770959025aa82887382ebaeef"
+    },
+    {
+      "path": "scripts/check_package.py",
+      "sha256": "0341f207bf1168042c25148a9c5ff7c408fd49692ad63119d74f7206eb16f7b6"
+    },
+    {
+      "path": "scripts/check_schemas.py",
+      "sha256": "c787d8606f203740b82aaef1766b780253a4eca3129402be58a47673c5a3bd70"
+    }
+  ],
+  "package": "nightshift-aidlc",
+  "plugin": "nightshift",
+  "version": "0.1.0"
+}

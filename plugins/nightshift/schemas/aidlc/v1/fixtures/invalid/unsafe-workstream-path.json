@@ -1,0 +1,20 @@
+{
+  "mission": {
+    "ask": "Add a CSV export button",
+    "done_state": "pr-ready",
+    "done_when": ["The change is implemented and one pull request is open"]
+  },
+  "outcome": "advance",
+  "then": "build",
+  "workstreams": {
+    "version": 1,
+    "merge_strategy": "ordered",
+    "items": [
+      {
+        "id": "export",
+        "goal": "Implement export",
+        "paths": ["../outside"]
+      }
+    ]
+  }
+}

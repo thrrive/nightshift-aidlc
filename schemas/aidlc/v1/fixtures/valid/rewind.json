@@ -1,0 +1,11 @@
+{
+  "mission": {
+    "ask": "Add a CSV export button",
+    "done_state": "pr-ready",
+    "done_when": ["The change is implemented and one pull request is open"],
+    "halts": []
+  },
+  "outcome": "rewind",
+  "rewind_to": "plan",
+  "note": "The plan needs an explicit authorization boundary."
+}

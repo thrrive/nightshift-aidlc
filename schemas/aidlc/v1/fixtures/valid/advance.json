@@ -1,0 +1,12 @@
+{
+  "mission": {
+    "ask": "Add a CSV export button",
+    "done_state": "pr-ready",
+    "done_when": ["The change is implemented and one pull request is open"],
+    "halts": ["no-verify"]
+  },
+  "outcome": "advance",
+  "then": "build",
+  "outputs": ["plan.md"],
+  "note": "The implementation plan is approved."
+}
