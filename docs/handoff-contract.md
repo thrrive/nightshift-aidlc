@@ -39,7 +39,7 @@ mission: { ... }     # echoed back unchanged
 outcome: advance | rewind | needs_human | stuck
 then: frame | build | land | complete      # where to go when outcome == advance
 rewind_to: investigate | blueprint | plan | redteam | build   # when outcome == rewind
-outputs: []          # artifacts or paths the phase produced
+outputs: []          # durable artifacts or user-visible paths the phase produced
 note: <one-line result summary>
 blockers: []         # concrete blockers when outcome == stuck
 links:
@@ -111,5 +111,9 @@ workstreams:
    toward the same `done_state`.
 4. **Completion is checked against `done_when`.** The orchestrator only finishes when `then`
    is `complete` *and* every `done_when` condition is observably satisfied.
+5. **Frame outputs survive the gate.** Before plan approval, `outputs` names the durable mission,
+   investigation, blueprint, plan, red-team review, and handoff references defined in
+   [`frame-artifacts.md`](frame-artifacts.md). Scratch or conversation-only references do not
+   satisfy this field unless the user explicitly accepts an inline-only review.
 
 See [`lifecycle.md`](lifecycle.md) for how the phases compose into the loop.

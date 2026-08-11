@@ -42,6 +42,10 @@ def check_readme_skill_map() -> None:
         raise ValueError(f"README skill map is incomplete: {', '.join(missing)}")
     if "[complete lifecycle and skill reference](docs/lifecycle.md)" not in readme:
         raise ValueError("README does not link to the complete lifecycle and skill reference")
+    if "(docs/review-contract.md)" not in readme:
+        raise ValueError("README does not link to the evidence-backed review contract")
+    if "(docs/frame-artifacts.md)" not in readme:
+        raise ValueError("README does not link to the durable frame-artifact contract")
 
 
 def check_commands() -> None:
@@ -56,8 +60,8 @@ def check_commands() -> None:
 
 def check_evals() -> None:
     cases = sorted((PLUGIN / "evals").glob("*/prompt.md"))
-    if len(cases) != 4:
-        raise ValueError(f"expected 4 representative eval cases, found {len(cases)}")
+    if len(cases) != 7:
+        raise ValueError(f"expected 7 representative eval cases, found {len(cases)}")
     for prompt in cases:
         grader = prompt.parent / "graders" / "criteria.md"
         if not grader.is_file() or not prompt.read_text().strip() or not grader.read_text().strip():

@@ -19,8 +19,8 @@ def read_json(path: Path) -> dict:
 
 def outcome_validator() -> Draft202012Validator:
     schemas = [read_json(path) for path in sorted(SCHEMA_DIR.glob("*.schema.json"))]
-    if len(schemas) != 3:
-        raise ValueError(f"expected 3 v1 schemas, found {len(schemas)}")
+    if len(schemas) != 4:
+        raise ValueError(f"expected 4 v1 schemas, found {len(schemas)}")
     registry = Registry()
     outcome = None
     for schema in schemas:

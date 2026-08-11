@@ -4,8 +4,10 @@
 
 - [Availability and degradation](#availability-and-degradation)
 - [Target metadata](#target-metadata-required)
+- [Durable frame artifacts](#durable-frame-artifacts-required-for-plan-approval)
 - [Workspace](#workspace-required-for-build)
 - [Verification](#verification-required-unless-waived)
+- [Review attestation](#review-attestation-optional)
 - [Pull request](#pull-request-required-for-pr-ready-and-beyond)
 - [Release](#release-conditionally-required)
 - [Prior-memory read](#prior-memory-read-optional)
@@ -57,6 +59,40 @@ result:
 The target resolver supplies metadata, not execution authority. If no target can be resolved, intake
 returns `needs_human`; later phases return `stuck` rather than guessing a repository or release.
 
+## Durable frame artifacts (required for plan approval)
+
+Purpose: retain the complete pre-implementation review bundle in a user-visible location that
+survives the agent session.
+
+```yaml
+request:
+  mission: <canonical unchanged mission>
+  invocation_root: <authorized user-visible starting workspace, when local>
+  feature_docs_path: <optional target-declared path>
+  resume_ref: <optional existing bundle reference>
+result:
+  bundle_ref: <stable durable reference>
+  storage: invocation-workspace | host-artifact-store
+  outputs:
+    mission: <reference>
+    investigation: <reference>
+    blueprint: <reference>
+    plan: <reference>
+    review: <reference>
+    handoff: <reference>
+```
+
+Resolve the bundle once before investigation and reuse it across rewinds. For an interactive local
+host without a target feature-docs convention, the fallback is the visible
+`nightshift/<mission-slug>/` directory under `invocation_root`. An operating-system temporary
+directory, transient agent sandbox, or conversation is not a durable result. Full placement,
+collision, and fallback rules live in the [durable frame-artifact
+contract](frame-artifacts.md).
+
+When no authorized durable destination is available, `frame` returns `needs_human` with inline
+recovery content and asks for a destination or explicit inline-only waiver. It must not advance to
+the routine plan-approval gate while implying that temporary work is durable.
+
 ## Workspace (required for build)
 
 Purpose: prepare and identify the isolated location in which changes may be written.
@@ -100,6 +136,32 @@ Use the target's existing verification implementation when available. A user-fac
 normally selects `browser`; an API, command-line tool, library, worker, or infrastructure change may
 select another shape. `waived` is valid only when the mission explicitly carries `no-verify`.
 Unavailable or failed execution is `unproven`, never `passed`.
+
+## Review attestation (optional)
+
+Purpose: bind a review to an exact subject and expose checks the host actually observed, so a
+reviewer cannot promote a self-reported command or artifact to behavioral proof.
+
+```yaml
+request:
+  target_ref: <stable target reference>
+  workspace_ref: <prepared workspace>
+  stage: redteam | self-review | change-review
+  subject_refs: [<plan artifact or exact revision>]
+result:
+  subject_refs: [<resolved immutable references>]
+  reviewer_context: fresh | same-session | unknown
+  observed_checks:
+    - name: <check or probe>
+      status: passed | failed | unproven
+      behavior_sensitive: true | false | unknown
+      evidence: [<host-owned result reference>]
+```
+
+The capability may prepare an independent reviewer context, but it does not decide the review.
+When unavailable, the skill still performs static inspection and reports the weaker proof ceiling.
+Only host-observed checks against the pinned subject can support `PROVEN`; model-written paths,
+commands, or summaries remain self-attestation.
 
 ## Pull request (required for `pr-ready` and beyond)
 

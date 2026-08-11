@@ -12,9 +12,12 @@ the `aidlc` orchestrator route the next major phase.
 
 ## Process
 
-1. Run **investigate** with the mission. Capture requirements, current state, prior art, repo
+1. Resolve one durable frame bundle using the
+   [`frame-artifact contract`](../../docs/frame-artifacts.md). Pass that same bundle reference to
+   every subskill and reuse it after clarification or rewind.
+2. Run **investigate** with the mission. Capture requirements, current state, prior art, repo
    conventions, constraints, and open questions.
-2. **Clarify before designing.** Review the open questions investigate surfaced. If any are
+3. **Clarify before designing.** Review the open questions investigate surfaced. If any are
    genuine ambiguities that change the shape of the work — unclear scope, undefined acceptance,
    more than one plausible interpretation, or an assumption that would be expensive to get wrong
    — resolve them *before* blueprint or plan. Bias toward asking: a wrong mission costs far more
@@ -31,13 +34,14 @@ the `aidlc` orchestrator route the next major phase.
      course at the plan-approval gate.
    If a genuinely blocking unknown remains that you cannot answer or reasonably assume, return
    `needs_human` with the specific questions instead of designing on a guess.
-3. Run **blueprint** with the investigation output. It produces the technical approach:
+4. Run **blueprint** with the investigation output. It produces the technical approach:
    components touched, data/contract changes, rollout + observability expectations, and the
    **verification shape** (browser, API, CLI, library, or custom) and its observable pass condition.
-4. Run **plan** with the investigation + blueprint. It produces the human-approvable
+5. Run **plan** with the investigation + blueprint. It produces the human-approvable
    implementation plan and the definition of done.
-5. Run **redteam** over the plan + blueprint. On a material gap, route back to `blueprint` or
-   `plan`; otherwise finalize.
+6. Run **redteam** over the pinned plan + blueprint using the shared evidence-backed review
+   contract. Rewind material gaps, hold incomplete evidence for human judgment, and finalize only
+   after remediation is re-reviewed.
 
 Use subagents or background work where the runtime supports it, but the phase's result is a
 single handoff. Enter each subskill by invoking it through the runtime's skill mechanism rather
@@ -46,9 +50,12 @@ it is what makes per-step attribution, timing, and overrides work downstream.
 
 ## Artifacts
 
-When the target repo uses a feature-docs convention, write or update the plan and supporting
-   notes there (target metadata may declare the path). Otherwise return the same sections in the
-conversation. Keep them concise and decision-focused — no speculative detail.
+Persist `mission.json`, `investigation.md`, `blueprint.md`, `plan.md`, `redteam-review.json`, and
+`handoff.yaml` before requesting plan approval. Prefer a target-declared feature-docs location;
+otherwise use the visible `nightshift/<mission-slug>/` fallback under the invocation root. Scratch,
+temporary, or conversation-only content is not the durable copy. If no durable write is available,
+return `needs_human` with inline recovery content and ask for a destination or explicit waiver.
+Tell the user the exact durable paths at the gate.
 
 ## Completion handoff
 
@@ -57,9 +64,10 @@ mission: { ... }            # unchanged
 outcome: advance | rewind | needs_human | stuck
 then: build                                      # include only for advance
 rewind_to: investigate | blueprint | plan | redteam  # include only for rewind
-outputs: [ <plan + supporting notes> ]
+outputs: [ <durable mission + investigation + blueprint + plan + review + handoff paths> ]
 note: <the plan in a sentence, plus the top risk>
 blockers: []
+review: { ... }             # red-team record for the finalized plan
 rollout:
   target_environment: <production | staging | custom>
   deploy_path: <known, or "needs discovery">

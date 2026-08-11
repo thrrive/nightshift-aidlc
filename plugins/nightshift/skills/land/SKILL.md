@@ -35,6 +35,11 @@ let the orchestrator route earlier work.
 7. After merge, complete immediately for a no-release `merged` mission. Otherwise observe the
    configured release and health evidence until every `done_when` condition is satisfied.
 
+The current Nightshift runtime does not expose an approved automatic-merge policy. It refuses every
+target configured with `auto_merge: true` because no harness-produced attestation source exists.
+Keep targets on `auto_merge: false` and require the human merge gate; this is a fail-closed policy,
+not a pending readiness signal.
+
 ## Completion handoff
 
 ```yaml

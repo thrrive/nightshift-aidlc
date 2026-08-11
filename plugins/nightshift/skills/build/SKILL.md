@@ -27,8 +27,9 @@ by name so host overrides remain effective and step attribution stays intact.
 4. Run **implement** against the approved plan.
 5. Run relevant repo-owned tests, lint, type checks, builds, or equivalent checks. Never bypass
    contribution hooks.
-6. Run **self-review** against the plan and `done_when`. A design gap returns `rewind`; an in-scope
-   defect returns to implementation.
+6. Run **self-review** against the pinned diff, plan, and `done_when` using the shared
+   evidence-backed review contract. Re-review remediation; a design gap returns `rewind`, an
+   in-scope defect returns to implementation, and incomplete evidence holds for human judgment.
 7. Run **verify** with the approved browser, API, CLI, library, or custom shape. Preserve its status
    and evidence without translating `unproven` into success.
 8. Prepare focused commits or the host's equivalent reviewable revision.
@@ -46,9 +47,9 @@ formatting, API calls, attribution, and authenticated user lookup belong to the 
 composer exists, use a concise host-neutral summary of frame, build, review, and verification, and
 retain links to the underlying evidence.
 
-Always produce the self-review structured record, including a one-sentence `build_summary` and every
-finding's severity, location, disposition, and fix. The host may choose its artifact location; never
-hardcode a private runtime path.
+Always produce the self-review record, including the reviewed subject, independent lenses, core
+claims, proof ceiling, stable findings, remediation, and residual risks. The host may choose its
+artifact location; never hardcode a private runtime path.
 
 ## Guardrails
 
@@ -67,6 +68,7 @@ rewind_to: investigate | blueprint | plan | redteam  # include only for rewind
 outputs: []
 note: <what changed and how it was proven>
 blockers: []
+review: { ... }             # self-review record for the delivered revision
 links:
   pr: <review URL when delivery is pull-request>
   commits: []

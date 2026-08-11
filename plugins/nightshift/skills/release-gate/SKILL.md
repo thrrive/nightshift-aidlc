@@ -35,6 +35,11 @@ also grants merge authority.
 For a no-release target whose `done_state` is `merged`, complete after the authorized merge. Do not
 invent a production observation step.
 
+The current Nightshift runtime permanently refuses `auto_merge: true`: it has no harness-produced
+attestation source that can justify an unattended merge. Keep every target on `auto_merge: false`
+and require explicit human authorization. Treat the refusal as a fail-closed policy result, not a
+pending signal and not a code defect to route through repeated builds.
+
 ## After merge
 
 When `done_when` requires a released environment, request production or staging status plus health

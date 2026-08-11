@@ -71,4 +71,7 @@ mission; it never shrinks or rewrites it.
 For `done_state: frame-approved`, ask the user to approve, refine, or reject the plan. Once they
 approve it, return `outcome: advance` with `then: complete`; never enter or offer `build` for that
 mission. Before approval, preserve the completed `frame` handoff (`outcome: advance`, `then: build`)
-as the machine-readable phase result while the orchestrator holds the gate.
+as the machine-readable phase result while the orchestrator holds the gate. Its `outputs` must name
+the durable frame bundle from [`docs/frame-artifacts.md`](../../../docs/frame-artifacts.md); an
+operating-system temporary directory, agent scratch area, or conversation-only result cannot open
+the routine approval gate without an explicit user waiver.
