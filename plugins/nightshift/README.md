@@ -24,6 +24,7 @@ reusable engineering harness and concrete guardrails around the agent:
 
 - observable completion criteria before implementation begins;
 - human approval before code is written and before a merge is authorized;
+- durable, user-visible investigation and plan artifacts before approval;
 - isolated workspaces and one reviewable change per mission;
 - fresh-context review plus verification against the running product;
 - evidence-driven rewinds when the code, plan, design, or requirements are wrong;
@@ -99,10 +100,10 @@ but only `aidlc` routes between major phases.
 | `investigate` | Reads the repository and gathers requirements, constraints, conventions, and open questions. |
 | `blueprint` | Designs the component and contract changes, rollout, observability, and verification shape. |
 | `plan` | Produces the ordered implementation plan and definition of done the human will approve. |
-| `redteam` | Attacks the blueprint and plan for correctness, security, scope, isolation, and proof gaps. |
+| `redteam` | Runs five adversarial lenses over the pinned blueprint and plan, with evidence-bound findings and remediation rounds. |
 | `build` | Owns the approved plan through an isolated, verified, reviewable change. |
 | `implement` | Writes the scoped change against the approved plan and repository conventions. |
-| `self-review` | Reviews the diff in fresh context for defects, drift, and plan or design gaps. |
+| `self-review` | Reviews the pinned diff in fresh context, audits test oracles and proof strength, and re-reviews remediation. |
 | `verify` | Proves the exact revision through its approved browser, API, CLI, library, or custom checks. |
 | `land` | Owns the reviewed change through checks, feedback, merge authorization, and the requested done state. |
 | `pr-drive` | Triages checks and review feedback into fixes, responses, rewinds, or human decisions. |
@@ -111,6 +112,12 @@ but only `aidlc` routes between major phases.
 Read the **[complete lifecycle and skill reference](docs/lifecycle.md)** for composition rules,
 rewind paths, flags, handoffs, workspace isolation, and human gates. The canonical executable
 contracts live in each packaged `skills/<name>/SKILL.md`.
+
+Frame work is not trapped in chat history. The
+**[durable frame-artifact contract](docs/frame-artifacts.md)** requires the mission,
+investigation, blueprint, plan, red-team review, and handoff to be persisted before approval. When
+a project has no documentation convention, an interactive run uses a visible
+`nightshift/<mission-slug>/` bundle under the directory where the user started the agent.
 
 ## Portable by design
 
@@ -122,9 +129,10 @@ evolve without forcing a rewrite of the other.
 ## What is included
 
 - fourteen focused lifecycle skills and six thin command wrappers;
-- versioned v1 schemas for `mission`, `outcome`, and optional `workstreams`;
-- provider-neutral host-capability contracts for workspace, verification, reviewed changes,
-  release evidence, prior-memory reads, and lesson proposals;
+- versioned v1 schemas for `mission`, `outcome`, evidence-backed `review`, and optional
+  `workstreams`;
+- provider-neutral host-capability contracts for durable frame artifacts, workspace, verification,
+  reviewed changes, review attestation, release evidence, prior-memory reads, and lesson proposals;
 - manifests for Claude Code and Codex plugin marketplaces;
 - compatibility, provenance, contribution, and security policies.
 
@@ -160,8 +168,8 @@ The default done state is stable production. Use `--frame-only` for an approved 
 for a verified reviewed change. The lifecycle always retains its plan and merge authorization
 gates; unavailable required capabilities fail honestly instead of being silently bypassed.
 
-Read `docs/lifecycle.md`, `docs/handoff-contract.md`, and `docs/host-capabilities.md` for the full
-behavior and extension seams.
+Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`, and
+`docs/host-capabilities.md` for the full behavior and extension seams.
 
 ## Resources
 
@@ -174,6 +182,8 @@ behavior and extension seams.
 - [`docs/lifecycle.md`](docs/lifecycle.md) — the complete skill reference, phase machine, and
   rewind paths.
 - [`docs/handoff-contract.md`](docs/handoff-contract.md) — the durable mission and outcome contract.
+- [`docs/review-contract.md`](docs/review-contract.md) — evidence strength, adversarial lenses,
+  findings, remediation, and fail-closed review decisions.
 - [`docs/host-capabilities.md`](docs/host-capabilities.md) — the portable boundary between skills
   and agent hosts.
 

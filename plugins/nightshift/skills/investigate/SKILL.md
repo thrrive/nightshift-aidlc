@@ -38,5 +38,9 @@ Return a tight findings summary with those sections. Flag blocking open question
 ready to ask — `frame` runs a clarification gate on them (probing the user when an operator is
 present) before `blueprint`.
 
+When `frame` supplies a durable bundle reference, persist the complete result as
+`investigation.md` there before returning. Do not choose a different root or leave scratch storage
+as the only copy. When invoked standalone, resolve the durable frame-artifact capability first.
+
 Return `advance` to `blueprint` when the picture is solid enough to design against. Prefer
 naming specific files/functions over vague gestures — the next steps build directly on this.

@@ -71,6 +71,9 @@
     },
     "workstreams": {
       "$ref": "urn:nightshift:aidlc:v1:workstreams"
+    },
+    "review": {
+      "$ref": "urn:nightshift:aidlc:v1:review"
     }
   },
   "allOf": [

@@ -4,9 +4,15 @@ The harness is a small phase machine. The `aidlc` orchestrator holds the `missio
 exactly one major phase at a time, reading each phase's handoff to decide the next move. Three
 major phases, each composing focused subskills:
 
-The portable payload is defined by the [handoff contract](handoff-contract.md). Effects supplied by
-an agent host follow the [host capability contract](host-capabilities.md); unavailable optional
-capabilities degrade explicitly without changing the mission.
+The portable payload is defined by the [handoff contract](handoff-contract.md). Red-team,
+self-review, and reviewed-change evidence follows the [review contract](review-contract.md).
+Effects supplied by an agent host follow the [host capability contract](host-capabilities.md);
+unavailable optional capabilities degrade explicitly without changing the mission.
+
+Before investigation begins, `frame` resolves one [durable artifact
+bundle](frame-artifacts.md). Every subskill writes its complete result there, and the bundle's
+mission, investigation, blueprint, plan, review, and handoff paths remain visible through the human
+approval gate. Agent scratch storage and conversation history are never the only copies.
 
 ```mermaid
 flowchart LR
@@ -83,18 +89,22 @@ Owns everything before code is written. Composes:
   and observability expectations, and what "proven" means for this change (the verification
   shape).
 - **plan** — a human-approvable implementation plan and a definition of done.
-- **redteam** — an adversarial pass over the plan/blueprint; on a material gap it rewinds to
-  `blueprint` or `plan`.
+- **redteam** — an evidence-backed adversarial pass over the pinned plan/blueprint. It runs five
+  independent lenses, retains stable findings through remediation, rewinds material gaps, and
+  holds incomplete evidence for human judgment.
 
 `frame` ends by returning `advance` — but the orchestrator **halts for human plan approval**
 before entering `build`. With `--frame-only` (or `done_state: frame-approved`), the loop stops
-here.
+here. Before opening that gate, it persists the complete frame bundle and reports the exact durable
+paths. Without an authorized durable destination it returns `needs_human` with inline recovery
+content rather than implying that temporary files will survive.
 
 ### build — approved plan to a verified change
 Owns implementation. Composes:
 - **implement** — write the change against the approved plan; focused commits; no scope creep.
-- **self-review** — a fresh-context review of the diff against the plan and definition of done
-  before delivery; a plan/design gap rewinds instead of expanding scope.
+- **self-review** — a fresh-context, evidence-backed review of the pinned diff against the plan and
+  definition of done. It checks test-oracle sensitivity, binds behavioral claims to host-observed
+  evidence, re-reviews fixes, and rewinds plan/design gaps instead of expanding scope.
 - **verify** — run the approved browser, API, CLI, library, or custom shape against the exact
   revision. A product failure rewinds to `build`; unavailable execution is `unproven` and blocks.
 
@@ -113,6 +123,12 @@ Owns everything after the reviewed change exists. Composes:
 An optional **review council** (a CI action running several models over the diff) posts one
 structured review per push that `pr-drive` triages; it raises `REQUEST_CHANGES` on a blocker but
 never auto-approves, so a real reviewer still owns signal #2.
+
+All three review stages share proof states and decision semantics. Model agreement alone does not
+mint proof: `PROVEN` requires host-observed, behavior-sensitive evidence against the pinned subject.
+Missing, malformed, partial, or all-error review output produces a `CONDITIONAL` hold. When bounded
+review rounds are exhausted, the harness preserves the work and asks for human judgment rather than
+silently advancing or discarding the change.
 
 `land` returns `needs_human` for the **merge decision** by default. After an authorized merge, a
 no-release target may complete at `merged`; otherwise `release-gate` observes the requested

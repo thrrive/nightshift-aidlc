@@ -26,4 +26,5 @@ edits or function signatures. The plan and the implementer fill in the mechanics
 ## Output
 
 Return the approach with the sections above. Keep it decision-dense; omit detail the plan and
-implementer can infer. Return `advance` to `plan`.
+implementer can infer. Persist the complete result as `blueprint.md` in the durable bundle supplied
+by `frame` before returning; never substitute a scratch-only path. Return `advance` to `plan`.

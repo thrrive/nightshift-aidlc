@@ -1,0 +1,73 @@
+{
+  "mission": {
+    "ask": "Add a CSV export button",
+    "done_state": "pr-ready",
+    "done_when": ["The export is implemented and verified"],
+    "halts": []
+  },
+  "outcome": "advance",
+  "then": "land",
+  "note": "The pinned diff passed evidence-backed self-review.",
+  "review": {
+    "schema_version": 1,
+    "stage": "self-review",
+    "reviewed_subject": {
+      "kind": "revision-diff",
+      "refs": ["base:0123456", "head:89abcde"],
+      "base_revision": "0123456",
+      "head_revision": "89abcde"
+    },
+    "reviewer_context": "fresh",
+    "parse_status": "complete",
+    "decision": "PASS",
+    "evidence_complete": true,
+    "proof_ceiling": "PROVEN",
+    "lenses": [
+      {
+        "id": "requirements-correctness",
+        "status": "complete",
+        "note": "The acceptance condition maps to the implementation and check.",
+        "evidence": ["diff:src/export.py"]
+      },
+      {
+        "id": "architecture-security",
+        "status": "complete",
+        "note": "The export preserves the endpoint's existing authorization boundary.",
+        "evidence": ["diff:src/export.py"]
+      },
+      {
+        "id": "tests-oracles",
+        "status": "complete",
+        "note": "The observed check asserts the downloaded content and media type.",
+        "evidence": ["check:export-download"]
+      },
+      {
+        "id": "delivery-operations",
+        "status": "complete",
+        "note": "No migration or staged rollout is required for this additive endpoint change.",
+        "evidence": ["diff:src/export.py"]
+      },
+      {
+        "id": "adversarial-lifecycle",
+        "status": "complete",
+        "note": "Empty and malformed export inputs retain bounded error handling.",
+        "evidence": ["check:export-download"]
+      }
+    ],
+    "claims": [
+      {
+        "id": "core:csv-export",
+        "tier": "core",
+        "statement": "The changed exporter emits a CSV download.",
+        "boundary": "CSV export endpoint",
+        "required_proof": "behavior-sensitive",
+        "state": "PROVEN",
+        "evidence": ["check:export-download"]
+      }
+    ],
+    "findings": [],
+    "residual_risks": [],
+    "outcome": "advance",
+    "note": "The implementation matches the approved plan and observed check."
+  }
+}

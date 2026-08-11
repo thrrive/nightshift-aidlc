@@ -31,5 +31,7 @@ missing input.
   same file (shared types, lockfiles, a common index) belongs to a single agent. Default is
   no decomposition.
 
-Write to the target's feature-docs path when it has one; otherwise return the plan inline.
-Return `advance` to `redteam` when complete.
+Persist the complete result as `plan.md` in the durable bundle supplied by `frame`. The bundle
+resolver already selected a target feature-docs location or the visible invocation-root fallback;
+do not replace it with a temporary path or conversation-only copy. Return `advance` to `redteam`
+when the durable plan is complete.

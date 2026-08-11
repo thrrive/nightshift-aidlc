@@ -2,6 +2,20 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## Unreleased
+
+- Add one evidence-backed review contract shared by red-team, self-review, and change review.
+- Require pinned review subjects, five independent adversarial lenses, explicit proof ceilings,
+  stable finding IDs, remediation history, and residual-risk reporting.
+- Fail closed on missing, malformed, partial, or all-error review evidence, while preserving work
+  for human judgment after bounded remediation rounds.
+- Add a versioned review schema and review-attestation capability without coupling skills to a
+  model provider or execution host.
+- Persist the complete frame bundle in a user-visible invocation workspace before plan approval;
+  temporary files and conversation history can no longer be its only copies.
+- Add a visible `nightshift/<mission-slug>/` fallback for projects without a feature-docs convention
+  and fail honestly when no durable destination is authorized.
+
 ## 0.1.0
 
 - Add deterministic conformance checks and representative router, frame, build, and land evals.
