@@ -116,8 +116,26 @@ contracts live in each packaged `skills/<name>/SKILL.md`.
 Frame work is not trapped in chat history. The
 **[durable frame-artifact contract](docs/frame-artifacts.md)** requires the mission,
 investigation, blueprint, plan, red-team review, and handoff to be persisted before approval. When
-a project has no documentation convention, an interactive run uses a visible
-`nightshift/<mission-slug>/` bundle under the directory where the user started the agent.
+a project has no documentation convention, an interactive run uses this visible bundle under the
+directory where the user started the agent:
+
+```text
+nightshift/<mission-slug>/
+  mission.json
+  investigation.md
+  blueprint.md
+  plan.md
+  redteam-review.json
+  handoff.yaml
+```
+
+Storage precedence is: the target's declared feature-docs path, a user-selected durable
+destination, then the invocation-directory fallback above. Temporary directories and agent scratch
+space may be used internally, but cannot be the only copies or the paths reported in the approval
+handoff. If durable writing is unavailable, Frame returns `needs_human` with inline recovery content
+and asks for a destination or explicit inline-only waiver.
+
+This protects new runs. It cannot recover artifacts that expired with an earlier agent session.
 
 ## Portable by design
 
