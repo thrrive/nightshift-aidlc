@@ -2,7 +2,7 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
-## Unreleased
+## 1.0.0-rc.2
 
 - Add the negotiated `aidlc-mission-bundle/v2` evidence format with one generated `MISSION.md`,
   hidden JSON/JSONL machine state, immutable mission identity, and explicit resume semantics.
