@@ -207,9 +207,10 @@ Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`,
 
 ## Status
 
-`0.1.0` is the first public preview, built from a lifecycle that has already driven more than 100
-real missions. The published artifact has also passed cross-host portability checks: a frame-only
-mission in Claude Code and a browser-verified PR-ready mission in Codex.
+`1.0.0-rc.1` is the immutable stable-v1 candidate. It preserves the preview's canonical mission
+and outcome contract while adding durable frame artifacts, evidence-backed review, and executable
+backward-compatibility checks. Stable promotion requires two fresh external missions from this
+exact tag, including a rewind and a human gate.
 
 ## License
 

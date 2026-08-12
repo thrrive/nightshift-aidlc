@@ -1,0 +1,16 @@
+{
+  "mission": {
+    "ask": "Update the reusable parser library",
+    "done_state": "merged",
+    "done_when": ["The pull request is green, approved, and merged"],
+    "halts": []
+  },
+  "outcome": "advance",
+  "then": "complete",
+  "note": "The no-deploy library change is merged.",
+  "links": {
+    "pr": "https://example.invalid/pull/42",
+    "commits": ["0123456789abcdef"],
+    "deploy": null
+  }
+}

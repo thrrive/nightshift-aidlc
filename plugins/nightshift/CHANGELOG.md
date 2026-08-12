@@ -4,6 +4,13 @@ All notable package changes are recorded here. Releases follow semantic versioni
 
 ## Unreleased
 
+## 1.0.0-rc.1
+
+- Freeze the stable v1 lifecycle candidate with unchanged canonical `mission`, `outcome`, and
+  routing semantics.
+- Add executable backward-compatibility checks for every valid handoff published in `0.1.0`.
+- Document additive adoption of evidence-backed review and durable frame artifacts across hosts.
+
 - Add one evidence-backed review contract shared by red-team, self-review, and change review.
 - Require pinned review subjects, five independent adversarial lenses, explicit proof ceilings,
   stable finding IDs, remediation history, and residual-risk reporting.
