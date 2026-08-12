@@ -1,0 +1,14 @@
+{
+  "mission": {
+    "ask": "finish aidlc stable v1. and then need to get back to the rearchitecture in the master plan",
+    "done_state": "merged",
+    "done_when": [
+      "Two complete external-repository missions succeed from one pinned public release candidate",
+      "The missions exercise at least one rewind and one human gate without changing the canonical contract",
+      "Upgrade and backward compatibility are documented and tested",
+      "Nightshift AIDLC v1.0.0 is merged, tagged, and published",
+      "The combined master plan records OSS7 complete and rearchitecture work resumes"
+    ],
+    "halts": []
+  }
+}

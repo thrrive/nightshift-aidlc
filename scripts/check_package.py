@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 from pathlib import Path
 
@@ -90,6 +91,23 @@ def check_versions() -> None:
         raise ValueError(f"manifest versions disagree: {sorted(versions)}")
 
 
+def check_integrity_manifest() -> None:
+    manifest = load_json(ROOT / "PACKAGE-MANIFEST.json")
+    entries = manifest.get("files")
+    if not isinstance(entries, list) or not entries:
+        raise ValueError("PACKAGE-MANIFEST.json has no files")
+    paths = [entry.get("path") for entry in entries]
+    if len(paths) != len(set(paths)):
+        raise ValueError("PACKAGE-MANIFEST.json contains duplicate paths")
+    for entry in entries:
+        path = ROOT / entry["path"]
+        if not path.is_file():
+            raise ValueError(f"manifest path is missing: {entry['path']}")
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != entry["sha256"]:
+            raise ValueError(f"manifest digest disagrees: {entry['path']}")
+
+
 def check_boundary() -> None:
     forbidden = ("runtime", "targets", "cli", "adapters")
     leaked = [name for name in forbidden if (PLUGIN / name).exists()]
@@ -107,6 +125,7 @@ def main() -> int:
     check_evals()
     check_local_links()
     check_versions()
+    check_integrity_manifest()
     check_boundary()
     print("Nightshift AIDLC package checks passed")
     return 0

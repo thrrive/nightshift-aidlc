@@ -1,0 +1,28 @@
+{
+  "mission": {
+    "ask": "Add an API and UI for saved searches",
+    "done_state": "pr-ready",
+    "done_when": ["The API and UI are implemented and one pull request is open"],
+    "halts": []
+  },
+  "outcome": "advance",
+  "then": "build",
+  "note": "The build can proceed in two disjoint workstreams.",
+  "workstreams": {
+    "version": 1,
+    "merge_strategy": "ordered",
+    "items": [
+      {
+        "id": "api-layer",
+        "goal": "Implement the saved-search API",
+        "paths": ["src/api", "tests/api"],
+        "model_hint": null
+      },
+      {
+        "id": "ui-layer",
+        "goal": "Implement the saved-search interface",
+        "paths": ["src/ui", "tests/ui"]
+      }
+    ]
+  }
+}
