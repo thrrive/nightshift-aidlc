@@ -47,6 +47,8 @@ def check_readme_skill_map() -> None:
         raise ValueError("README does not link to the evidence-backed review contract")
     if "(docs/frame-artifacts.md)" not in readme:
         raise ValueError("README does not link to the durable frame-artifact contract")
+    if "(docs/mission-bundles.md)" not in readme:
+        raise ValueError("README does not link to the human-first mission-bundle contract")
 
 
 def check_commands() -> None:
@@ -61,8 +63,8 @@ def check_commands() -> None:
 
 def check_evals() -> None:
     cases = sorted((PLUGIN / "evals").glob("*/prompt.md"))
-    if len(cases) != 7:
-        raise ValueError(f"expected 7 representative eval cases, found {len(cases)}")
+    if len(cases) != 8:
+        raise ValueError(f"expected 8 representative eval cases, found {len(cases)}")
     for prompt in cases:
         grader = prompt.parent / "graders" / "criteria.md"
         if not grader.is_file() or not prompt.read_text().strip() or not grader.read_text().strip():
@@ -89,6 +91,40 @@ def check_versions() -> None:
     versions = {codex["version"], claude["version"], marketplace["plugins"][0]["version"]}
     if len(versions) != 1:
         raise ValueError(f"manifest versions disagree: {sorted(versions)}")
+
+
+def check_public_mirrors() -> None:
+    roots = [
+        "README.md", "CHANGELOG.md", "COMPATIBILITY.md", "SECURITY.md",
+        "docs/MISSION.template.md", "docs/frame-artifacts.md", "docs/handoff-contract.md",
+        "docs/host-capabilities.md", "docs/lifecycle.md", "docs/mission-bundles.md",
+        "schemas/aidlc/v1/README.md", "schemas/aidlc/v2/README.md",
+        "schemas/aidlc/v2/bundle.schema.json", "schemas/aidlc/v2/event.schema.json",
+    ]
+    for relative in roots:
+        source = ROOT / relative
+        packaged = PLUGIN / relative
+        if source.read_bytes() != packaged.read_bytes():
+            raise ValueError(f"source/package mirror disagrees: {relative}")
+
+
+def check_mission_template() -> None:
+    template = (PLUGIN / "docs" / "MISSION.template.md").read_text()
+    required = (
+        "## Observable done-when conditions",
+        "## Lifecycle and allowed loops",
+        "## Observed route and attempts",
+        "## Model calls",
+        "LLM calls with unavailable cost",
+        "## Tool activity",
+        "## Reviews and findings",
+        "## Verification and delivery evidence",
+        "## Current gate, blockers, and next route",
+        "requirements/design gap",
+    )
+    missing = [item for item in required if item not in template]
+    if missing:
+        raise ValueError(f"MISSION template is incomplete: {', '.join(missing)}")
 
 
 def check_integrity_manifest() -> None:
@@ -125,6 +161,8 @@ def main() -> int:
     check_evals()
     check_local_links()
     check_versions()
+    check_public_mirrors()
+    check_mission_template()
     check_integrity_manifest()
     check_boundary()
     print("Nightshift AIDLC package checks passed")

@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nightshift:aidlc:v2:event",
+  "title": "AIDLC append-only mission evidence event",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "event_id",
+    "mission_id",
+    "sequence",
+    "occurred_at",
+    "type",
+    "status",
+    "phase",
+    "step",
+    "phase_attempt",
+    "step_attempt",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "event_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$"
+    },
+    "mission_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$"
+    },
+    "sequence": {"type": "integer", "minimum": 1},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "type": {
+      "type": "string",
+      "enum": [
+        "mission_created",
+        "phase_started",
+        "step_started",
+        "llm_call",
+        "tool_call",
+        "transition",
+        "artifact",
+        "review",
+        "verification",
+        "gate",
+        "phase_finished",
+        "mission_finished"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["started", "passed", "failed", "unproven", "needs_human", "stuck", "complete"]
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["intake", "frame", "build", "land", "orchestrator"]
+    },
+    "step": {"type": "string", "minLength": 1, "maxLength": 128},
+    "phase_attempt": {"type": "integer", "minimum": 1},
+    "step_attempt": {"type": "integer", "minimum": 1},
+    "parent_event_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$"
+    },
+    "model": {"$ref": "#/$defs/model"},
+    "usage": {"$ref": "#/$defs/usage"},
+    "cost": {"$ref": "#/$defs/cost"},
+    "duration": {"$ref": "#/$defs/duration"},
+    "tool": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "maxLength": 128},
+        "operation": {"type": "string", "minLength": 1, "maxLength": 128}
+      },
+      "additionalProperties": false
+    },
+    "transition": {
+      "type": "object",
+      "required": ["from", "to", "reason"],
+      "properties": {
+        "from": {"type": "string", "minLength": 1, "maxLength": 128},
+        "to": {"type": "string", "minLength": 1, "maxLength": 128},
+        "reason": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "rewind_to": {"type": "string", "minLength": 1, "maxLength": 128}
+      },
+      "additionalProperties": false
+    },
+    "availability_note": {"type": "string", "minLength": 1, "maxLength": 1000},
+    "evidence": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"type": {"const": "llm_call"}}, "required": ["type"]},
+      "then": {"required": ["model", "usage", "cost", "duration"], "not": {"required": ["tool"]}}
+    },
+    {
+      "if": {"properties": {"type": {"const": "tool_call"}}, "required": ["type"]},
+      "then": {"required": ["tool", "duration"], "not": {"anyOf": [{"required": ["model"]}, {"required": ["usage"]}, {"required": ["cost"]}]}}
+    },
+    {
+      "if": {"properties": {"type": {"const": "transition"}}, "required": ["type"]},
+      "then": {"required": ["transition"]}
+    }
+  ],
+  "$defs": {
+    "model": {
+      "type": "object",
+      "required": ["availability"],
+      "properties": {
+        "availability": {"type": "string", "enum": ["known", "partial", "unavailable"]},
+        "requested": {"type": "string", "minLength": 1},
+        "resolved": {"type": "string", "minLength": 1},
+        "provider": {"type": "string", "minLength": 1},
+        "runtime": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"availability": {"const": "known"}}, "required": ["availability"]},
+          "then": {"required": ["resolved"]}
+        },
+        {
+          "if": {"properties": {"availability": {"const": "unavailable"}}, "required": ["availability"]},
+          "then": {
+            "required": ["reason"],
+            "not": {
+              "anyOf": [
+                {"required": ["input_tokens"]},
+                {"required": ["output_tokens"]},
+                {"required": ["cache_read_input_tokens"]},
+                {"required": ["cache_creation_input_tokens"]},
+                {"required": ["reasoning_tokens"]}
+              ]
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "usage": {
+      "type": "object",
+      "required": ["availability"],
+      "properties": {
+        "availability": {"type": "string", "enum": ["known", "partial", "unavailable"]},
+        "input_tokens": {"type": "integer", "minimum": 0},
+        "output_tokens": {"type": "integer", "minimum": 0},
+        "cache_read_input_tokens": {"type": "integer", "minimum": 0},
+        "cache_creation_input_tokens": {"type": "integer", "minimum": 0},
+        "reasoning_tokens": {"type": "integer", "minimum": 0},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"availability": {"enum": ["known", "partial"]}}, "required": ["availability"]},
+          "then": {
+            "anyOf": [
+              {"required": ["input_tokens"]},
+              {"required": ["output_tokens"]},
+              {"required": ["cache_read_input_tokens"]},
+              {"required": ["cache_creation_input_tokens"]},
+              {"required": ["reasoning_tokens"]}
+            ]
+          }
+        },
+        {
+          "if": {"properties": {"availability": {"const": "unavailable"}}, "required": ["availability"]},
+          "then": {
+            "required": ["reason"],
+            "not": {
+              "anyOf": [
+                {"required": ["input_tokens"]},
+                {"required": ["output_tokens"]},
+                {"required": ["cache_read_input_tokens"]},
+                {"required": ["cache_creation_input_tokens"]},
+                {"required": ["reasoning_tokens"]}
+              ]
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "cost": {
+      "type": "object",
+      "required": ["availability"],
+      "properties": {
+        "availability": {"type": "string", "enum": ["known", "unavailable"]},
+        "amount_usd": {"type": "number", "minimum": 0},
+        "source": {"type": "string", "enum": ["provider-reported", "host-calculated"]},
+        "pricing_ref": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"availability": {"const": "known"}}, "required": ["availability"]},
+          "then": {"required": ["amount_usd", "source"]}
+        },
+        {
+          "if": {"properties": {"source": {"const": "host-calculated"}}, "required": ["source"]},
+          "then": {"required": ["pricing_ref"]}
+        },
+        {
+          "if": {"properties": {"availability": {"const": "unavailable"}}, "required": ["availability"]},
+          "then": {
+            "required": ["reason"],
+            "not": {
+              "anyOf": [
+                {"required": ["amount_usd"]},
+                {"required": ["source"]},
+                {"required": ["pricing_ref"]}
+              ]
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "duration": {
+      "type": "object",
+      "required": ["availability"],
+      "properties": {
+        "availability": {"type": "string", "enum": ["known", "unavailable"]},
+        "milliseconds": {"type": "integer", "minimum": 0},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"availability": {"const": "known"}}, "required": ["availability"]},
+          "then": {"required": ["milliseconds"]}
+        },
+        {
+          "if": {"properties": {"availability": {"const": "unavailable"}}, "required": ["availability"]},
+          "then": {
+            "required": ["reason"],
+            "not": {"required": ["milliseconds"]}
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "event_id": "event-invalid-tool-0001",
+  "mission_id": "mission-20260812-0001",
+  "sequence": 6,
+  "occurred_at": "2026-08-12T18:50:00Z",
+  "type": "tool_call",
+  "status": "passed",
+  "phase": "build",
+  "step": "implement",
+  "phase_attempt": 1,
+  "step_attempt": 1,
+  "tool": {
+    "name": "shell",
+    "operation": "execute",
+    "arguments": "API_TOKEN=canary-secret"
+  },
+  "duration": {"availability": "known", "milliseconds": 2},
+  "evidence": []
+}

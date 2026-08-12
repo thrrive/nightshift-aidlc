@@ -12,6 +12,11 @@ the schemas are the cross-process shape contract.
 Two objects flow through the system: the **mission** (the durable goal, set once and carried
 unchanged) and the **outcome** (a phase's per-step report).
 
+Durable evidence may use the version-negotiated [human-first mission bundle](mission-bundles.md).
+This does not add fields to the canonical `mission` or change `outcome` routing. The bundle records
+attempts, transitions, model/tool provenance, cost availability, and a generated `MISSION.md`
+outside the wire handoff.
+
 ## `mission` — the durable goal
 
 ```yaml
@@ -115,5 +120,8 @@ workstreams:
    investigation, blueprint, plan, red-team review, and handoff references defined in
    [`frame-artifacts.md`](frame-artifacts.md). Scratch or conversation-only references do not
    satisfy this field unless the user explicitly accepts an inline-only review.
+6. **Evidence never rewrites routing.** In a v2 mission bundle, `.aidlc/latest-outcome.json` is the
+   current validated routing snapshot and `events.jsonl` is append-only audit evidence.
+   `MISSION.md` is generated for humans and is never parsed to decide the next phase.
 
 See [`lifecycle.md`](lifecycle.md) for how the phases compose into the loop.

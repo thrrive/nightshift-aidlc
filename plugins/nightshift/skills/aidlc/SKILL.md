@@ -20,6 +20,12 @@ It contains the canonical mission mapping, transition loop, phase ownership, and
 read the full [`handoff contract`](../../docs/handoff-contract.md) before routing and the
 [`host-capability contract`](../../docs/host-capabilities.md) before requesting effects.
 
+When `frame` selects `aidlc-mission-bundle/v2`, retain its exact `bundle_ref`, `mission_id`, and
+mission digest for the entire lifecycle. Request the mission-evidence capability after each major
+phase handoff and human gate to append the transition, store the latest validated outcome, and
+refresh `MISSION.md`. A fresh invocation never supplies `resume_ref`; only an explicit user/host
+resume reference may reopen a bundle.
+
 At entry, adopt the `mission` from `intake` or create it exactly as the routing contract specifies.
 Carry it unchanged. Default to `stable-production`; only lower the done state when the user asks.
 
@@ -38,6 +44,13 @@ Invoke exactly one resolved major-phase skill at a time and route only from its 
 every `mission.done_when` condition before accepting `advance → complete`. On `rewind`, re-enter the
 major phase that owns the requested subskill. On `needs_human`, ask for the specific decision and
 resume the same phase. On `stuck`, report the blocker and smallest useful next step.
+
+For a v2 bundle, keep model and tool evidence honest. The host records each physical LLM attempt as
+its own `llm_call`, including retries, and records tool operations separately as `tool_call` events.
+Never synthesize a model name, token count, duration, or cost the host did not observe. Unknown
+values remain `unavailable`; a known `$0` requires the same source provenance as any other cost.
+Do not place raw prompts, model responses, tool arguments/results, credentials, or secret-bearing
+logs in the portable ledger or projection.
 
 Whenever you pause or finish, end the response with a fenced YAML handoff that uses the exact
 canonical field names from `docs/handoff-contract.md`. Do not replace `mission`, `outcome`, `then`,

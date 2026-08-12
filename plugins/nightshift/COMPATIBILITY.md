@@ -23,3 +23,14 @@ Upgrading a host does not authorize new effects. Workspace writes, verification,
 operations, release actions, prior-memory reads, and lesson proposals retain the availability and
 human-authorization rules in `docs/host-capabilities.md`. A host may adopt new optional evidence
 fields incrementally without rewriting stored v1 missions or outcomes.
+
+## Mission-bundle formats
+
+`aidlc-mission-bundle/v2` changes durable evidence layout, not lifecycle wire routing. Hosts
+advertise supported bundle formats through the durable-artifact capability. A v1-only host keeps
+the six peer files under `nightshift/<mission-slug>/`; a v2 host creates one
+`nightshift/missions/<mission-slug>--<mission-id>/` bundle and never infers resume from the slug.
+
+V2 hosts read old bundles without rewriting them. A legacy export for a known v1 consumer is a
+projection, not a second canonical store. The v1 `mission`, `outcome`, `review`, and `workstreams`
+schema identifiers and their published fixtures remain unchanged.

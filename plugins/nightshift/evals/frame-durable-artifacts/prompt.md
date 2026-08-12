@@ -6,7 +6,8 @@ Use the Nightshift `frame` skill for this interactive mission:
 The user started the agent in `/work/general-agent`, which is an authorized durable invocation root.
 The target repository does not exist yet and therefore has no feature-docs convention. A host helper
 offers `/tmp/agent-session/frame-42` for intermediate files, but that directory disappears when the
-session ends.
+session ends. The host advertises `aidlc-mission-bundle/v2` support and returns mission ID
+`mission-frame-42`.
 
 Complete the frame and present it for approval. Explain where every review artifact is stored and
 return the canonical handoff. Do not implement the repository.

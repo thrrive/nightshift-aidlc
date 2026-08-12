@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nightshift:aidlc:v2:bundle",
+  "title": "AIDLC human-first mission bundle descriptor",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "bundle_format",
+    "mission_id",
+    "mission_slug",
+    "mission_sha256",
+    "created_at",
+    "projection_ref",
+    "mission_ref",
+    "event_log_ref",
+    "outcome_ref",
+    "review_root_ref"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "bundle_format": {"const": "aidlc-mission-bundle/v2"},
+    "mission_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$"
+    },
+    "mission_slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 80
+    },
+    "mission_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "host_run_ref": {"type": "string", "minLength": 1},
+    "projection_ref": {"const": "MISSION.md"},
+    "mission_ref": {"const": ".aidlc/mission.json"},
+    "event_log_ref": {"const": ".aidlc/events.jsonl"},
+    "outcome_ref": {"const": ".aidlc/latest-outcome.json"},
+    "review_root_ref": {"const": ".aidlc/reviews"}
+  },
+  "additionalProperties": false
+}

@@ -2,7 +2,16 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
-## Unreleased
+## 1.0.0-rc.2
+
+- Add the negotiated `aidlc-mission-bundle/v2` evidence format with one generated `MISSION.md`,
+  hidden JSON/JSONL machine state, immutable mission identity, and explicit resume semantics.
+- Record lifecycle attempts and rewinds plus distinct LLM/tool events with model, usage, cost source,
+  duration, and explicit unavailable values; never translate missing attribution to zero.
+- Add bundle/event schemas, collision/replay/redaction/uncertainty fixtures, negative-space checks,
+  a reusable mission template, and a representative evaluation case.
+- Keep v1 mission/outcome routing and the legacy peer-file Frame bundle compatible through explicit
+  host format negotiation.
 
 ## 1.0.0-rc.1
 

@@ -27,6 +27,11 @@ application or that every host uses the same runner.
      `status: unproven`, with the smallest useful next step.
 5. Retain reports, logs, traces, screenshots, and other returned evidence references in the handoff.
 
+For a v2 bundle, append the verification result against the exact revision and refresh
+`MISSION.md`. Persist only safe references and concise classifications; raw logs may contain
+credentials or user data and are not portable event payloads. An unavailable verification remains
+`unproven`, just as unavailable model usage or cost remains unavailable rather than zero.
+
 If `"no-verify"` is in `mission.halts`, do not invoke the capability. Return `advance` with
 `status: waived` and state that the user explicitly waived verification. No other condition may be
 reported as waived.
