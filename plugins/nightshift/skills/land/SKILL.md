@@ -35,6 +35,12 @@ let the orchestrator route earlier work.
 7. After merge, complete immediately for a no-release `merged` mission. Otherwise observe the
    configured release and health evidence until every `done_when` condition is satisfied.
 
+For a v2 bundle, append each observed revision, check/review classification, verification refresh,
+rewind, merge gate, authorized merge, release observation, and terminal outcome. Preserve the
+model/tool split and explicit unavailable telemetry used by earlier phases. Refresh `MISSION.md`
+before a human gate and before claiming completion; its latest outcome and evidence must describe
+the exact reviewed or released revision.
+
 The current Nightshift runtime does not expose an approved automatic-merge policy. It refuses every
 target configured with `auto_merge: true` because no harness-produced attestation source exists.
 Keep targets on `auto_merge: false` and require the human merge gate; this is a fail-closed policy,

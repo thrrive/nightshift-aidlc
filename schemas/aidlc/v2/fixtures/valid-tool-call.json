@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "event_id": "event-tool-call-0001",
+  "mission_id": "mission-20260812-0001",
+  "sequence": 4,
+  "occurred_at": "2026-08-12T18:48:00Z",
+  "type": "tool_call",
+  "status": "passed",
+  "phase": "frame",
+  "step": "investigate",
+  "phase_attempt": 1,
+  "step_attempt": 1,
+  "tool": {
+    "name": "repository-search",
+    "operation": "search"
+  },
+  "duration": {
+    "availability": "known",
+    "milliseconds": 42
+  },
+  "evidence": ["check:repository-search-passed"]
+}

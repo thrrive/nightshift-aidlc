@@ -10,15 +10,19 @@
     },
     {
       "path": ".github/workflows/package.yml",
-      "sha256": "3747ffefe76218d1e181a563ed25b1747efacc4dc8c7d31fbdee4144b8461c08"
+      "sha256": "5000b009fbc9cb41b8eb3455f78363b3902c33084e915b4ee197a1b8e9ba65d6"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "060f50413e53fad8156f1f128759308f8fee5223b4ce2ba5875335c750494cd3"
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "606e53e0625c1318fef5fa855c7d1891d4fd96a2bbc8bbe15672c06fcc5de57d"
+      "sha256": "e3e475554e80daa2619b45959466179b5fa6cb3f5656fa61d1c7ddb70a419a44"
     },
     {
       "path": "COMPATIBILITY.md",
-      "sha256": "54f7730df71fcd7cc7c3979edd2e8d0f6904e4f1a70cdf1b6243711962c17dd7"
+      "sha256": "7722d0ff01f6038af77cb0511000dca77f42c52eb7e2b21516de81b491095e26"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -42,11 +46,15 @@
     },
     {
       "path": "README.md",
-      "sha256": "1a7b0c2be1757619f61e96194759ac7ef43865addf8ff116a05b24dd3eb6a3a6"
+      "sha256": "1eda67f6804eec7b9873958e4ec21eb6f38d291189a8e0af386b0ec95cdd0442"
     },
     {
       "path": "SECURITY.md",
-      "sha256": "016dd0f030d35d8b86f407452afed43a89dbd9aca7966dd9afe8be208cfe5e8d"
+      "sha256": "73466a7f6351887bd0d83130984bf088ecdacdd490a0d36dcb748d3585cd4dd2"
+    },
+    {
+      "path": "docs/MISSION.template.md",
+      "sha256": "51ec430320fb25fb8432bed616a1fd337106c574031512536adc69cd953db7ca"
     },
     {
       "path": "docs/evidence/v1-stable-frame/blueprint.md",
@@ -74,19 +82,23 @@
     },
     {
       "path": "docs/frame-artifacts.md",
-      "sha256": "9a41de74543dfd0bf96f02bc9acfccf3838e2da504d7cdcc67f4aad69c32003f"
+      "sha256": "0364ffdc1d50448ce1bfe90d5947f56b02f26bcace8c04f713325415934c0a42"
     },
     {
       "path": "docs/handoff-contract.md",
-      "sha256": "2b70de31c89eebf846ad642118dd4c74543820f58cf69a3095fa62eb972e1cb9"
+      "sha256": "bef0919eff539101dfeb94130394b9aa354a10bc82f7cccce21f86e2aea77942"
     },
     {
       "path": "docs/host-capabilities.md",
-      "sha256": "3b239b0c4ac656b86d43cf0d6c3ff80d800a56331f6e714ddbb127b8f6364459"
+      "sha256": "c7288e8e2bc5d34a8a57c3cc48bb2775a29a9ca47b295b616e44d1a444f3849b"
     },
     {
       "path": "docs/lifecycle.md",
-      "sha256": "7eb7073afcb21963b99b2e87b9b6bfb41b24d518dbf1de4a6dd5c73dc859de20"
+      "sha256": "74d19f6006d74de710df000fdad2b097f6b99943b115a7f6b865a0e65b97a54d"
+    },
+    {
+      "path": "docs/mission-bundles.md",
+      "sha256": "3359b37a020e77bc61815e34e1411faa0f6e61c01c56f638b2c91a6c42ce6616"
     },
     {
       "path": "docs/review-contract.md",
@@ -102,11 +114,11 @@
     },
     {
       "path": "plugins/nightshift/CHANGELOG.md",
-      "sha256": "606e53e0625c1318fef5fa855c7d1891d4fd96a2bbc8bbe15672c06fcc5de57d"
+      "sha256": "e3e475554e80daa2619b45959466179b5fa6cb3f5656fa61d1c7ddb70a419a44"
     },
     {
       "path": "plugins/nightshift/COMPATIBILITY.md",
-      "sha256": "54f7730df71fcd7cc7c3979edd2e8d0f6904e4f1a70cdf1b6243711962c17dd7"
+      "sha256": "7722d0ff01f6038af77cb0511000dca77f42c52eb7e2b21516de81b491095e26"
     },
     {
       "path": "plugins/nightshift/CONTRIBUTING.md",
@@ -130,11 +142,11 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "1a7b0c2be1757619f61e96194759ac7ef43865addf8ff116a05b24dd3eb6a3a6"
+      "sha256": "1eda67f6804eec7b9873958e4ec21eb6f38d291189a8e0af386b0ec95cdd0442"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
-      "sha256": "016dd0f030d35d8b86f407452afed43a89dbd9aca7966dd9afe8be208cfe5e8d"
+      "sha256": "73466a7f6351887bd0d83130984bf088ecdacdd490a0d36dcb748d3585cd4dd2"
     },
     {
       "path": "plugins/nightshift/commands/aidlc.md",
@@ -161,20 +173,28 @@
       "sha256": "1c5a3ecffd7ff6dfeef499729f5b2aac5cd8e2191219596213695997d5342871"
     },
     {
+      "path": "plugins/nightshift/docs/MISSION.template.md",
+      "sha256": "51ec430320fb25fb8432bed616a1fd337106c574031512536adc69cd953db7ca"
+    },
+    {
       "path": "plugins/nightshift/docs/frame-artifacts.md",
-      "sha256": "9a41de74543dfd0bf96f02bc9acfccf3838e2da504d7cdcc67f4aad69c32003f"
+      "sha256": "0364ffdc1d50448ce1bfe90d5947f56b02f26bcace8c04f713325415934c0a42"
     },
     {
       "path": "plugins/nightshift/docs/handoff-contract.md",
-      "sha256": "2b70de31c89eebf846ad642118dd4c74543820f58cf69a3095fa62eb972e1cb9"
+      "sha256": "bef0919eff539101dfeb94130394b9aa354a10bc82f7cccce21f86e2aea77942"
     },
     {
       "path": "plugins/nightshift/docs/host-capabilities.md",
-      "sha256": "3b239b0c4ac656b86d43cf0d6c3ff80d800a56331f6e714ddbb127b8f6364459"
+      "sha256": "c7288e8e2bc5d34a8a57c3cc48bb2775a29a9ca47b295b616e44d1a444f3849b"
     },
     {
       "path": "plugins/nightshift/docs/lifecycle.md",
-      "sha256": "7eb7073afcb21963b99b2e87b9b6bfb41b24d518dbf1de4a6dd5c73dc859de20"
+      "sha256": "74d19f6006d74de710df000fdad2b097f6b99943b115a7f6b865a0e65b97a54d"
+    },
+    {
+      "path": "plugins/nightshift/docs/mission-bundles.md",
+      "sha256": "3359b37a020e77bc61815e34e1411faa0f6e61c01c56f638b2c91a6c42ce6616"
     },
     {
       "path": "plugins/nightshift/docs/review-contract.md",
@@ -190,11 +210,11 @@
     },
     {
       "path": "plugins/nightshift/evals/frame-durable-artifacts/graders/criteria.md",
-      "sha256": "7f21eacfcf7f52860e26a0281c89213e8c938396d8dcfe031e06b3040d692ae6"
+      "sha256": "1f93dff994eca5671da752f329b11d80f9e2e22a85cd1b0300d4a681e5deef0d"
     },
     {
       "path": "plugins/nightshift/evals/frame-durable-artifacts/prompt.md",
-      "sha256": "a3f4fa3f9228e81cadf062948b67d75b60ade549f8a6e38a7e8da6324cafc830"
+      "sha256": "bc423bc7a0ae6af3b69924ea61197d7edad1860e24544b69803dcc3c3c71d9ac"
     },
     {
       "path": "plugins/nightshift/evals/frame-plan-gate/graders/criteria.md",
@@ -211,6 +231,14 @@
     {
       "path": "plugins/nightshift/evals/land-review-rewind/prompt.md",
       "sha256": "e79e08d307084854cd14371ac043a200bd017f96005e4e6f36dde0d91b87f73e"
+    },
+    {
+      "path": "plugins/nightshift/evals/mission-bundle-collision-telemetry/graders/criteria.md",
+      "sha256": "4c86a6ee35723f1d5c910f3ab5628e4404091684a13ef505b50e2ca056765038"
+    },
+    {
+      "path": "plugins/nightshift/evals/mission-bundle-collision-telemetry/prompt.md",
+      "sha256": "d1f580ac526ea0e07cf89e765c7f7c60deac4c6fb48a56bff3cbdb22269fe496"
     },
     {
       "path": "plugins/nightshift/evals/orchestrator-human-gate/graders/criteria.md",
@@ -238,7 +266,7 @@
     },
     {
       "path": "plugins/nightshift/schemas/aidlc/v1/README.md",
-      "sha256": "23010c5be30ec0582f8303dca2f31c7bb4f05346e25f6c299f254726a7d9e572"
+      "sha256": "eb532e2f6ca85b98bc855c7d0b88111d81c8b39823aa877f43e9e46ed1fbf1f6"
     },
     {
       "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/invalid/advance-without-next-phase.json",
@@ -313,8 +341,20 @@
       "sha256": "f2c284dd428bf91664b16d269d3bca043325cf1770959025aa82887382ebaeef"
     },
     {
+      "path": "plugins/nightshift/schemas/aidlc/v2/README.md",
+      "sha256": "5f520d6d72873dbfec2b8682ce37973e616acddbe05b06c7ba5a70a2afd7cbd6"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v2/bundle.schema.json",
+      "sha256": "6bf94564d33dcdb14765a1203dd0d2b85259da1a9411a8040112bb2aab65f45c"
+    },
+    {
+      "path": "plugins/nightshift/schemas/aidlc/v2/event.schema.json",
+      "sha256": "674df936bad993cacbe65779b345289c6939faf9d71971ceac161edd5fe28dbe"
+    },
+    {
       "path": "plugins/nightshift/skills/aidlc/SKILL.md",
-      "sha256": "d8e848fcaeb8530f9a7ba2db2aa3ce1adcfb3c561a5ba477d48ab9416d5e67ce"
+      "sha256": "88210a76425250d5f241ebb31d37dd5fc16b86bf7a4e56f3bd391218351e4ef6"
     },
     {
       "path": "plugins/nightshift/skills/aidlc/references/routing-contract.md",
@@ -326,15 +366,15 @@
     },
     {
       "path": "plugins/nightshift/skills/build/SKILL.md",
-      "sha256": "a6bba878b55b4b86db9d380a1e06e71e9d439d80cd820c7ce4479f1a6a53d84a"
+      "sha256": "a56828cf51dbd31444f10887eb6cf5d9737f3f1398addf1a88a2ab02cd64a34d"
     },
     {
       "path": "plugins/nightshift/skills/frame/SKILL.md",
-      "sha256": "f672eeaceb65b2fc630008fd9c52f75b78378ba18cc34d4fd557a0dd6535c6a8"
+      "sha256": "48c59f5514b7be522c369aeb5e1beed0adaf51ec55a204cea81e0f72a3553e7b"
     },
     {
       "path": "plugins/nightshift/skills/implement/SKILL.md",
-      "sha256": "bcbf46a17d5a3663901ca1f47391c13bf006d1400b018b7c2309c925db70c721"
+      "sha256": "8b9dce805ab3f459a13add1d6dcdcf22a748f1914d3402db650cf83efe4a4a6c"
     },
     {
       "path": "plugins/nightshift/skills/intake/SKILL.md",
@@ -346,7 +386,7 @@
     },
     {
       "path": "plugins/nightshift/skills/land/SKILL.md",
-      "sha256": "dfea109f49535b0b49dc2451d0f8f34cb64317d0316674eb06ca1763739e7c91"
+      "sha256": "f9e62f6b854d3eb348ecf0bc60859f11ee24fbd1db1826012f12e3dfa3c6b976"
     },
     {
       "path": "plugins/nightshift/skills/plan/SKILL.md",
@@ -374,7 +414,7 @@
     },
     {
       "path": "plugins/nightshift/skills/self-review/SKILL.md",
-      "sha256": "f7e9d30ac93989e37017e7ab35ac52ba0e100e6471a47ea7a5461fe7d65e3496"
+      "sha256": "c9d94daebafd3bd2868eeb7d58b23acb397739ee1bf99919d01c2c992c9e073f"
     },
     {
       "path": "plugins/nightshift/skills/self-review/references/findings-record.md",
@@ -382,11 +422,11 @@
     },
     {
       "path": "plugins/nightshift/skills/verify/SKILL.md",
-      "sha256": "141409aaaf8ced230209b7b8008d5a23f19a375efa47224480865e619228652d"
+      "sha256": "2221fe4e3e14badfebf75526b943404abce293a531ef81a3e29065e85c392fc1"
     },
     {
       "path": "schemas/aidlc/v1/README.md",
-      "sha256": "23010c5be30ec0582f8303dca2f31c7bb4f05346e25f6c299f254726a7d9e572"
+      "sha256": "eb532e2f6ca85b98bc855c7d0b88111d81c8b39823aa877f43e9e46ed1fbf1f6"
     },
     {
       "path": "schemas/aidlc/v1/fixtures/invalid/advance-without-next-phase.json",
@@ -461,12 +501,56 @@
       "sha256": "f2c284dd428bf91664b16d269d3bca043325cf1770959025aa82887382ebaeef"
     },
     {
+      "path": "schemas/aidlc/v2/README.md",
+      "sha256": "5f520d6d72873dbfec2b8682ce37973e616acddbe05b06c7ba5a70a2afd7cbd6"
+    },
+    {
+      "path": "schemas/aidlc/v2/bundle.schema.json",
+      "sha256": "6bf94564d33dcdb14765a1203dd0d2b85259da1a9411a8040112bb2aab65f45c"
+    },
+    {
+      "path": "schemas/aidlc/v2/event.schema.json",
+      "sha256": "674df936bad993cacbe65779b345289c6939faf9d71971ceac161edd5fe28dbe"
+    },
+    {
+      "path": "schemas/aidlc/v2/fixtures/invalid-tool-payload.json",
+      "sha256": "d24cb0891c1c6a2984125274dfb03fc817dc5f11e3e0b130389568da04fdb5d8"
+    },
+    {
+      "path": "schemas/aidlc/v2/fixtures/invalid-unavailable-with-zero.json",
+      "sha256": "2639c834460fef1818cefd374ebf2ff037fed46fc956196043ab00d2869acff5"
+    },
+    {
+      "path": "schemas/aidlc/v2/fixtures/valid-bundle.json",
+      "sha256": "bb6cc2015e648325adcc62882f5fc460ff53e84f394d8e8dfc41d0eb53c97e19"
+    },
+    {
+      "path": "schemas/aidlc/v2/fixtures/valid-events.jsonl",
+      "sha256": "9a642f2062c3f3a1411f090fced6688f2ad76753cad3696e42bb24f61c864b8a"
+    },
+    {
+      "path": "schemas/aidlc/v2/fixtures/valid-known-zero-cost.json",
+      "sha256": "bbfedf4f9b621fc5d95a69f56626c9877a8a2491b43a88e15722331ad3c735a7"
+    },
+    {
+      "path": "schemas/aidlc/v2/fixtures/valid-tool-call.json",
+      "sha256": "755450ee397af5e4403ee3f41ceb7ec2016ac724d755cf2b7c9d0ca27f7dd899"
+    },
+    {
+      "path": "schemas/aidlc/v2/fixtures/valid-unavailable-cost.json",
+      "sha256": "503b9eaf9811e17d91f1fea2c487763d531672246930c5c666c89c3cfab77222"
+    },
+    {
       "path": "scripts/build_manifest.py",
       "sha256": "be3764c9ac65a492fe162387bb8271de2f18aa78178862a312e2a261d9e7e656"
     },
     {
+      "path": "scripts/check_mission_bundles.py",
+      "sha256": "4bf80946fe5d4d3bdc42a83576de9f57f4e4610d7b8ec79de8ab6049ac2483e0"
+    },
+    {
       "path": "scripts/check_package.py",
-      "sha256": "fb299aabc28649213f501040f6e2b7a171f2441574212a53c1d49ab0c70476c6"
+      "sha256": "37c64381e1c6b329d71f92eb0d0b25b645d6efc1520c206fa19d929f83451c38"
     },
     {
       "path": "scripts/check_schemas.py",

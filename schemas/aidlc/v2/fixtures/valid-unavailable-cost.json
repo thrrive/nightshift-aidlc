@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "event_id": "event-unavailable-0001",
+  "mission_id": "mission-20260812-0001",
+  "sequence": 3,
+  "occurred_at": "2026-08-12T18:47:00Z",
+  "type": "llm_call",
+  "status": "complete",
+  "phase": "frame",
+  "step": "blueprint",
+  "phase_attempt": 1,
+  "step_attempt": 1,
+  "model": {
+    "availability": "unavailable",
+    "reason": "host did not expose the resolved model"
+  },
+  "usage": {
+    "availability": "unavailable",
+    "reason": "runner did not report token usage"
+  },
+  "cost": {
+    "availability": "unavailable",
+    "reason": "provider and pricing data were unavailable"
+  },
+  "duration": {
+    "availability": "unavailable",
+    "reason": "host did not expose call duration"
+  },
+  "availability_note": "No per-call telemetry was exposed; no values were inferred.",
+  "evidence": []
+}

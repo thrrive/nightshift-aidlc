@@ -5,6 +5,7 @@
 - [Availability and degradation](#availability-and-degradation)
 - [Target metadata](#target-metadata-required)
 - [Durable frame artifacts](#durable-frame-artifacts-required-for-plan-approval)
+- [Mission evidence](#mission-evidence-optional-across-the-full-lifecycle)
 - [Workspace](#workspace-required-for-build)
 - [Verification](#verification-required-unless-waived)
 - [Review attestation](#review-attestation-optional)
@@ -70,28 +71,64 @@ request:
   invocation_root: <authorized user-visible starting workspace, when local>
   feature_docs_path: <optional target-declared path>
   resume_ref: <optional existing bundle reference>
+  supported_formats: [aidlc-mission-bundle/v2, aidlc-frame-bundle/v1]
 result:
   bundle_ref: <stable durable reference>
+  mission_id: <opaque immutable identity when v2 is selected>
+  format: aidlc-mission-bundle/v2 | aidlc-frame-bundle/v1
   storage: invocation-workspace | host-artifact-store
   outputs:
-    mission: <reference>
-    investigation: <reference>
-    blueprint: <reference>
-    plan: <reference>
-    review: <reference>
-    handoff: <reference>
+    projection: <MISSION.md reference when v2 is selected>
+    machine_root: <hidden .aidlc reference when v2 is selected>
+    mission: <reference when v1 is selected>
+    investigation: <reference when v1 is selected>
+    blueprint: <reference when v1 is selected>
+    plan: <reference when v1 is selected>
+    review: <reference when v1 is selected>
+    handoff: <reference when v1 is selected>
 ```
 
-Resolve the bundle once before investigation and reuse it across rewinds. For an interactive local
-host without a target feature-docs convention, the fallback is the visible
-`nightshift/<mission-slug>/` directory under `invocation_root`. An operating-system temporary
-directory, transient agent sandbox, or conversation is not a durable result. Full placement,
-collision, and fallback rules live in the [durable frame-artifact
-contract](frame-artifacts.md).
+Resolve the bundle once before investigation and reuse it across rewinds. A fresh invocation omits
+`resume_ref`; a host must never infer resume from a matching slug. With v2, it allocates a unique
+mission ID and exclusively creates `nightshift/missions/<mission-slug>--<mission-id>/`. With v1,
+the interactive fallback remains `nightshift/<mission-slug>/` under `invocation_root`. An
+operating-system temporary directory, transient agent sandbox, or conversation is not a durable
+result. Full format, placement, collision, and fallback rules live in the [durable frame-artifact
+contract](frame-artifacts.md) and [human-first bundle contract](mission-bundles.md).
 
 When no authorized durable destination is available, `frame` returns `needs_human` with inline
 recovery content and asks for a destination or explicit inline-only waiver. It must not advance to
 the routine plan-approval gate while implying that temporary work is durable.
+
+## Mission evidence (optional across the full lifecycle)
+
+Purpose: append safe, structured execution evidence and refresh the human `MISSION.md` projection
+after Frame. A host that selects `aidlc-mission-bundle/v2` for Frame must keep this capability
+available for that mission or report the document as stale; other hosts may omit it.
+
+```yaml
+request:
+  bundle_ref: <exact v2 bundle reference>
+  mission_id: <immutable identity>
+  expected_mission_sha256: <canonical mission digest>
+  operation: append-event | store-review | update-outcome | refresh-projection
+  event: <schema-valid safe event, for append-event>
+result:
+  status: appended | duplicate | updated | rejected | failed
+  event_ref: <optional immutable reference>
+  sequence: <optional assigned monotonic sequence>
+  projection_ref: <MISSION.md reference after refresh>
+  evidence: []
+```
+
+The host owns one serialized, idempotent writer per bundle. It assigns sequence numbers, rejects a
+mismatched mission identity/digest, and deduplicates retries by `event_id`. It applies
+authorization, minimization, and redaction before persistence. Raw prompts, raw model responses,
+tool arguments/results, credentials, and secret-bearing logs do not belong in portable events.
+
+An LLM event reports model, usage, cost source, cost, and duration when observable. An unavailable
+value is explicit and is never converted to numeric zero. Tool calls are separate events. Full
+event semantics and projection requirements are in [`mission-bundles.md`](mission-bundles.md).
 
 ## Workspace (required for build)
 

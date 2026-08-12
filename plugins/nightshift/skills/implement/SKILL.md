@@ -26,6 +26,9 @@ and do not touch another checkout; the host owns isolation and workspace lifecyc
 - **Honor security & isolation rules** from investigation/redteam exactly — especially any
   per-user/per-tenant data scoping. These are correctness requirements.
 - **Commit in focused units** with the repo's required commit-message format/trailers.
+- **Return safe evidence.** Name changed components and check references, but do not place raw model
+  output, credentials, environment values, or secret-bearing tool arguments/results in a v2 mission
+  event or `MISSION.md` projection.
 
 ## Output
 

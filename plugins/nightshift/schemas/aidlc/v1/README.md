@@ -29,5 +29,8 @@ Other phase-specific evidence such as verification and release results may exten
 Mission and workstream objects are closed so their portable meaning cannot drift through private
 runtime fields.
 
+The separately versioned human-first bundle and event envelope lives in [`../v2/`](../v2/). It
+contains these unchanged v1 mission/outcome objects rather than modifying their wire contract.
+
 Any incompatible field, enum, or routing change requires a new schema-version directory. Additive
 phase evidence may remain compatible because the outcome object deliberately permits extensions.

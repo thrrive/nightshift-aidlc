@@ -24,7 +24,8 @@ reusable engineering harness and concrete guardrails around the agent:
 
 - observable completion criteria before implementation begins;
 - human approval before code is written and before a merge is authorized;
-- durable, user-visible investigation and plan artifacts before approval;
+- one durable, human-readable mission document with investigation, plan, attempts, evidence, model
+  provenance, cost availability, and gates;
 - isolated workspaces and one reviewable change per mission;
 - fresh-context review plus verification against the running product;
 - evidence-driven rewinds when the code, plan, design, or requirements are wrong;
@@ -113,27 +114,42 @@ Read the **[complete lifecycle and skill reference](docs/lifecycle.md)** for com
 rewind paths, flags, handoffs, workspace isolation, and human gates. The canonical executable
 contracts live in each packaged `skills/<name>/SKILL.md`.
 
-Frame work is not trapped in chat history. The
-**[durable frame-artifact contract](docs/frame-artifacts.md)** requires the mission,
-investigation, blueprint, plan, red-team review, and handoff to be persisted before approval. When
-a project has no documentation convention, an interactive run uses this visible bundle under the
-directory where the user started the agent:
+Mission work is not trapped in chat history. A v2-capable host gives each fresh invocation an
+immutable mission ID and one obvious human document:
 
 ```text
-nightshift/<mission-slug>/
-  mission.json
-  investigation.md
-  blueprint.md
-  plan.md
-  redteam-review.json
-  handoff.yaml
+nightshift/missions/<mission-slug>--<mission-id>/
+  MISSION.md
+  .aidlc/
+    bundle.json
+    mission.json
+    events.jsonl
+    latest-outcome.json
+    reviews/
 ```
 
-Storage precedence is: the target's declared feature-docs path, a user-selected durable
-destination, then the invocation-directory fallback above. Temporary directories and agent scratch
-space may be used internally, but cannot be the only copies or the paths reported in the approval
-handoff. If durable writing is unavailable, Frame returns `needs_human` with inline recovery content
-and asks for a destination or explicit inline-only waiver.
+[`MISSION.md`](docs/MISSION.template.md) tells the complete human story: requirements, plan,
+allowed loops, every observed attempt and rewind, model and token provenance, known cost and its
+source, unavailable attribution, separate tool activity, review, verification, and current gates.
+Validated routing and append-only evidence stay under `.aidlc/`; the host never parses prose to
+decide what happens next.
+
+Fresh invocation and resume are deliberately different. **Running multiple missions in one
+worktree does not overwrite earlier mission documents.** A fresh run always creates a new
+`<mission-id>` directory, even for an identical ask. A rewind or later resume appends to one existing
+bundle only when the caller supplies its exact mission ID or bundle reference.
+
+Read the **[human-first mission-bundle contract](docs/mission-bundles.md)** for identity, event,
+telemetry, redaction, projection, and compatibility semantics. The
+**[durable frame-artifact contract](docs/frame-artifacts.md)** retains the six-file v1 format for
+older hosts. Format support is negotiated explicitly; the stable v1 mission and outcome routing
+fields do not change.
+
+Storage precedence remains: the target's declared feature-docs path, a user-selected durable
+destination, then the invocation-directory fallback. Temporary directories and agent scratch space
+may be used internally, but cannot be the only durable copy. If durable writing is unavailable,
+Frame returns `needs_human` with inline recovery content and asks for a destination or explicit
+inline-only waiver.
 
 This protects new runs. It cannot recover artifacts that expired with an earlier agent session.
 
@@ -148,7 +164,7 @@ evolve without forcing a rewrite of the other.
 
 - fourteen focused lifecycle skills and six thin command wrappers;
 - versioned v1 schemas for `mission`, `outcome`, evidence-backed `review`, and optional
-  `workstreams`;
+  `workstreams`, plus additive human-first bundle and event evidence;
 - provider-neutral host-capability contracts for durable frame artifacts, workspace, verification,
   reviewed changes, review attestation, release evidence, prior-memory reads, and lesson proposals;
 - manifests for Claude Code and Codex plugin marketplaces;
@@ -200,6 +216,8 @@ Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`,
 - [`docs/lifecycle.md`](docs/lifecycle.md) — the complete skill reference, phase machine, and
   rewind paths.
 - [`docs/handoff-contract.md`](docs/handoff-contract.md) — the durable mission and outcome contract.
+- [`docs/mission-bundles.md`](docs/mission-bundles.md) — collision-safe mission identity, the
+  `MISSION.md` projection, attempt history, and model/tool/cost evidence.
 - [`docs/review-contract.md`](docs/review-contract.md) — evidence strength, adversarial lenses,
   findings, remediation, and fail-closed review decisions.
 - [`docs/host-capabilities.md`](docs/host-capabilities.md) — the portable boundary between skills

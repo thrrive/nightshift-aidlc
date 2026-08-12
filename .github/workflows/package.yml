@@ -18,3 +18,4 @@ jobs:
       - run: pip install jsonschema==4.26.0
       - run: python3 scripts/check_package.py
       - run: python3 scripts/check_schemas.py
+      - run: python3 scripts/check_mission_bundles.py

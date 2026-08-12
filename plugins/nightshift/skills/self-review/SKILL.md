@@ -30,6 +30,10 @@ machine-readable record.
 7. Re-review every fix on the new subject and check that remediation did not create another gap.
    Preserve the full finding history.
 
+When the mission uses a v2 bundle, store each pinned review attempt under `.aidlc/reviews/` and
+append its decision as a separate review event. A remediation never replaces the earlier finding
+or review subject. Refresh the human projection with safe findings and evidence references only.
+
 ## Routing
 
 - `PASS` → return `advance` to verification and reviewed delivery.

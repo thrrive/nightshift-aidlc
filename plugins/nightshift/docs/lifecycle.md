@@ -9,6 +9,11 @@ self-review, and reviewed-change evidence follows the [review contract](review-c
 Effects supplied by an agent host follow the [host capability contract](host-capabilities.md);
 unavailable optional capabilities degrade explicitly without changing the mission.
 
+When the host supports `aidlc-mission-bundle/v2`, one generated
+[`MISSION.md`](mission-bundles.md) follows the mission through every phase. Its hidden event ledger
+retains step attempts, rewinds, model and tool provenance, known/unknown cost, verification, and
+gates. This evidence does not change the v1 routing payload.
+
 Before investigation begins, `frame` resolves one [durable artifact
 bundle](frame-artifacts.md). Every subskill writes its complete result there, and the bundle's
 mission, investigation, blueprint, plan, review, and handoff paths remain visible through the human
@@ -16,47 +21,31 @@ approval gate. Agent scratch storage and conversation history are never the only
 
 ```mermaid
 flowchart LR
-    AIDLC["aidlc orchestrator<br/>holds mission and owns every transition"]
-    IN["intake<br/>create mission"]
-    subgraph FR["FRAME"]
-        direction TB
-        FI["investigate"] --> FC["clarify"] --> FB["blueprint"] --> FP["plan"] --> FRT["redteam"]
-        FRT -.->|material gap| FB
-        FRT -.->|plan gap| FP
+    I["Intent"] --> M["Mission<br/>done state + proof"] --> IN
+    subgraph F["Frame inner loop"]
+        direction LR
+        IN["Investigate"] --> BP["Blueprint"] --> PL["Plan"] --> RT["Red-team"]
+        RT -. "requirements gap" .-> IN
+        RT -. "design gap" .-> BP
+        RT -. "plan gap" .-> PL
     end
-    PG{"human plan approval"}
-    subgraph BU["BUILD"]
-        direction TB
-        BI["implement"] --> BS["self-review"] --> BV["verify"]
-        BV -.->|product failure| BI
+    RT --> PG{"Plan approved?"}
+    PG -- "refine" --> IN
+    PG -- "yes" --> IM
+    subgraph B["Build inner loop"]
+        direction LR
+        IM["Implement"] --> SR["Self-review"] --> VE["Verify"]
+        SR -. "fix" .-> IM
+        VE -. "behavior failure" .-> IM
     end
-    subgraph LA["LAND"]
-        direction TB
-        LP["pr-drive"] --> LV["verify kept green"] --> LG["release-gate"]
-    end
-    MG{"human merge decision"}
-    OB["observe production"]
-    DN["complete"]
-    AIDLC -.-> IN
-    AIDLC -.-> FR
-    AIDLC -.-> BU
-    AIDLC -.-> LA
-    IN --> FR --> PG
-    PG -->|approve| BU
-    PG -->|edit or reject| FR
-    BU --> LA --> MG
-    LA -.->|red signal with evidence| BU
-    MG -->|merge| OB --> DN
-    MG -->|changes required| BU
-    classDef orchestrator fill:#4f9b73,color:#000000,stroke:#7f8c8d
-    classDef phase fill:#628ecb,color:#000000,stroke:#7f8c8d
-    classDef gate fill:#c67b2f,color:#000000,stroke:#7f8c8d
-    classDef evidence fill:#7d68b1,color:#000000,stroke:#7f8c8d
-    class AIDLC orchestrator
-    class IN,FI,FC,FB,FP,FRT,BI,BS,LP phase
-    class PG,MG gate
-    class BV,LV,LG,OB,DN evidence
-    linkStyle default stroke:#7f8c8d,color:#7f8c8d
+    VE --> L["Land<br/>PR · checks · release evidence"]
+    SR -. "requirements/design gap" .-> IN
+    VE -. "requirements/design gap" .-> IN
+    L -. "implementation change" .-> IM
+    L -. "requirements/design gap" .-> IN
+    L --> MG{"Merge authorized?"}
+    MG -- "changes" --> IM
+    MG -- "yes" --> D["Done state<br/>observably proven"]
 ```
 
 ## Skill entrypoints and references

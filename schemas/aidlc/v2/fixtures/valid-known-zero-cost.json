@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "event_id": "event-known-zero-0001",
+  "mission_id": "mission-20260812-0001",
+  "sequence": 2,
+  "occurred_at": "2026-08-12T18:46:00Z",
+  "type": "llm_call",
+  "status": "complete",
+  "phase": "frame",
+  "step": "investigate",
+  "phase_attempt": 1,
+  "step_attempt": 1,
+  "model": {
+    "availability": "known",
+    "requested": "fast",
+    "resolved": "example-model",
+    "provider": "example-provider",
+    "runtime": "example-host"
+  },
+  "usage": {
+    "availability": "known",
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "cost": {
+    "availability": "known",
+    "amount_usd": 0,
+    "source": "provider-reported"
+  },
+  "duration": {
+    "availability": "known",
+    "milliseconds": 0
+  },
+  "evidence": ["host-result:call-0001"]
+}

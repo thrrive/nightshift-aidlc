@@ -14,7 +14,10 @@ the `aidlc` orchestrator route the next major phase.
 
 1. Resolve one durable frame bundle using the
    [`frame-artifact contract`](../../docs/frame-artifacts.md). Pass that same bundle reference to
-   every subskill and reuse it after clarification or rewind.
+   every subskill and reuse it after clarification or rewind. Prefer
+   `aidlc-mission-bundle/v2` when the host advertises it; otherwise use the compatible v1 peer-file
+   bundle. A fresh invocation omits `resume_ref` and must receive a newly, exclusively allocated
+   mission ID. Never infer resume from a matching slug.
 2. Run **investigate** with the mission. Capture requirements, current state, prior art, repo
    conventions, constraints, and open questions.
 3. **Clarify before designing.** Review the open questions investigate surfaced. If any are
@@ -48,14 +51,22 @@ single handoff. Enter each subskill by invoking it through the runtime's skill m
 than paraphrasing its text inline — the invocation is the step boundary the runtime records, and
 it is what makes per-step attribution, timing, and overrides work downstream.
 
+With a v2 bundle, request a safe event append at every subskill entry and exit, clarification,
+rewind, review, and approval gate. Increment the step attempt on re-entry and preserve prior review
+records. Refresh the generated `MISSION.md` after every material event. If the host cannot expose
+per-call model, token, cost, or duration data, record explicit unavailable provenance rather than
+omitting the logical step or rendering zero.
+
 ## Artifacts
 
-Persist `mission.json`, `investigation.md`, `blueprint.md`, `plan.md`, `redteam-review.json`, and
-`handoff.yaml` before requesting plan approval. Prefer a target-declared feature-docs location;
-otherwise use the visible `nightshift/<mission-slug>/` fallback under the invocation root. Scratch,
-temporary, or conversation-only content is not the durable copy. If no durable write is available,
-return `needs_human` with inline recovery content and ask for a destination or explicit waiver.
-Tell the user the exact durable paths at the gate.
+Before requesting plan approval, persist the selected format completely. In v2, confirm that
+`MISSION.md`, `.aidlc/bundle.json`, `.aidlc/mission.json`, `.aidlc/events.jsonl`,
+`.aidlc/latest-outcome.json`, and the immutable review attempt exist. In v1, persist
+`mission.json`, `investigation.md`, `blueprint.md`, `plan.md`, `redteam-review.json`, and
+`handoff.yaml`. Prefer a target-declared feature-docs location; otherwise use the selected
+invocation-root fallback. Scratch, temporary, or conversation-only content is not the durable copy.
+If no durable write is available, return `needs_human` with inline recovery content and ask for a
+destination or explicit waiver. Tell the user the exact human document and machine root at the gate.
 
 ## Completion handoff
 

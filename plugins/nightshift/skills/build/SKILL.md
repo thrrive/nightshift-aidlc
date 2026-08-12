@@ -22,7 +22,9 @@ by name so host overrides remain effective and step attribution stays intact.
 
 1. Request the **workspace capability** for an isolated workspace on the resolved base revision.
    Reuse its opaque reference on route-back. Never silently fall back to in-place editing.
-2. Re-read the plan and target contribution rules inside that workspace.
+2. Re-read the plan and target contribution rules inside that workspace. If the mission carries a
+   v2 bundle, also re-read the generated `MISSION.md` and verify the exact bundle identity/digest
+   before appending Build evidence.
 3. Identify the declared checks for the changed surface before editing.
 4. Run **implement** against the approved plan.
 5. Run relevant repo-owned tests, lint, type checks, builds, or equivalent checks. Never bypass
@@ -36,6 +38,12 @@ by name so host overrides remain effective and step attribution stays intact.
 9. If delivery is `pull-request`, request the **pull-request capability** to open one change by
    default. On route-back, update the existing change instead of opening another.
 10. Return `advance` toward `land` only when the requested delivery artifact exists.
+
+For a v2 bundle, append Build/step attempts, physical LLM calls, tool-call summaries, review,
+verification, artifacts, and transitions through the mission-evidence capability. Keep raw tool and
+model payloads out of the portable event. Refresh `MISSION.md` after material state changes and
+return its reference in `outputs`. A projection failure does not corrupt routing, but Build cannot
+claim its required durable human evidence is current until refresh succeeds.
 
 If a required capability is unavailable, return `stuck` with the smallest useful next step. Do not
 replace isolation, verification, or reviewed delivery with a weaker unapproved mechanism.
