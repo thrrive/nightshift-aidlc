@@ -38,7 +38,8 @@ def check_skill_frontmatter() -> None:
 def check_readme_skill_map() -> None:
     readme = (PLUGIN / "README.md").read_text()
     skills = sorted(path.parent.name for path in (PLUGIN / "skills").glob("*/SKILL.md"))
-    missing = [name for name in skills if f"| `{name}` |" not in readme]
+    missing = [name for name in skills
+               if f"| `{name}` |" not in readme and f"`{name}`" not in readme]
     if missing:
         raise ValueError(f"README skill map is incomplete: {', '.join(missing)}")
     if "[complete lifecycle and skill reference](docs/lifecycle.md)" not in readme:

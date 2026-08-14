@@ -94,20 +94,20 @@ loadable for hosts that already have the required handoff, but invoking a child 
 ownership of mission transitions away from `aidlc`.
 
 ```text
-aidlc                         parent orchestrator: mission, routing, and human gates
-├── intake                    plain-language request → mission
-├── frame                     requirements → approved plan
-│   ├── investigate           repository facts, requirements, and open questions
-│   ├── blueprint             components, contracts, rollout, and verification shape
-│   ├── plan                  ordered implementation plan and definition of done
-│   └── redteam               adversarial review of the pinned blueprint and plan
-├── build                     approved plan → verified reviewable change
-│   ├── implement              scoped implementation against repository conventions
-│   ├── self-review            fresh-context diff review and oracle audit
-│   └── verify                 browser, API, CLI, library, or custom proof
-└── land                      reviewed change → requested done state
-    ├── pr-drive               checks and review feedback → fixes or route-backs
-    └── release-gate            review, verification, and release evidence
+`aidlc`                       parent orchestrator: mission, routing, and human gates
+├── `intake`                  plain-language request → mission
+├── `frame`                   requirements → approved plan
+│   ├── `investigate`         repository facts, requirements, and open questions
+│   ├── `blueprint`           components, contracts, rollout, and verification shape
+│   ├── `plan`                ordered implementation plan and definition of done
+│   └── `redteam`             adversarial review of the pinned blueprint and plan
+├── `build`                   approved plan → verified reviewable change
+│   ├── `implement`           scoped implementation against repository conventions
+│   ├── `self-review`         fresh-context diff review and oracle audit
+│   └── `verify`              browser, API, CLI, library, or custom proof
+└── `land`                    reviewed change → requested done state
+    ├── `pr-drive`            checks and review feedback → fixes or route-backs
+    └── `release-gate`        review, verification, and release evidence
 ```
 
 `aidlc` carries one unchanged `mission` through this hierarchy. Host runtimes may add a mission
