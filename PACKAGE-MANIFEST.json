@@ -66,7 +66,7 @@
     },
     {
       "path": "control-plane/static/missions.html",
-      "sha256": "c64972b3b994dcdad6f69314c52d686fbd1fb0b36dd0b2d845afc5316d97d039"
+      "sha256": "357935d83af001138f24aea9709db969fe85ef602566e6fcaf3bcaf08e279a41"
     },
     {
       "path": "docs/MISSION.template.md",
@@ -202,7 +202,7 @@
     },
     {
       "path": "plugins/nightshift/control-plane/static/missions.html",
-      "sha256": "c64972b3b994dcdad6f69314c52d686fbd1fb0b36dd0b2d845afc5316d97d039"
+      "sha256": "357935d83af001138f24aea9709db969fe85ef602566e6fcaf3bcaf08e279a41"
     },
     {
       "path": "plugins/nightshift/docs/MISSION.template.md",
