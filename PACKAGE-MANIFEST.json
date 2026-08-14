@@ -46,11 +46,35 @@
     },
     {
       "path": "README.md",
-      "sha256": "5e0305a9c98a4c7edb54f48b4fc78cf9cf430fe5f7ee51be99ab2460a5fc23e7"
+      "sha256": "cee66b6a070cffd7f7c306273fb20b211f1b9278383f806b71c1632e35eb533c"
     },
     {
       "path": "SECURITY.md",
       "sha256": "73466a7f6351887bd0d83130984bf088ecdacdd490a0d36dcb748d3585cd4dd2"
+    },
+    {
+      "path": "control-plane/README.md",
+      "sha256": "dd7fd2cdd5043c59cd6131b2f932a19e9d0f21f1bae8ec56f5a091a60a0ac5bb"
+    },
+    {
+      "path": "control-plane/__pycache__/mission_registry.cpython-311.pyc",
+      "sha256": "d228081bea42ecd1bf9d85a32beb583c9b9b21941e2ad6b94962b4f43748fd5c"
+    },
+    {
+      "path": "control-plane/__pycache__/server.cpython-311.pyc",
+      "sha256": "0f56ac57d12648da6440c08d3ec1a9668cc3ea239bb1f28e8957b3c1f19a9e26"
+    },
+    {
+      "path": "control-plane/mission_registry.py",
+      "sha256": "4af8e79ccadfe8620faaf21ec1a1efb1da6304fddf18d858c6a3646f408f4068"
+    },
+    {
+      "path": "control-plane/server.py",
+      "sha256": "412a3491d3dfaefdfd7017e64631075274775ea8ac32159c6fff9f0ded5ff4d3"
+    },
+    {
+      "path": "control-plane/static/missions.html",
+      "sha256": "c64972b3b994dcdad6f69314c52d686fbd1fb0b36dd0b2d845afc5316d97d039"
     },
     {
       "path": "docs/MISSION.template.md",
@@ -142,7 +166,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "5e0305a9c98a4c7edb54f48b4fc78cf9cf430fe5f7ee51be99ab2460a5fc23e7"
+      "sha256": "cee66b6a070cffd7f7c306273fb20b211f1b9278383f806b71c1632e35eb533c"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
@@ -171,6 +195,30 @@
     {
       "path": "plugins/nightshift/commands/verify.md",
       "sha256": "1c5a3ecffd7ff6dfeef499729f5b2aac5cd8e2191219596213695997d5342871"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/README.md",
+      "sha256": "dd7fd2cdd5043c59cd6131b2f932a19e9d0f21f1bae8ec56f5a091a60a0ac5bb"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/__pycache__/mission_registry.cpython-311.pyc",
+      "sha256": "1608202eff77f46d3a9206ad44887b6fef83684804eedd85f9ab99a1ec87cd74"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/__pycache__/server.cpython-311.pyc",
+      "sha256": "2832d71a0bac488e2771e92536bf07c557a64ecd659df9adef06c17faa5f81cb"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/mission_registry.py",
+      "sha256": "4af8e79ccadfe8620faaf21ec1a1efb1da6304fddf18d858c6a3646f408f4068"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/server.py",
+      "sha256": "412a3491d3dfaefdfd7017e64631075274775ea8ac32159c6fff9f0ded5ff4d3"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/static/missions.html",
+      "sha256": "c64972b3b994dcdad6f69314c52d686fbd1fb0b36dd0b2d845afc5316d97d039"
     },
     {
       "path": "plugins/nightshift/docs/MISSION.template.md",
