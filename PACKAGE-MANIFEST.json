@@ -57,14 +57,6 @@
       "sha256": "dd7fd2cdd5043c59cd6131b2f932a19e9d0f21f1bae8ec56f5a091a60a0ac5bb"
     },
     {
-      "path": "control-plane/__pycache__/mission_registry.cpython-311.pyc",
-      "sha256": "d228081bea42ecd1bf9d85a32beb583c9b9b21941e2ad6b94962b4f43748fd5c"
-    },
-    {
-      "path": "control-plane/__pycache__/server.cpython-311.pyc",
-      "sha256": "0f56ac57d12648da6440c08d3ec1a9668cc3ea239bb1f28e8957b3c1f19a9e26"
-    },
-    {
       "path": "control-plane/mission_registry.py",
       "sha256": "4af8e79ccadfe8620faaf21ec1a1efb1da6304fddf18d858c6a3646f408f4068"
     },
@@ -199,14 +191,6 @@
     {
       "path": "plugins/nightshift/control-plane/README.md",
       "sha256": "dd7fd2cdd5043c59cd6131b2f932a19e9d0f21f1bae8ec56f5a091a60a0ac5bb"
-    },
-    {
-      "path": "plugins/nightshift/control-plane/__pycache__/mission_registry.cpython-311.pyc",
-      "sha256": "1608202eff77f46d3a9206ad44887b6fef83684804eedd85f9ab99a1ec87cd74"
-    },
-    {
-      "path": "plugins/nightshift/control-plane/__pycache__/server.cpython-311.pyc",
-      "sha256": "2832d71a0bac488e2771e92536bf07c557a64ecd659df9adef06c17faa5f81cb"
     },
     {
       "path": "plugins/nightshift/control-plane/mission_registry.py",
