@@ -46,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "6e020c6d38e52f7b34ec2bd3f67c72e0a2df69730e472d869edf1a4074e29969"
+      "sha256": "5e0305a9c98a4c7edb54f48b4fc78cf9cf430fe5f7ee51be99ab2460a5fc23e7"
     },
     {
       "path": "SECURITY.md",
@@ -142,7 +142,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "6e020c6d38e52f7b34ec2bd3f67c72e0a2df69730e472d869edf1a4074e29969"
+      "sha256": "5e0305a9c98a4c7edb54f48b4fc78cf9cf430fe5f7ee51be99ab2460a5fc23e7"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
@@ -550,7 +550,7 @@
     },
     {
       "path": "scripts/check_package.py",
-      "sha256": "37c64381e1c6b329d71f92eb0d0b25b645d6efc1520c206fa19d929f83451c38"
+      "sha256": "27167d27ff9c9f7b06c196c48772a47caa483be9e5009a93dbd5a09f112524d0"
     },
     {
       "path": "scripts/check_schemas.py",

@@ -86,29 +86,33 @@ return to Frame; and red landing signals or requested changes return to Build. E
 one explicit outcome: `advance`, `rewind`, `needs_human`, or `stuck`; the mission stays unchanged
 until its observable completion criteria are met.
 
-## Skill map
+## Skill hierarchy
 
-The kit contains fourteen focused skills. Six are user-facing entrypoints (`aidlc`, `intake`,
-`frame`, `build`, `verify`, and `land`); the others are composable specialists called by their
-owning phase. You can run a major phase independently when you already have the required handoff,
-but only `aidlc` routes between major phases.
+The kit contains fourteen focused skills. `aidlc` is the parent skill and the only lifecycle router;
+the indented skills are the phases and specialists it composes. The directories remain separately
+loadable for hosts that already have the required handoff, but invoking a child does not transfer
+ownership of mission transitions away from `aidlc`.
 
-| Skill | Role |
-|---|---|
-| `aidlc` | Owns the mission, routes every major-phase transition, and pauses at human gates. |
-| `intake` | Turns a plain-language request into observable completion criteria and lifecycle limits. |
-| `frame` | Runs the complete pre-code loop and returns a plan for human approval. |
-| `investigate` | Reads the repository and gathers requirements, constraints, conventions, and open questions. |
-| `blueprint` | Designs the component and contract changes, rollout, observability, and verification shape. |
-| `plan` | Produces the ordered implementation plan and definition of done the human will approve. |
-| `redteam` | Runs five adversarial lenses over the pinned blueprint and plan, with evidence-bound findings and remediation rounds. |
-| `build` | Owns the approved plan through an isolated, verified, reviewable change. |
-| `implement` | Writes the scoped change against the approved plan and repository conventions. |
-| `self-review` | Reviews the pinned diff in fresh context, audits test oracles and proof strength, and re-reviews remediation. |
-| `verify` | Proves the exact revision through its approved browser, API, CLI, library, or custom checks. |
-| `land` | Owns the reviewed change through checks, feedback, merge authorization, and the requested done state. |
-| `pr-drive` | Triages checks and review feedback into fixes, responses, rewinds, or human decisions. |
-| `release-gate` | Combines review, verification, and release evidence, then observes the authorized result. |
+```text
+`aidlc`                       parent orchestrator: mission, routing, and human gates
+├── `intake`                  plain-language request → mission
+├── `frame`                   requirements → approved plan
+│   ├── `investigate`         repository facts, requirements, and open questions
+│   ├── `blueprint`           components, contracts, rollout, and verification shape
+│   ├── `plan`                ordered implementation plan and definition of done
+│   └── `redteam`             adversarial review of the pinned blueprint and plan
+├── `build`                   approved plan → verified reviewable change
+│   ├── `implement`           scoped implementation against repository conventions
+│   ├── `self-review`         fresh-context diff review and oracle audit
+│   └── `verify`              browser, API, CLI, library, or custom proof
+└── `land`                    reviewed change → requested done state
+    ├── `pr-drive`            checks and review feedback → fixes or route-backs
+    └── `release-gate`        review, verification, and release evidence
+```
+
+`aidlc` carries one unchanged `mission` through this hierarchy. Host runtimes may add a mission
+registry, project discovery, control plane, memory, or other visibility layer around the skill kit;
+those integrations observe and provide capabilities without redefining the lifecycle contract.
 
 Read the **[complete lifecycle and skill reference](docs/lifecycle.md)** for composition rules,
 rewind paths, flags, handoffs, workspace isolation, and human gates. The canonical executable
