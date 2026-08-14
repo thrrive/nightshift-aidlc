@@ -183,6 +183,15 @@ Open <http://127.0.0.1:8091/missions>. Add more local repositories with another
 `--mission-root /path/to/repo` option. The full setup, token option, discovery layouts, and
 security notes are in [`control-plane/README.md`](control-plane/README.md).
 
+The matching terminal command is included as `cli/psdlc`:
+
+```bash
+./cli/psdlc missions --root "$PWD" --root "/path/to/another/repo"
+```
+
+Use `--status proposed` to filter or `--json` for automation. It reads durable bundles directly
+and does not require the control plane to be running.
+
 ## What is included
 
 - fourteen focused lifecycle skills and six thin command wrappers;

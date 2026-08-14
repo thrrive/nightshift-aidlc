@@ -39,3 +39,15 @@ AIDLC_INBOUND_TOKEN='choose-a-local-token' \
 
 The browser remembers the token locally when one is configured. Keep the server on loopback
 unless you have separately secured the network path.
+
+## Terminal view
+
+The repository also includes a small portable CLI for the same mission bundle data:
+
+```bash
+./cli/psdlc missions --root "$PWD"
+```
+
+Repeat `--root` for additional repositories. Use `--status proposed` to filter records or
+`--json` for machine-readable output. This command is read-only and works while Mission Control
+is stopped.

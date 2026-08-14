@@ -46,15 +46,19 @@
     },
     {
       "path": "README.md",
-      "sha256": "cee66b6a070cffd7f7c306273fb20b211f1b9278383f806b71c1632e35eb533c"
+      "sha256": "01b4d6121a95d2e7a1f11e626e0f5876c0fa1eb31fdfc91cc1d1e3759bf16ab6"
     },
     {
       "path": "SECURITY.md",
       "sha256": "73466a7f6351887bd0d83130984bf088ecdacdd490a0d36dcb748d3585cd4dd2"
     },
     {
+      "path": "cli/psdlc",
+      "sha256": "8f3f7daeda3d2617d321da58485235bbf4cb77bf15202f974767bde90f703f45"
+    },
+    {
       "path": "control-plane/README.md",
-      "sha256": "dd7fd2cdd5043c59cd6131b2f932a19e9d0f21f1bae8ec56f5a091a60a0ac5bb"
+      "sha256": "3a7311e5917edb3bd3c085d4ebeb3d2d11e95c3bf726506abb31f0a4b97d70d3"
     },
     {
       "path": "control-plane/mission_registry.py",
@@ -158,7 +162,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "cee66b6a070cffd7f7c306273fb20b211f1b9278383f806b71c1632e35eb533c"
+      "sha256": "01b4d6121a95d2e7a1f11e626e0f5876c0fa1eb31fdfc91cc1d1e3759bf16ab6"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
