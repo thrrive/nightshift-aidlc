@@ -14,7 +14,7 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "060f50413e53fad8156f1f128759308f8fee5223b4ce2ba5875335c750494cd3"
+      "sha256": "cf2b9b94ac99a507ff3d0530238f215420ebede57557ea74cec59642f7abac3d"
     },
     {
       "path": "CHANGELOG.md",
@@ -46,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "03386ebf5c04b12d38d88ab12b693979857e7c7c50c25c2466bf22f86742f533"
+      "sha256": "97ff4513e88b2ed2474cb613535a2278a73cb1d41a8bea214789529c93a1cb12"
     },
     {
       "path": "SECURITY.md",
@@ -106,15 +106,15 @@
     },
     {
       "path": "docs/handoff-contract.md",
-      "sha256": "2099dcc16f3c849298dfdba0b37476a8deec02666fd3bfab90c753f434a49ddd"
+      "sha256": "175e36de420285f045406536033e6608558f8ab780168214cb1a1b6e5d00f4b6"
     },
     {
       "path": "docs/host-capabilities.md",
-      "sha256": "c7288e8e2bc5d34a8a57c3cc48bb2775a29a9ca47b295b616e44d1a444f3849b"
+      "sha256": "a6adfa53041dc3e8b5e4aae2a73105fd3d9d1038e60f1076f4513204ba84348e"
     },
     {
       "path": "docs/lifecycle.md",
-      "sha256": "74d19f6006d74de710df000fdad2b097f6b99943b115a7f6b865a0e65b97a54d"
+      "sha256": "7cc105cc087b119b5c19a058f371daaff74b42bec04df0bbab3011d278d17225"
     },
     {
       "path": "docs/mission-bundles.md",
@@ -162,7 +162,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "03386ebf5c04b12d38d88ab12b693979857e7c7c50c25c2466bf22f86742f533"
+      "sha256": "97ff4513e88b2ed2474cb613535a2278a73cb1d41a8bea214789529c93a1cb12"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
@@ -218,15 +218,15 @@
     },
     {
       "path": "plugins/nightshift/docs/handoff-contract.md",
-      "sha256": "2099dcc16f3c849298dfdba0b37476a8deec02666fd3bfab90c753f434a49ddd"
+      "sha256": "175e36de420285f045406536033e6608558f8ab780168214cb1a1b6e5d00f4b6"
     },
     {
       "path": "plugins/nightshift/docs/host-capabilities.md",
-      "sha256": "c7288e8e2bc5d34a8a57c3cc48bb2775a29a9ca47b295b616e44d1a444f3849b"
+      "sha256": "a6adfa53041dc3e8b5e4aae2a73105fd3d9d1038e60f1076f4513204ba84348e"
     },
     {
       "path": "plugins/nightshift/docs/lifecycle.md",
-      "sha256": "74d19f6006d74de710df000fdad2b097f6b99943b115a7f6b865a0e65b97a54d"
+      "sha256": "7cc105cc087b119b5c19a058f371daaff74b42bec04df0bbab3011d278d17225"
     },
     {
       "path": "plugins/nightshift/docs/mission-bundles.md",
@@ -299,6 +299,14 @@
     {
       "path": "plugins/nightshift/evals/self-review-insensitive-oracle/prompt.md",
       "sha256": "87db98d467eaff4352cb18381ca3ddb4438d048d3f3edebff76d875d8d083fbf"
+    },
+    {
+      "path": "plugins/nightshift/evals/yolo-recovery-parallel/graders/criteria.md",
+      "sha256": "39b865bf8368c6dc485690a70fb8d4e03a810acdda716b2829eed57a6045ff14"
+    },
+    {
+      "path": "plugins/nightshift/evals/yolo-recovery-parallel/prompt.md",
+      "sha256": "1141a6ad0b097ee1ee396767116237cd8c6d0bc7919edbf363622a35eadee0ef"
     },
     {
       "path": "plugins/nightshift/schemas/aidlc/v1/README.md",
@@ -394,11 +402,15 @@
     },
     {
       "path": "plugins/nightshift/skills/aidlc/SKILL.md",
-      "sha256": "593036019c3708ba978bcf03ef96d622692eb002286ecdd1918b386f00044399"
+      "sha256": "bdffdfe3d099a12c6be3e9173b99f3ac2fbc46c7a2888e5ff0ac163277720985"
+    },
+    {
+      "path": "plugins/nightshift/skills/aidlc/references/execution-workflow.md",
+      "sha256": "f50be5398b133de6423fe7b7aa5d005ff27328cd39ee2bf6c88fea5368a1c25f"
     },
     {
       "path": "plugins/nightshift/skills/aidlc/references/routing-contract.md",
-      "sha256": "0453cae79b74d1b903da3e58d5f4312a511633901d79da1ad3bb42cdb61b0d55"
+      "sha256": "0a5c2199613392a9cb51e6624cc0adc66e5f45ebbd0e294e10e5455288d1e01a"
     },
     {
       "path": "plugins/nightshift/skills/aidlc/references/subtask-workflow.md",
@@ -410,11 +422,11 @@
     },
     {
       "path": "plugins/nightshift/skills/build/SKILL.md",
-      "sha256": "a56828cf51dbd31444f10887eb6cf5d9737f3f1398addf1a88a2ab02cd64a34d"
+      "sha256": "93834ea60d6b18ce95c585aca8d7af4aef8dec371bfa57aef3ead84dac249b42"
     },
     {
       "path": "plugins/nightshift/skills/frame/SKILL.md",
-      "sha256": "48c59f5514b7be522c369aeb5e1beed0adaf51ec55a204cea81e0f72a3553e7b"
+      "sha256": "a6961ca5f2196a873ad00a218c2f3d9315003e84afc1f74fb7e1e8dea5f0ce29"
     },
     {
       "path": "plugins/nightshift/skills/implement/SKILL.md",
@@ -430,11 +442,11 @@
     },
     {
       "path": "plugins/nightshift/skills/land/SKILL.md",
-      "sha256": "f9e62f6b854d3eb348ecf0bc60859f11ee24fbd1db1826012f12e3dfa3c6b976"
+      "sha256": "21630aa5b283cfa530790a51d2908dc427ab183512cc9cd7b964c969e5d407a6"
     },
     {
       "path": "plugins/nightshift/skills/plan/SKILL.md",
-      "sha256": "67c26f2e93369124ff414b1e8e45a36dd7c03890c17c8d0c7ba81a084efbf1a9"
+      "sha256": "67177463ee2ca5fe001ee354be71e75960acb3295263546e519794084d56d804"
     },
     {
       "path": "plugins/nightshift/skills/plan/references/plan-template.md",
@@ -442,11 +454,11 @@
     },
     {
       "path": "plugins/nightshift/skills/pr-drive/SKILL.md",
-      "sha256": "4fcf0177d2dcc98653c93b4b032dbaa909075a51502ca08da9baa66d8a2e1025"
+      "sha256": "81491320f083a665b2591df84f08c67cb4178fe03d482a2414bfe09f5d5b5d5c"
     },
     {
       "path": "plugins/nightshift/skills/redteam/SKILL.md",
-      "sha256": "90a694744940cc18e46c15a0378ddb08756906c9b9c5a3d1ea30963991a65c7e"
+      "sha256": "507db578e152177e5cf461363866661c40ed7d1f84f73095122ea3df8878e9ef"
     },
     {
       "path": "plugins/nightshift/skills/redteam/references/review-protocol.md",
@@ -458,7 +470,7 @@
     },
     {
       "path": "plugins/nightshift/skills/self-review/SKILL.md",
-      "sha256": "c9d94daebafd3bd2868eeb7d58b23acb397739ee1bf99919d01c2c992c9e073f"
+      "sha256": "acd758efd0d466d5c9795a40115065455130dc78f46caa9ec993fa1c8e5e9366"
     },
     {
       "path": "plugins/nightshift/skills/self-review/references/findings-record.md",
@@ -598,7 +610,7 @@
     },
     {
       "path": "scripts/check_package.py",
-      "sha256": "03ef7dbcd3a07970b6fa80e954dd4901e2b39bfe4287725fefe149b50bdb430c"
+      "sha256": "954c2571161e7e3b93219d33b61577294cccfe1694483c911198e871e466cc34"
     },
     {
       "path": "scripts/check_schemas.py",

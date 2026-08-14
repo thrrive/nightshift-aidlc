@@ -46,6 +46,10 @@ the `aidlc` orchestrator route the next major phase.
    contract. Rewind material gaps, hold incomplete evidence for human judgment, and finalize only
    after remediation is re-reviewed.
 
+When the approved plan contains independent, path-disjoint work, declare validated `workstreams`
+in the handoff and include bounded recovery limits plus meaningful-human escalation triggers from
+[`../aidlc/references/execution-workflow.md`](../aidlc/references/execution-workflow.md).
+
 Use subagents or background work where the runtime supports it, but the phase's result is a
 single handoff. Enter each subskill by invoking it through the runtime's skill mechanism rather
 than paraphrasing its text inline — the invocation is the step boundary the runtime records, and

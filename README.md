@@ -13,8 +13,10 @@ Because development should be able to keep moving safely after you step away. Ni
 the work, waits for plan approval, builds in isolation, verifies the running product, drives one
 reviewable change, and reports honestly when evidence sends it backward.
 
-The name means continuity—not unchecked autonomy. Human approval remains part of the lifecycle at
-the plan and merge gates, and required host capabilities can never be silently bypassed.
+The name means continuity—not unchecked autonomy. In gated mode, routine plan and subtask approvals
+pause the lifecycle. In YOLO mode, routine transitions and bounded recovery loops continue
+automatically; meaningful scope, safety, policy, unresolved-review, blocker, and authorization
+decisions still surface to a human.
 
 ## Why use Nightshift AIDLC?
 
@@ -86,6 +88,12 @@ return to Frame; and red landing signals or requested changes return to Build. E
 one explicit outcome: `advance`, `rewind`, `needs_human`, or `stuck`; the mission stays unchanged
 until its observable completion criteria are met.
 
+Independent, path-disjoint workstreams may fan out to isolated Codex or Claude subagents, join at a
+barrier, merge in declared order, and undergo review and verification on the merged result. Review
+recovery is bounded by default to 2 attempts per finding, 3 per subtask, and 8 per mission. See the
+[execution workflow](https://github.com/thrrive/nightshift-aidlc/blob/main/plugins/nightshift/skills/aidlc/references/execution-workflow.md) for routing,
+resume state, and escalation rules.
+
 ## Skill hierarchy
 
 The kit contains fourteen focused skills. `aidlc` is the parent skill and the only lifecycle router;
@@ -114,11 +122,11 @@ ownership of mission transitions away from `aidlc`.
 registry, project discovery, control plane, memory, or other visibility layer around the skill kit;
 those integrations observe and provide capabilities without redefining the lifecycle contract.
 
-When the host supports hierarchical execution, intake/frame also produce an ordered subtask plan
-and a per-step model plan. The default workflow starts the first eligible child, then pauses after
-each child with a summary gate; a host may expose `mode: yolo` to auto-advance between children
-while preserving plan, verification, review, merge, and release gates. Published mission evidence
-shows estimated model/token/cost data separately from host-observed usage and cost.
+When hierarchical execution is available, intake/frame also produce an ordered subtask plan and a
+per-step model plan. The default workflow starts the first eligible child, then pauses after each
+child with a summary gate; a host may expose `mode: yolo` to auto-advance routine transitions while
+preserving meaningful-human escalation. Published mission evidence shows estimated model/token/cost
+data separately from host-observed usage and cost.
 
 Read the **[complete lifecycle and skill reference](docs/lifecycle.md)** for composition rules,
 rewind paths, flags, handoffs, workspace isolation, and human gates. The canonical executable
@@ -169,34 +177,6 @@ Nightshift AIDLC keeps lifecycle skills independent from host integrations. Skil
 methodology and contracts; hosts supply model access, tools, workspaces, verification,
 reviewed-change operations, release evidence, and optional memory capabilities. Either side can
 evolve without forcing a rewrite of the other.
-
-## Optional local Mission Control
-
-The public package also includes a small, read-only Mission Control explorer for seeing missions
-from local repositories. It discovers v2 mission bundles, shows subtasks nested under their parent
-mission, and renders the human Markdown artifacts. It does not run agents, create jobs, start
-containers, or expose the private execution runtime.
-
-Start it from this checkout:
-
-```bash
-python3 control-plane/server.py \
-  --port 8091 \
-  --mission-root "$PWD"
-```
-
-Open <http://127.0.0.1:8091/missions>. Add more local repositories with another
-`--mission-root /path/to/repo` option. The full setup, token option, discovery layouts, and
-security notes are in [`control-plane/README.md`](control-plane/README.md).
-
-The matching terminal command is included as `cli/psdlc`:
-
-```bash
-./cli/psdlc missions --root "$PWD" --root "/path/to/another/repo"
-```
-
-Use `--status proposed` to filter or `--json` for automation. It reads durable bundles directly
-and does not require the control plane to be running.
 
 ## What is included
 
@@ -263,7 +243,7 @@ Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`,
 
 ## Status
 
-`1.0.0-rc.3` is the current stable-v1 candidate. It preserves the canonical v1 mission and
+`1.0.0-rc.2` is the current stable-v1 candidate. It preserves the canonical v1 mission and
 outcome contract while adding the human-first, collision-safe v2 evidence bundle, durable frame
 artifacts, evidence-backed review, and executable backward-compatibility checks. Stable promotion
 requires two fresh external missions from this exact tag, including a rewind and a human gate.

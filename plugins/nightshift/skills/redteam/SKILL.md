@@ -36,6 +36,10 @@ decision rules.
 - `CONDITIONAL` → return `needs_human` with the missing evidence or accepted residual stated
   precisely.
 
+In YOLO mode, a bounded `REQUEST_CHANGES` finding may automatically re-enter the owning frame
+subskill and rerun this review. Escalate instead when the remediation changes mission scope,
+done-when conditions, safety or policy posture, or the recovery budget is exhausted.
+
 A plan review may have a `STATIC_ONLY` proof ceiling: it establishes that the plan is coherent and
 evidence-aware, not that unbuilt behavior already works. Never promote a future behavior claim to
 `PROVEN`.

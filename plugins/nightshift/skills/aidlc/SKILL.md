@@ -16,13 +16,12 @@ other — they return handoffs, and you are the only thing that moves the lifecy
 ## Load the routing contract
 
 Before the first phase, read [`references/routing-contract.md`](references/routing-contract.md).
-When hierarchical execution is available, also read
-[`references/subtask-workflow.md`](references/subtask-workflow.md). Intake/frame must persist the
-ordered subtask and per-step model plans in the selected bundle; after the approved parent plan,
-start the first eligible child. In gated mode, pause after each child summary for `proceed`,
-`stop`, or `revise`; in YOLO mode auto-advance only between children. Preserve all existing
-plan, verification, review, merge, and release gates, and publish planned versus observed model,
-token, and cost data in mission evidence.
+When the host supports hierarchical execution, also read
+[`references/execution-workflow.md`](references/execution-workflow.md). It defines bounded review
+recovery, meaningful-human escalation, YOLO behavior, and parallel workstream joins for both Codex
+and Claude adapters. Also read [`references/subtask-workflow.md`](references/subtask-workflow.md) when
+the host exposes durable subtask plans and model usage ledgers; preserve those plans in the bundle,
+start the first eligible child after approval, and keep planned versus observed usage separate.
 It contains the canonical mission mapping, transition loop, phase ownership, and human gates. Also
 read the full [`handoff contract`](../../docs/handoff-contract.md) before routing and the
 [`host-capability contract`](../../docs/host-capabilities.md) before requesting effects.
@@ -83,6 +82,11 @@ unavailable, or fails, finish normally and state once that lesson capture was sk
 Never implement before plan approval. Never merge against repository policy. Never silently widen
 scope. Do not stop at a phase boundary merely because a phase finished; stop only when the mission
 is complete, a human gate is open, a real blocker exists, or an explicit halt applies.
+
+In `mode: yolo`, advance through routine plan, subtask, and review transitions automatically. Do
+not ask for a routine proceed/approve response. Surface only the meaningful decisions and blockers
+listed in `references/execution-workflow.md`; preserve every recovery attempt and human escalation
+in the mission evidence.
 
 ## Overrides
 
