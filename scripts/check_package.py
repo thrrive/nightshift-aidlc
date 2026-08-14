@@ -100,6 +100,7 @@ def check_public_mirrors() -> None:
         "docs/MISSION.template.md", "docs/frame-artifacts.md", "docs/handoff-contract.md",
         "docs/host-capabilities.md", "docs/lifecycle.md", "docs/mission-bundles.md",
         "schemas/aidlc/v1/README.md", "schemas/aidlc/v2/README.md",
+        "schemas/aidlc/v1/execution-plan.schema.json",
         "schemas/aidlc/v2/bundle.schema.json", "schemas/aidlc/v2/event.schema.json",
     ]
     for relative in roots:

@@ -2,6 +2,11 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## Unreleased
+
+- Add the host-neutral hierarchical mission workflow contract: ordered subtasks, gated versus YOLO
+  continuation, per-step model planning, and estimate-versus-observed usage/cost publication.
+
 ## 1.0.0-rc.3
 
 - Add the portable `cli/psdlc missions` command for parent missions and indented subtasks.

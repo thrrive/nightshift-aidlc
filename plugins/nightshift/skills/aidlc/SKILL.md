@@ -16,6 +16,13 @@ other — they return handoffs, and you are the only thing that moves the lifecy
 ## Load the routing contract
 
 Before the first phase, read [`references/routing-contract.md`](references/routing-contract.md).
+When hierarchical execution is available, also read
+[`references/subtask-workflow.md`](references/subtask-workflow.md). Intake/frame must persist the
+ordered subtask and per-step model plans in the selected bundle; after the approved parent plan,
+start the first eligible child. In gated mode, pause after each child summary for `proceed`,
+`stop`, or `revise`; in YOLO mode auto-advance only between children. Preserve all existing
+plan, verification, review, merge, and release gates, and publish planned versus observed model,
+token, and cost data in mission evidence.
 It contains the canonical mission mapping, transition loop, phase ownership, and human gates. Also
 read the full [`handoff contract`](../../docs/handoff-contract.md) before routing and the
 [`host-capability contract`](../../docs/host-capabilities.md) before requesting effects.
