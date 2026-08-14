@@ -183,6 +183,15 @@ Open <http://127.0.0.1:8091/missions>. Add more local repositories with another
 `--mission-root /path/to/repo` option. The full setup, token option, discovery layouts, and
 security notes are in [`control-plane/README.md`](control-plane/README.md).
 
+The matching terminal command is included as `cli/psdlc`:
+
+```bash
+./cli/psdlc missions --root "$PWD" --root "/path/to/another/repo"
+```
+
+Use `--status proposed` to filter or `--json` for automation. It reads durable bundles directly
+and does not require the control plane to be running.
+
 ## What is included
 
 - fourteen focused lifecycle skills and six thin command wrappers;
@@ -248,7 +257,7 @@ Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`,
 
 ## Status
 
-`1.0.0-rc.2` is the current stable-v1 candidate. It preserves the canonical v1 mission and
+`1.0.0-rc.3` is the current stable-v1 candidate. It preserves the canonical v1 mission and
 outcome contract while adding the human-first, collision-safe v2 evidence bundle, durable frame
 artifacts, evidence-backed review, and executable backward-compatibility checks. Stable promotion
 requires two fresh external missions from this exact tag, including a rewind and a human gate.

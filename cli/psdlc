@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""Small portable mission-bundle CLI shipped with Nightshift AIDLC."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+
+def records(roots: list[str], status: str = "") -> list[dict]:
+    found: list[dict] = []
+    seen: set[Path] = set()
+    for value in roots or ["."]:
+        root = Path(value).expanduser().resolve()
+        paths = list((root / "nightshift" / "missions").glob("*/.aidlc/mission.json"))
+        paths += list((root / "nightshift").glob("*/mission.json"))
+        for path in paths:
+            path = path.resolve()
+            if path in seen:
+                continue
+            seen.add(path)
+            try:
+                mission = json.loads(path.read_text())
+            except (OSError, json.JSONDecodeError):
+                continue
+            if not isinstance(mission, dict) or not mission.get("ask"):
+                continue
+            record_type = mission.get("record_type") or mission.get("type")
+            if record_type == "task":
+                record_type = "subtask"
+            if record_type not in {"mission", "subtask"}:
+                record_type = "subtask" if mission.get("parent_id") else "mission"
+            record = {
+                "mission_id": str(mission.get("mission_id") or mission.get("id") or path.parent.name),
+                "record_type": record_type,
+                "parent_id": mission.get("parent_id"),
+                "ask": str(mission["ask"]),
+                "status": str(mission.get("status", "unknown")),
+                "done_state": mission.get("done_state", "not specified"),
+                "project": root.name,
+                "source": str(path),
+            }
+            if not status or record["status"] == status:
+                found.append(record)
+    return found
+
+
+def ordered(items: list[dict]) -> list[dict]:
+    children: dict[str, list[dict]] = {}
+    for item in items:
+        children.setdefault(item.get("parent_id") or "", []).append(item)
+    for group in children.values():
+        group.sort(key=lambda item: item["ask"].lower())
+    result: list[dict] = []
+    visited: set[str] = set()
+
+    def visit(item: dict) -> None:
+        if item["mission_id"] in visited:
+            return
+        visited.add(item["mission_id"])
+        result.append(item)
+        for child in children.get(item["mission_id"], []):
+            visit(child)
+
+    for item in children.get("", []):
+        visit(item)
+    for item in items:
+        visit(item)
+    return result
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(prog="psdlc")
+    sub = parser.add_subparsers(dest="command", required=True)
+    missions = sub.add_parser("missions", help="list durable missions and indented subtasks")
+    missions.add_argument("--root", action="append", default=None,
+                          help="project root; repeat for multiple repositories")
+    missions.add_argument("--status", default="", help="filter by mission status")
+    missions.add_argument("--json", action="store_true", help="emit JSON records")
+    args = parser.parse_args()
+    if args.command != "missions":
+        parser.error("unsupported command")
+    items = ordered(records(args.root or ["."], args.status))
+    if args.json:
+        print(json.dumps({"missions": items}, indent=2))
+        return 0
+    if not items:
+        print("no missions found")
+        return 0
+    child_counts: dict[str, int] = {}
+    for item in items:
+        if item.get("parent_id"):
+            child_counts[item["parent_id"]] = child_counts.get(item["parent_id"], 0) + 1
+    print(f"{len(items)} mission record(s)")
+    for item in items:
+        prefix = "  └─ " if item.get("parent_id") else "\nMISSION "
+        print(f"{prefix}{item['ask'].replace(chr(10), ' ').strip()}")
+        print(f"     {item['project']} · {item['status']} · {item['record_type']}")
+        if not item.get("parent_id") and child_counts.get(item["mission_id"]):
+            count = child_counts[item["mission_id"]]
+            print(f"     {count} subtask{'s' if count != 1 else ''}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
