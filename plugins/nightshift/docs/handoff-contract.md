@@ -17,6 +17,11 @@ This does not add fields to the canonical `mission` or change `outcome` routing.
 attempts, transitions, model/tool provenance, cost availability, and a generated `MISSION.md`
 outside the wire handoff.
 
+For hosts that support hierarchical execution, the bundle may additionally persist a bounded
+`subtask_plan`, `model_plan`, `execution_mode`, and resumable workflow state. These are execution
+metadata, not replacements for the canonical mission or outcome. `model_plan` estimates must be
+clearly separated from the host-observed usage ledger.
+
 ## `mission` — the durable goal
 
 ```yaml

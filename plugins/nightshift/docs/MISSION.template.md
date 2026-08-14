@@ -58,6 +58,16 @@ flowchart LR
 
 ## Model calls
 
+Execution mode: `{{ execution_mode }}`
+
+## Planned model usage
+
+| Subtask | Step | Model hint | Est. input tokens | Est. output tokens | Est. cost USD |
+|---|---|---|---:|---:|---:|
+{{ model_plan_rows }}
+
+Estimates are planning data; the model-call ledger below contains only host-observed usage and cost.
+
 | Phase | Step | Attempt | Requested model | Resolved model | Usage | Cost and source | Duration | Availability |
 |---|---|---:|---|---|---|---|---|---|
 {{ llm_call_rows }}
