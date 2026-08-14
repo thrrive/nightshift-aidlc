@@ -194,7 +194,7 @@
     },
     {
       "path": "plugins/nightshift/control-plane/README.md",
-      "sha256": "dd7fd2cdd5043c59cd6131b2f932a19e9d0f21f1bae8ec56f5a091a60a0ac5bb"
+      "sha256": "3a7311e5917edb3bd3c085d4ebeb3d2d11e95c3bf726506abb31f0a4b97d70d3"
     },
     {
       "path": "plugins/nightshift/control-plane/mission_registry.py",
