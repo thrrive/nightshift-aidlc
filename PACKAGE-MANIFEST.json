@@ -550,7 +550,7 @@
     },
     {
       "path": "scripts/check_package.py",
-      "sha256": "37c64381e1c6b329d71f92eb0d0b25b645d6efc1520c206fa19d929f83451c38"
+      "sha256": "27167d27ff9c9f7b06c196c48772a47caa483be9e5009a93dbd5a09f112524d0"
     },
     {
       "path": "scripts/check_schemas.py",
