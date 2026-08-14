@@ -39,6 +39,14 @@ later phases trust the mission and do not re-litigate the goal.
    `needs_human` with **2–3 sharp, specific** questions — not an open-ended "tell me more".
    Prefer questions a one-line answer resolves.
 
+6. When hierarchical execution is available, derive a bounded ordered `subtask_plan` after the
+   mission is clear. Each child needs an id, goal, observable `done_when`, and dependencies only
+   on earlier children. Derive a `model_plan` for each execution step: select a model hint from
+   complexity, context, reasoning, gate sensitivity, caching, and cost; record rationale,
+   expected input/output tokens, pricing reference, and estimated cost when known. These are
+   estimates only; actual model usage and cost remain host-observed ledger data. Keep run mode and
+   other host performance options out of the canonical mission.
+
 ## Output — when the mission is clear
 
 ```yaml

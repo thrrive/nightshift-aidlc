@@ -2,6 +2,17 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## Unreleased
+
+- Add the host-neutral hierarchical mission workflow contract: ordered subtasks, gated versus YOLO
+  continuation, per-step model planning, and estimate-versus-observed usage/cost publication.
+
+## 1.0.0-rc.3
+
+- Add the portable `cli/psdlc missions` command for parent missions and indented subtasks.
+- Add multi-repository roots, status filtering, and JSON output to the mission view.
+- Publish local Mission Control startup and terminal-view guidance in the package README.
+
 ## 1.0.0-rc.2
 
 - Add the negotiated `aidlc-mission-bundle/v2` evidence format with one generated `MISSION.md`,

@@ -122,6 +122,12 @@ ownership of mission transitions away from `aidlc`.
 registry, project discovery, control plane, memory, or other visibility layer around the skill kit;
 those integrations observe and provide capabilities without redefining the lifecycle contract.
 
+When hierarchical execution is available, intake/frame also produce an ordered subtask plan and a
+per-step model plan. The default workflow starts the first eligible child, then pauses after each
+child with a summary gate; a host may expose `mode: yolo` to auto-advance routine transitions while
+preserving meaningful-human escalation. Published mission evidence shows estimated model/token/cost
+data separately from host-observed usage and cost.
+
 Read the **[complete lifecycle and skill reference](docs/lifecycle.md)** for composition rules,
 rewind paths, flags, handoffs, workspace isolation, and human gates. The canonical executable
 contracts live in each packaged `skills/<name>/SKILL.md`.

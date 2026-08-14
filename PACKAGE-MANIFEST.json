@@ -6,7 +6,7 @@
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "1723173556952a3472459c2c2d9541c233c0ef7bcff31bab96448c1868128324"
+      "sha256": "2af39abffa2ae2929a7a05ea4cdfe5d078a2d7e9ca538153594c2578fbfb02ed"
     },
     {
       "path": ".github/workflows/package.yml",
@@ -18,7 +18,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "bfb526408a9b13e7a593bf391978c30055b473d8bba5b6f07a2ec9d9ebfb4f1b"
+      "sha256": "dd90033268f2a184a8d19c16c16061104bdaf6f51cb6a3c6d0e8dd5fae82f032"
     },
     {
       "path": "COMPATIBILITY.md",
@@ -34,7 +34,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "fc3d61db939be9bdc416b9267be3c37ae79616c8277ca6913693a262c3cef830"
+      "sha256": "74a1781ad0e0846a354bd9ba0b286fdc367646995ec8d7c41706250e0e41b7e4"
     },
     {
       "path": "LICENSE",
@@ -46,15 +46,35 @@
     },
     {
       "path": "README.md",
-      "sha256": "3c77f85fa35ae9d225eaeace67419b568d4941544d0869a41eb8a597214751f7"
+      "sha256": "97ff4513e88b2ed2474cb613535a2278a73cb1d41a8bea214789529c93a1cb12"
     },
     {
       "path": "SECURITY.md",
       "sha256": "73466a7f6351887bd0d83130984bf088ecdacdd490a0d36dcb748d3585cd4dd2"
     },
     {
+      "path": "cli/psdlc",
+      "sha256": "8f3f7daeda3d2617d321da58485235bbf4cb77bf15202f974767bde90f703f45"
+    },
+    {
+      "path": "control-plane/README.md",
+      "sha256": "3a7311e5917edb3bd3c085d4ebeb3d2d11e95c3bf726506abb31f0a4b97d70d3"
+    },
+    {
+      "path": "control-plane/mission_registry.py",
+      "sha256": "4af8e79ccadfe8620faaf21ec1a1efb1da6304fddf18d858c6a3646f408f4068"
+    },
+    {
+      "path": "control-plane/server.py",
+      "sha256": "412a3491d3dfaefdfd7017e64631075274775ea8ac32159c6fff9f0ded5ff4d3"
+    },
+    {
+      "path": "control-plane/static/missions.html",
+      "sha256": "357935d83af001138f24aea9709db969fe85ef602566e6fcaf3bcaf08e279a41"
+    },
+    {
       "path": "docs/MISSION.template.md",
-      "sha256": "51ec430320fb25fb8432bed616a1fd337106c574031512536adc69cd953db7ca"
+      "sha256": "c16f72a077cf50617b4446c52710c61339b9da5bc88a059d56615a2c8749c338"
     },
     {
       "path": "docs/evidence/v1-stable-frame/blueprint.md",
@@ -86,7 +106,7 @@
     },
     {
       "path": "docs/handoff-contract.md",
-      "sha256": "903b1bdeb7fb5ac5d2c40bb41e58717d7c00cfd4272a5bc3f519346c56124b45"
+      "sha256": "175e36de420285f045406536033e6608558f8ab780168214cb1a1b6e5d00f4b6"
     },
     {
       "path": "docs/host-capabilities.md",
@@ -106,15 +126,15 @@
     },
     {
       "path": "plugins/nightshift/.claude-plugin/plugin.json",
-      "sha256": "b97c3c4adcf6dafd5c4ab31162ffb8af27d49334262b00516adf0a1b0c881c3c"
+      "sha256": "3c6e32943ca704852dfc667061b8e6e94896a2bdde6aeef571db7f4fb9c4f41c"
     },
     {
       "path": "plugins/nightshift/.codex-plugin/plugin.json",
-      "sha256": "589640bff02ffcaa5ff2a3c10f06287cf55159ba7396753d00cd7340eee7a2a5"
+      "sha256": "ed894170cc05a3f70b44c127ca7f1cc720cd23187c512766c18438d1c8b79e0d"
     },
     {
       "path": "plugins/nightshift/CHANGELOG.md",
-      "sha256": "bfb526408a9b13e7a593bf391978c30055b473d8bba5b6f07a2ec9d9ebfb4f1b"
+      "sha256": "dd90033268f2a184a8d19c16c16061104bdaf6f51cb6a3c6d0e8dd5fae82f032"
     },
     {
       "path": "plugins/nightshift/COMPATIBILITY.md",
@@ -130,7 +150,7 @@
     },
     {
       "path": "plugins/nightshift/INSTALL.md",
-      "sha256": "fc3d61db939be9bdc416b9267be3c37ae79616c8277ca6913693a262c3cef830"
+      "sha256": "74a1781ad0e0846a354bd9ba0b286fdc367646995ec8d7c41706250e0e41b7e4"
     },
     {
       "path": "plugins/nightshift/LICENSE",
@@ -142,7 +162,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "3c77f85fa35ae9d225eaeace67419b568d4941544d0869a41eb8a597214751f7"
+      "sha256": "97ff4513e88b2ed2474cb613535a2278a73cb1d41a8bea214789529c93a1cb12"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
@@ -173,8 +193,24 @@
       "sha256": "1c5a3ecffd7ff6dfeef499729f5b2aac5cd8e2191219596213695997d5342871"
     },
     {
+      "path": "plugins/nightshift/control-plane/README.md",
+      "sha256": "3a7311e5917edb3bd3c085d4ebeb3d2d11e95c3bf726506abb31f0a4b97d70d3"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/mission_registry.py",
+      "sha256": "4af8e79ccadfe8620faaf21ec1a1efb1da6304fddf18d858c6a3646f408f4068"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/server.py",
+      "sha256": "412a3491d3dfaefdfd7017e64631075274775ea8ac32159c6fff9f0ded5ff4d3"
+    },
+    {
+      "path": "plugins/nightshift/control-plane/static/missions.html",
+      "sha256": "357935d83af001138f24aea9709db969fe85ef602566e6fcaf3bcaf08e279a41"
+    },
+    {
       "path": "plugins/nightshift/docs/MISSION.template.md",
-      "sha256": "51ec430320fb25fb8432bed616a1fd337106c574031512536adc69cd953db7ca"
+      "sha256": "c16f72a077cf50617b4446c52710c61339b9da5bc88a059d56615a2c8749c338"
     },
     {
       "path": "plugins/nightshift/docs/frame-artifacts.md",
@@ -182,7 +218,7 @@
     },
     {
       "path": "plugins/nightshift/docs/handoff-contract.md",
-      "sha256": "903b1bdeb7fb5ac5d2c40bb41e58717d7c00cfd4272a5bc3f519346c56124b45"
+      "sha256": "175e36de420285f045406536033e6608558f8ab780168214cb1a1b6e5d00f4b6"
     },
     {
       "path": "plugins/nightshift/docs/host-capabilities.md",
@@ -277,6 +313,10 @@
       "sha256": "eb532e2f6ca85b98bc855c7d0b88111d81c8b39823aa877f43e9e46ed1fbf1f6"
     },
     {
+      "path": "plugins/nightshift/schemas/aidlc/v1/execution-plan.schema.json",
+      "sha256": "94a72dbb432bf9aabf4ddfb7d206103c007bdb0206d0068194a34c8e9e95aabc"
+    },
+    {
       "path": "plugins/nightshift/schemas/aidlc/v1/fixtures/invalid/advance-without-next-phase.json",
       "sha256": "2238aeaa73976d6cde586789f49a85b65893e29a4487add9a84e44b6956396ba"
     },
@@ -362,7 +402,7 @@
     },
     {
       "path": "plugins/nightshift/skills/aidlc/SKILL.md",
-      "sha256": "0caf218d3ea2ea889f19c2fdf0fdf6ad99e70aa93340dc05ca74f9401a2115bf"
+      "sha256": "bdffdfe3d099a12c6be3e9173b99f3ac2fbc46c7a2888e5ff0ac163277720985"
     },
     {
       "path": "plugins/nightshift/skills/aidlc/references/execution-workflow.md",
@@ -371,6 +411,10 @@
     {
       "path": "plugins/nightshift/skills/aidlc/references/routing-contract.md",
       "sha256": "0a5c2199613392a9cb51e6624cc0adc66e5f45ebbd0e294e10e5455288d1e01a"
+    },
+    {
+      "path": "plugins/nightshift/skills/aidlc/references/subtask-workflow.md",
+      "sha256": "15b460748787e6a99021b6e2d67c7ae4f7fdbaa898e1f55ff38f6e8e5d2fa8cd"
     },
     {
       "path": "plugins/nightshift/skills/blueprint/SKILL.md",
@@ -390,7 +434,7 @@
     },
     {
       "path": "plugins/nightshift/skills/intake/SKILL.md",
-      "sha256": "5e5644ef82f2fd4f2ea9bcaab7d51deea35d6a7db8502a455c2fb10d18b8d219"
+      "sha256": "e43658a719eca5e896728a96e0d0c5c8cafc8ecf7d8cfbb125671ea0f372abca"
     },
     {
       "path": "plugins/nightshift/skills/investigate/SKILL.md",
@@ -439,6 +483,10 @@
     {
       "path": "schemas/aidlc/v1/README.md",
       "sha256": "eb532e2f6ca85b98bc855c7d0b88111d81c8b39823aa877f43e9e46ed1fbf1f6"
+    },
+    {
+      "path": "schemas/aidlc/v1/execution-plan.schema.json",
+      "sha256": "94a72dbb432bf9aabf4ddfb7d206103c007bdb0206d0068194a34c8e9e95aabc"
     },
     {
       "path": "schemas/aidlc/v1/fixtures/invalid/advance-without-next-phase.json",
@@ -562,11 +610,11 @@
     },
     {
       "path": "scripts/check_package.py",
-      "sha256": "e3e71605669dd906993addd5dc43a4cbd4da8ed9a65d43a1546be1b034bc7cde"
+      "sha256": "954c2571161e7e3b93219d33b61577294cccfe1694483c911198e871e466cc34"
     },
     {
       "path": "scripts/check_schemas.py",
-      "sha256": "136d46da357fe84b8c03789acc085ed36342ca712cb36705cda3a837d55055df"
+      "sha256": "b47886bad9e3ce9ee3c3adeaf899b2217cd868d7e2b8e1d7a374320ebc73fb69"
     }
   ]
 }

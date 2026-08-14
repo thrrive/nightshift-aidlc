@@ -19,7 +19,9 @@ Before the first phase, read [`references/routing-contract.md`](references/routi
 When the host supports hierarchical execution, also read
 [`references/execution-workflow.md`](references/execution-workflow.md). It defines bounded review
 recovery, meaningful-human escalation, YOLO behavior, and parallel workstream joins for both Codex
-and Claude adapters.
+and Claude adapters. Also read [`references/subtask-workflow.md`](references/subtask-workflow.md) when
+the host exposes durable subtask plans and model usage ledgers; preserve those plans in the bundle,
+start the first eligible child after approval, and keep planned versus observed usage separate.
 It contains the canonical mission mapping, transition loop, phase ownership, and human gates. Also
 read the full [`handoff contract`](../../docs/handoff-contract.md) before routing and the
 [`host-capability contract`](../../docs/host-capabilities.md) before requesting effects.

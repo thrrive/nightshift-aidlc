@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Mission registry · Nightshift</title>
+  <style>
+    :root {
+      --bg: #0b1017; --panel: #121a24; --panel-2: #172331; --panel-3: #1c2a3a;
+      --line: #263548; --line-bright: #344961; --text: #eef4fb; --muted: #91a2b7;
+      --faint: #65778d; --accent: #7dd3fc; --accent-strong: #38bdf8; --accent-wash: rgba(56,189,248,.12);
+      --green: #86efac; --amber: #fcd34d; --red: #fda4af; --shadow: 0 24px 60px rgba(0,0,0,.24);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: radial-gradient(circle at 15% -10%, #1b3349 0, transparent 34rem), var(--bg); color: var(--text); font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    button, input { font: inherit; }
+    button { color: inherit; cursor: pointer; }
+    a { color: var(--accent); }
+    .shell { width: min(1440px, 100%); min-height: 100vh; margin: 0 auto; padding: 24px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 4px 2px 22px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #35617d; border-radius: 11px; background: linear-gradient(145deg, #16415c, #122234); color: var(--accent); font-weight: 800; box-shadow: 0 8px 22px rgba(0,0,0,.2); }
+    .eyebrow { margin: 0; color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; } h1 { margin-bottom: 1px; font-size: 20px; letter-spacing: -.025em; } h2 { margin-bottom: 5px; font-size: 18px; letter-spacing: -.02em; } h3 { margin-bottom: 10px; font-size: 13px; }
+    .subtle { color: var(--muted); }
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+    .token { width: min(250px, 30vw); padding: 9px 11px; border: 1px solid var(--line-bright); border-radius: 9px; outline: none; background: rgba(10,16,24,.72); color: var(--text); }
+    .token:focus, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; padding: 8px 12px; border: 1px solid var(--line-bright); border-radius: 9px; background: var(--panel-2); color: var(--text); text-decoration: none; font-weight: 650; }
+    .button:hover { border-color: var(--accent-strong); background: var(--panel-3); }
+    .button.primary { border-color: #2b82ad; background: var(--accent-wash); color: var(--accent); }
+    .workspace { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); min-height: calc(100vh - 115px); overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(18,26,36,.82); box-shadow: var(--shadow); }
+    .index { display: flex; min-height: 0; flex-direction: column; border-right: 1px solid var(--line); background: rgba(13,20,29,.65); }
+    .index-head, .detail-head { padding: 22px; border-bottom: 1px solid var(--line); }
+    .index-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+    .count { display: inline-grid; place-items: center; min-width: 26px; height: 24px; padding: 0 7px; border: 1px solid #31526d; border-radius: 99px; background: var(--accent-wash); color: var(--accent); font-size: 12px; font-weight: 750; }
+    .mission-list { display: grid; min-height: 0; gap: 8px; overflow: auto; padding: 12px; }
+    .mission-row { display: flex; min-width: 0; align-items: stretch; gap: 6px; }
+    .mission-row.subtask { margin-left: 18px; padding-left: 10px; border-left: 1px solid #665b3d; }
+    .mission-row .mission-card { min-width: 0; }
+    .collapse-toggle { flex: 0 0 28px; align-self: flex-start; min-height: 28px; margin-top: 13px; padding: 0; border: 1px solid #31526d; border-radius: 8px; background: var(--accent-wash); color: var(--accent); font-size: 18px; line-height: 1; }
+    .collapse-toggle:hover { border-color: var(--accent-strong); background: rgba(56,189,248,.2); }
+    .mission-card { width: 100%; padding: 13px; border: 1px solid transparent; border-radius: 11px; background: transparent; text-align: left; }
+    .mission-card:hover { border-color: var(--line-bright); background: rgba(28,42,58,.52); }
+    .mission-card[aria-current="true"] { border-color: #2c7095; background: linear-gradient(135deg, rgba(34,91,121,.32), rgba(28,42,58,.72)); box-shadow: inset 3px 0 var(--accent-strong); }
+    .card-top, .detail-title, .meta-row, .doc-nav, .relationship-row { display: flex; align-items: center; gap: 8px; }
+    .card-top, .detail-title { justify-content: space-between; }
+    .project-label { max-width: 48%; overflow: hidden; color: var(--faint); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+    .card-title { margin: 9px 0 4px; overflow: hidden; color: var(--text); font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .card-ask { display: -webkit-box; margin: 0; overflow: hidden; color: var(--muted); font-size: 12px; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+    .status { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border: 1px solid var(--line-bright); border-radius: 99px; color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .02em; text-transform: capitalize; white-space: nowrap; }
+    .status::before { width: 6px; height: 6px; border-radius: 50%; background: var(--faint); content: ""; }
+    .status[data-status*="complete"]::before, .status[data-status*="promoted"]::before { background: var(--green); }
+    .status[data-status*="awaiting"]::before, .status[data-status*="proposed"]::before { background: var(--amber); }
+    .status[data-status*="blocked"]::before, .status[data-status*="rejected"]::before { background: var(--red); }
+    .record-type { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border: 1px solid #3c6378; border-radius: 99px; background: rgba(56,189,248,.09); color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+    .record-type[data-type="subtask"] { border-color: #665b3d; background: rgba(252,211,77,.09); color: var(--amber); }
+    .record-type::before { content: "◆"; font-size: 8px; }
+    .record-type[data-type="subtask"]::before { content: "└"; font-size: 11px; }
+    .task-count { margin-top: 8px; color: var(--accent); font-size: 11px; font-weight: 700; }
+    .parent-note { margin-top: 7px; color: var(--faint); font-size: 11px; }
+    .next { margin-top: 10px; color: var(--faint); font-size: 11px; }
+    .next b { color: var(--muted); font-weight: 650; }
+    .empty, .state { margin: 12px; padding: 22px; border: 1px dashed var(--line-bright); border-radius: 11px; color: var(--muted); text-align: center; }
+    .state strong { display: block; margin-bottom: 5px; color: var(--text); }
+    .detail { min-width: 0; overflow: hidden; background: #f5f7fa; color: #1a2430; }
+    .detail-head { background: var(--panel); color: var(--text); }
+    .detail-title { align-items: start; min-width: 0; }
+    .detail-title > div:first-child { min-width: 0; }
+    .detail-title h2 { margin-bottom: 3px; overflow-wrap: anywhere; }
+    .detail-title .subtle { overflow-wrap: anywhere; }
+    .detail-actions { display: flex; gap: 8px; }
+    .detail-actions .button { min-height: 32px; padding: 6px 10px; font-size: 12px; }
+    .detail-body { max-width: 940px; margin: 0 auto; padding: 26px clamp(18px, 4vw, 52px) 64px; }
+    .detail-empty { display: grid; min-height: 55vh; place-items: center; padding: 30px; color: #607086; text-align: center; }
+    .detail-empty .glyph { display: grid; place-items: center; width: 54px; height: 54px; margin: 0 auto 14px; border: 1px solid #cfdae5; border-radius: 16px; background: white; color: #3988ae; font-size: 22px; }
+    .detail-empty h2 { color: #1c2b3b; }
+    .summary { padding-bottom: 22px; border-bottom: 1px solid #dce3ea; }
+    .summary .ask { max-width: 780px; margin: 16px 0 0; color: #435469; font-size: 16px; line-height: 1.65; }
+    .meta-row { flex-wrap: wrap; margin-top: 16px; color: #64758a; font-size: 12px; }
+    .meta-item { min-width: 0; overflow-wrap: anywhere; padding-right: 12px; border-right: 1px solid #d3dce5; } .meta-item:last-child { border: 0; }
+    .action { display: grid; grid-template-columns: 4px 1fr; gap: 13px; margin-top: 20px; padding: 13px 15px 13px 0; border: 1px solid #c9e5f2; border-radius: 10px; background: #eefaff; color: #25526a; }
+    .action::before { border-radius: 4px; background: var(--accent-strong); content: ""; }
+    .action b { display: block; margin-bottom: 2px; color: #173e55; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .relationship-row { flex-wrap: wrap; margin-top: 18px; }
+    .relationship { padding: 5px 9px; border: 1px solid #d5dfe8; border-radius: 7px; background: white; color: #53657a; font-size: 12px; }
+    .doc-nav { flex-wrap: wrap; margin: 24px 0 0; padding-bottom: 10px; border-bottom: 1px solid #dce3ea; }
+    .doc-tab { padding: 7px 10px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #65768a; font-size: 12px; font-weight: 700; }
+    .doc-tab:hover { color: #1b6990; } .doc-tab[aria-selected="true"] { border-color: #1681b5; color: #126487; }
+    .document { max-width: 780px; padding: 26px 0; color: #263747; font-family: Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.75; }
+    .document h1, .document h2, .document h3, .document h4 { margin: 1.5em 0 .45em; color: #172a3c; font-family: Inter, ui-sans-serif, system-ui, sans-serif; line-height: 1.25; }
+    .document h1 { font-size: 28px; } .document h2 { font-size: 22px; } .document h3 { font-size: 18px; }
+    .document p { margin: 0 0 1em; } .document ul, .document ol { padding-left: 1.4em; }
+    .document code { padding: 2px 5px; border-radius: 5px; background: #e8eef3; color: #24465d; font: 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .document pre { overflow: auto; padding: 14px 16px; border-radius: 9px; background: #172331; color: #e3eff7; font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .document pre code { padding: 0; background: none; color: inherit; } .document blockquote { margin-left: 0; padding-left: 16px; border-left: 3px solid #8bcce5; color: #5e7184; }
+    .document a { color: #12749f; } .document hr { border: 0; border-top: 1px solid #dce3ea; }
+    @media (max-width: 760px) {
+      .shell { padding: 14px; } .topbar { align-items: flex-start; flex-direction: column; padding-bottom: 15px; }
+      .top-actions { width: 100%; } .token { width: 100%; } .top-actions .button { flex: 0 0 auto; }
+      .workspace { display: block; min-height: 0; } .index { border-right: 0; border-bottom: 1px solid var(--line); }
+      .index-head { padding: 17px; } .mission-list { max-height: 42vh; overflow: auto; padding: 9px; }
+      .detail-head { padding: 17px; } .detail-body { padding: 20px 17px 40px; } .detail-title { align-items: start; flex-direction: column; }
+      .detail-actions { width: 100%; } .detail-actions .button { flex: 1; } .summary .ask { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">N</div><div><p class="eyebrow">Nightshift / control plane</p><h1>Mission registry</h1></div></div>
+      <div class="top-actions"><input id="token" class="token" type="password" autocomplete="off" placeholder="AIDLC inbound token" aria-label="AIDLC inbound token"><button id="refresh" class="button primary" type="button">Refresh</button><a class="button" href="/">Execution dashboard</a></div>
+    </header>
+    <main class="workspace">
+      <aside class="index" aria-label="Mission index">
+        <div class="index-head"><div><p class="eyebrow">Work map</p><h2>All missions</h2><p id="list-subtitle" class="subtle">Loading registry…</p></div><span id="count" class="count" aria-label="Mission count">—</span></div>
+        <div id="list" class="mission-list" aria-live="polite"></div>
+      </aside>
+      <section class="detail" aria-label="Mission detail">
+        <div id="detail-head" class="detail-head"><div class="detail-empty"><div><div class="glyph" aria-hidden="true">↗</div><h2>Select a mission</h2><p>Choose a mission from the work map to inspect its next action, relationships, and documents.</p></div></div></div>
+        <div id="detail-body" class="detail-body"></div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const state = { missions: [], selected: null, document: null, loading: false, collapsedParents: new Set() };
+    const TOKEN_STORAGE_KEY = 'nightshift:mission-control:token';
+    const token = () => document.getElementById('token').value.trim();
+    function restoreToken() { try { const saved = localStorage.getItem(TOKEN_STORAGE_KEY); if (saved) document.getElementById('token').value = saved; } catch (_) {} }
+    function persistToken() { try { const value = token(); if (value) localStorage.setItem(TOKEN_STORAGE_KEY, value); else localStorage.removeItem(TOKEN_STORAGE_KEY); } catch (_) {} }
+    const el = (tag, props = {}, children = []) => { const node = document.createElement(tag); Object.assign(node, props); children.forEach(child => node.append(child)); return node; };
+    const text = value => document.createTextNode(value == null ? '' : String(value));
+    const recordType = value => { const node = el('span', { className: 'record-type' }, [text(value)]); node.dataset.type = value; return node; };
+    const status = value => { const node = el('span', { className: 'status' }, [text((value || 'unknown').replaceAll('_', ' '))]); node.dataset.status = value || 'unknown'; return node; };
+    function api(path) { return fetch(path, { headers: { 'X-AISDLC-Token': token() } }).then(response => { if (!response.ok) { const error = new Error(`${response.status} ${response.statusText}`); error.status = response.status; throw error; } return response; }); }
+    function showListState(title, body, action) { const list = document.getElementById('list'); list.replaceChildren(el('div', { className: 'state' }, [el('strong', {}, [text(title)]), el('span', {}, [text(body)]), ...(action ? [el('p', { style: 'margin:14px 0 0' }, [action])] : [])])); }
+    function orderedMissions() { const byParent = new Map(); state.missions.forEach(mission => { const parent = mission.parent_id || ''; if (!byParent.has(parent)) byParent.set(parent, []); byParent.get(parent).push(mission); }); const ordered = []; const visit = mission => { ordered.push(mission); (byParent.get(mission.mission_id) || []).forEach(visit); }; (byParent.get('') || []).forEach(visit); state.missions.forEach(mission => { if (!ordered.includes(mission)) ordered.push(mission); }); return ordered; }
+    function renderList() {
+      const list = document.getElementById('list'); document.getElementById('count').textContent = state.missions.length; document.getElementById('list-subtitle').textContent = state.missions.length ? 'A durable view of work in motion' : 'No missions discovered yet'; list.replaceChildren();
+      if (!state.missions.length) { showListState('Registry is quiet', 'Refresh after starting a mission or configure a local mission root.'); return; }
+      orderedMissions().forEach(mission => { const type = mission.record_type || (mission.parent_id ? 'subtask' : 'mission'); if (type === 'subtask' && state.collapsedParents.has(mission.parent_id)) return; const taskCount = Number(mission.task_count || 0); const project = mission.target || (mission.source_project ? mission.source_project.split('/').pop() : 'Local project'); const cardChildren = [el('div', { className: 'card-top' }, [recordType(type), status(mission.status), el('span', { className: 'project-label', title: mission.source_project || project }, [text(`Project · ${project}`)])]), el('div', { className: 'card-title' }, [text(mission.slug || mission.mission_id)]), el('p', { className: 'card-ask' }, [text(mission.ask)])]; if (type === 'mission' && taskCount) cardChildren.push(el('div', { className: 'task-count' }, [text(`${taskCount} subtask${taskCount === 1 ? '' : 's'} · part of this mission`)])); if (type === 'subtask' && mission.parent_id) cardChildren.push(el('div', { className: 'parent-note' }, [text('↳ Subtask in parent mission')])); cardChildren.push(el('div', { className: 'next' }, [text('Next · '), el('b', {}, [text(mission.next_action || 'Review mission')])])); const card = el('button', { className: 'mission-card', type: 'button' }); card.dataset.type = type; card.append(...cardChildren); card.setAttribute('aria-current', state.selected === mission.mission_id ? 'true' : 'false'); card.addEventListener('click', () => selectMission(mission.mission_id)); const row = el('div', { className: `mission-row ${type}` }, [card]); if (type === 'mission' && taskCount) { const collapsed = state.collapsedParents.has(mission.mission_id); const toggle = el('button', { className: 'collapse-toggle', type: 'button', ariaExpanded: String(!collapsed), title: collapsed ? 'Show subtasks' : 'Hide subtasks', ariaLabel: collapsed ? 'Show subtasks' : 'Hide subtasks' }, [text(collapsed ? '＋' : '−')]); toggle.addEventListener('click', event => { event.stopPropagation(); if (collapsed) state.collapsedParents.delete(mission.mission_id); else state.collapsedParents.add(mission.mission_id); renderList(); }); row.append(toggle); } list.append(row); });
+    }
+    function renderError(error) { const title = error.status === 401 ? 'Token required' : error.status === 404 ? 'Mission registry is not enabled here' : 'Registry unavailable'; const body = error.status === 401 ? 'Enter the AIDLC inbound token above, then refresh.' : error.status === 404 ? 'Open the smaller mission control plane at port 8091, or start this server with the mission registry build.' : 'The control plane could not load the registry. Check the server and try again.'; const action = el('button', { className: 'button primary', type: 'button' }, [text('Try again')]); action.addEventListener('click', load); showListState(title, body, action); document.getElementById('count').textContent = '—'; document.getElementById('list-subtitle').textContent = error.status === 404 ? 'Use the smaller mission control plane' : 'Unable to read registry'; }
+    async function load() { if (state.loading) return; state.loading = true; document.getElementById('list-subtitle').textContent = 'Refreshing…'; try { state.missions = (await (await api('/api/missions')).json()).missions || []; renderList(); if (state.selected && !state.missions.some(m => m.mission_id === state.selected)) clearDetail(); else if (state.selected) selectMission(state.selected); } catch (error) { state.missions = []; renderError(error); } finally { state.loading = false; } }
+    function clearDetail() { state.selected = null; state.document = null; document.getElementById('detail-head').replaceChildren(el('div', { className: 'detail-empty' }, [el('div', {}, [el('div', { className: 'glyph', ariaHidden: 'true' }, [text('↗')]), el('h2', {}, [text('Select a mission')]), el('p', {}, [text('Choose a mission from the work map to inspect its next action, relationships, and documents.')])])])); document.getElementById('detail-body').replaceChildren(); renderList(); }
+    function renderDetail(mission) { const type = mission.record_type || (mission.parent_id ? 'subtask' : 'mission'); const head = document.getElementById('detail-head'); head.replaceChildren(el('div', { className: 'detail-title' }, [el('div', {}, [el('div', { className: 'card-top', style: 'justify-content:flex-start; margin-bottom:8px' }, [recordType(type), status(mission.status)]), p('eyebrow', type === 'subtask' ? 'MISSION SUBTASK' : 'MISSION DETAIL'), el('h2', {}, [text(mission.slug || mission.mission_id)]), el('p', { className: 'subtle', style: 'margin:0' }, [text(mission.mission_id)])]), el('div', { className: 'detail-actions' }, [el('button', { className: 'button', type: 'button', id: 'mobile-back' }, [text('← All missions')])])]));
+      const body = document.getElementById('detail-body'); const project = mission.target || (mission.source_project ? mission.source_project.split('/').pop() : 'Local project'); const summary = el('div', { className: 'summary' }, [el('div', { className: 'meta-row', style: 'margin-top:0' }, [meta('Type', type === 'subtask' ? 'Subtask' : 'Mission'), meta('Subtasks', String(mission.task_count || 0)), meta('Project', project)]), el('p', { className: 'ask' }, [text(mission.ask)]), el('div', { className: 'meta-row' }, [meta('Done state', mission.done_state || 'Not specified'), meta('Source', mission.source_project || 'This control plane')]), el('div', { className: 'action' }, [el('div'), el('div', {}, [el('b', {}, [text('Next action')]), text(mission.next_action || 'Review the mission record')])])]);
+      const relations = []; if (mission.parent_id) relations.push(el('span', { className: 'relationship' }, [text(`Parent · ${mission.parent_id}`)])); (mission.children || []).forEach(child => relations.push(el('span', { className: 'relationship' }, [text(`${child.status || 'child'} · ${child.mission_id}`)]))); if (relations.length) summary.append(el('div', { className: 'relationship-row', 'aria-label': 'Mission relationships' }, relations));
+      const nav = el('nav', { className: 'doc-nav', 'aria-label': 'Mission documents' }); const names = ['MISSION.md', ...(type === 'mission' && mission.task_count ? ['TASKS.md'] : []), 'investigation.md', 'blueprint.md', 'plan.md']; names.forEach((name, index) => { const tab = el('button', { className: 'doc-tab', type: 'button', ariaSelected: state.document === name || (!state.document && index === 0) ? 'true' : 'false' }, [text(name.replace('.md', ''))]); tab.addEventListener('click', () => loadDocument(mission.mission_id, name)); nav.append(tab); }); body.replaceChildren(summary, nav, el('div', { id: 'document', className: 'document', 'aria-live': 'polite' })); if (!state.document) loadDocument(mission.mission_id, 'MISSION.md'); else loadDocument(mission.mission_id, state.document); document.getElementById('mobile-back').addEventListener('click', () => { document.querySelector('.index').scrollIntoView({ behavior: 'smooth' }); }); }
+    function p(className, value) { return el('p', { className, style: 'margin:0' }, [text(value)]); }
+    function meta(label, value) { return el('span', { className: 'meta-item' }, [el('b', { style: 'color:#35495e' }, [text(`${label}: `)]), text(value)]); }
+    async function selectMission(id) { state.selected = id; state.document = null; renderList(); const detail = document.getElementById('detail-body'); detail.replaceChildren(el('div', { className: 'state' }, [el('strong', {}, [text('Loading mission')]), text('Reading the durable record…')])); try { renderDetail(await (await api(`/api/missions/${encodeURIComponent(id)}`)).json()); } catch (error) { detail.replaceChildren(el('div', { className: 'state' }, [el('strong', {}, [text('Mission unavailable')]), text(error.status === 401 ? 'Enter a valid token and refresh.' : 'The selected record could not be read.') ])); } }
+    async function loadDocument(id, name) { state.document = name; document.querySelectorAll('.doc-tab').forEach(tab => { tab.setAttribute('aria-selected', tab.textContent === name.replace('.md', '') ? 'true' : 'false'); }); const target = document.getElementById('document'); if (!target) return; target.replaceChildren(el('div', { className: 'state' }, [text('Loading document…')])); try { target.innerHTML = await (await api(`/api/missions/${encodeURIComponent(id)}/document?name=${encodeURIComponent(name)}&render=1`)).text(); } catch (error) { target.replaceChildren(el('div', { className: 'state' }, [el('strong', {}, [text('Document unavailable')]), text(error.status === 404 ? 'This document is not present in the mission bundle.' : 'The document could not be loaded. Try again.') ])); } }
+    document.getElementById('refresh').addEventListener('click', load); document.getElementById('token').addEventListener('input', persistToken); document.getElementById('token').addEventListener('keydown', event => { if (event.key === 'Enter') load(); }); restoreToken(); load();
+  </script>
+</body>
+</html>
