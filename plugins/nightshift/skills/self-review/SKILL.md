@@ -25,8 +25,9 @@ machine-readable record.
    test would catch and use a negative-space probe for high-risk behavior when practical.
 5. Bind behavioral claims only to checks the host observed against the pinned subject. A cited
    command, path, or model-written report cannot promote a claim to `PROVEN`.
-6. Give each finding a stable ID and disposition. Return in-scope defects to `implement`; route an
-   unsafe approved-plan assumption to the earliest frame artifact that can resolve it.
+6. Give each finding a stable ID and disposition. Return in-scope defects to `implement` through
+the bounded recovery policy; route an unsafe approved-plan assumption to the earliest frame
+artifact that can resolve it.
 7. Re-review every fix on the new subject and check that remediation did not create another gap.
    Preserve the full finding history.
 
@@ -38,7 +39,7 @@ or review subject. Refresh the human projection with safe findings and evidence 
 
 - `PASS` → return `advance` to verification and reviewed delivery.
 - `REQUEST_CHANGES` → return `rewind` to `implement`, `blueprint`, or `plan` with the evidence-bound
-  findings.
+  findings. YOLO may take the in-scope implementation route automatically while budget remains.
 - `CONDITIONAL` → return `needs_human` when the review subject, output, required evidence, or
   accepted residual prevents an honest decision.
 

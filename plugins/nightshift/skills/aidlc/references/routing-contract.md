@@ -64,9 +64,12 @@ while the mission is not complete:
 Route `rewind_to: investigate | blueprint | plan | redteam` to `frame`; route
 `rewind_to: build` to `build`.
 
-The mandatory human gates are plan approval before `build` and merge authorization in `land`.
-Shared-environment or administrative effects may add gates through host policy. A gate pauses the
-mission; it never shrinks or rewrites it.
+In gated mode, plan approval before `build` and the between-child proceed gate are routine human
+gates. In `mode: yolo`, those routine gates auto-advance. Surface a human decision only for a
+meaningful scope diversion, safety or policy decision, unresolved red-team or code-review finding,
+blocked or ambiguous execution, exhausted recovery budget, or a merge/release authorization that
+the target policy does not permit the host to automate. A gate pauses the mission; it never shrinks
+or rewrites it.
 
 For `done_state: frame-approved`, ask the user to approve, refine, or reject the plan. Once they
 approve it, return `outcome: advance` with `then: complete`; never enter or offer `build` for that

@@ -28,6 +28,9 @@ let the orchestrator route earlier work.
    - design or product gap → `rewind` to `frame`;
    - external or policy decision → `needs_human`;
    - unavailable required capability → `stuck`.
+   In YOLO mode, a bounded in-scope code-review or verification finding may automatically rewind to
+   `build`. A design, safety, policy, disputed, or exhausted-budget finding must return
+   `needs_human` with the exact decision required.
 4. Continue observing while a required signal is pending. If no durable monitor exists, return
    `needs_human` with the exact resume condition.
 5. Run **release-gate** when checks, review, and verification are ready for delivery evaluation.

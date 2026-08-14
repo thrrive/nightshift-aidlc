@@ -7,6 +7,7 @@
 - [Durable frame artifacts](#durable-frame-artifacts-required-for-plan-approval)
 - [Mission evidence](#mission-evidence-optional-across-the-full-lifecycle)
 - [Workspace](#workspace-required-for-build)
+- [Subagent fan-out](#subagent-fan-out-optional-for-parallel-workstreams)
 - [Verification](#verification-required-unless-waived)
 - [Review attestation](#review-attestation-optional)
 - [Pull request](#pull-request-required-for-pr-ready-and-beyond)
@@ -38,6 +39,31 @@ capability exists and the user has not explicitly waived it.
 Capabilities return structured results and evidence references. Display text is a derived view, not
 the only retained result. A host may implement several capabilities in one service, but skills must
 address them by purpose so implementations remain replaceable.
+
+## Subagent fan-out (optional for parallel workstreams)
+
+Purpose: execute validated, path-disjoint `workstreams` concurrently without changing the one
+mission/one-PR lifecycle.
+
+```yaml
+request:
+  mission_id: <immutable mission or bundle id>
+  workstreams: [<validated workstream objects>]
+  concurrency_limit: <host limit>
+  base_revision: <exact revision>
+result:
+  status: started | unavailable | failed
+  lanes:
+    - id: <workstream id>
+      workspace_ref: <isolated workspace>
+      revision: <branch or commit reference>
+      status: running | passed | failed | blocked
+      evidence: [<host-owned references>]
+```
+
+The host owns subagent/task creation, isolation, cancellation, and concurrency. It must reject
+overlapping ownership before fan-out and join all lanes before merge. If unavailable, the build
+phase may execute the same validated workstreams sequentially and must record that degradation.
 
 ## Target metadata (required)
 

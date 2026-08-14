@@ -13,8 +13,10 @@ Because development should be able to keep moving safely after you step away. Ni
 the work, waits for plan approval, builds in isolation, verifies the running product, drives one
 reviewable change, and reports honestly when evidence sends it backward.
 
-The name means continuity—not unchecked autonomy. Human approval remains part of the lifecycle at
-the plan and merge gates, and required host capabilities can never be silently bypassed.
+The name means continuity—not unchecked autonomy. In gated mode, routine plan and subtask approvals
+pause the lifecycle. In YOLO mode, routine transitions and bounded recovery loops continue
+automatically; meaningful scope, safety, policy, unresolved-review, blocker, and authorization
+decisions still surface to a human.
 
 ## Why use Nightshift AIDLC?
 
@@ -85,6 +87,12 @@ findings revise the Frame; product failures stay inside Build; requirements, des
 return to Frame; and red landing signals or requested changes return to Build. Each phase reports
 one explicit outcome: `advance`, `rewind`, `needs_human`, or `stuck`; the mission stays unchanged
 until its observable completion criteria are met.
+
+Independent, path-disjoint workstreams may fan out to isolated Codex or Claude subagents, join at a
+barrier, merge in declared order, and undergo review and verification on the merged result. Review
+recovery is bounded by default to 2 attempts per finding, 3 per subtask, and 8 per mission. See the
+[execution workflow](https://github.com/thrrive/nightshift-aidlc/blob/main/plugins/nightshift/skills/aidlc/references/execution-workflow.md) for routing,
+resume state, and escalation rules.
 
 ## Skill hierarchy
 

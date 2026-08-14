@@ -26,12 +26,16 @@ by name so host overrides remain effective and step attribution stays intact.
    v2 bundle, also re-read the generated `MISSION.md` and verify the exact bundle identity/digest
    before appending Build evidence.
 3. Identify the declared checks for the changed surface before editing.
-4. Run **implement** against the approved plan.
+4. Run **implement** against the approved plan. If the frame handoff contains validated
+   `workstreams`, fan out eligible items through the host's subagent/task capability, one isolated
+   workspace per item. Enforce the declared concurrency limit, join all results, and merge the
+   workstream branches in declared order before continuing.
 5. Run relevant repo-owned tests, lint, type checks, builds, or equivalent checks. Never bypass
    contribution hooks.
 6. Run **self-review** against the pinned diff, plan, and `done_when` using the shared
-   evidence-backed review contract. Re-review remediation; a design gap returns `rewind`, an
-   in-scope defect returns to implementation, and incomplete evidence holds for human judgment.
+   evidence-backed review contract. Re-review remediation. Route an in-scope defect back to
+   implementation through the bounded recovery policy; route a design gap to frame; and hold only
+   incomplete evidence or a meaningful human decision.
 7. Run **verify** with the approved browser, API, CLI, library, or custom shape. Preserve its status
    and evidence without translating `unproven` into success.
 8. Prepare focused commits or the host's equivalent reviewable revision.
@@ -45,7 +49,9 @@ model payloads out of the portable event. Refresh `MISSION.md` after material st
 return its reference in `outputs`. A projection failure does not corrupt routing, but Build cannot
 claim its required durable human evidence is current until refresh succeeds.
 
-If a required capability is unavailable, return `stuck` with the smallest useful next step. Do not
+If a required capability is unavailable, return `stuck` with the smallest useful next step. If the
+subagent/task capability is unavailable, run validated workstreams sequentially and record that
+parallelism was unavailable; do not create concurrent writers without isolated ownership. Do not
 replace isolation, verification, or reviewed delivery with a weaker unapproved mechanism.
 
 ## Pull-request evidence

@@ -139,8 +139,9 @@ never use it as a silent fallback.
 ## Host entrypoints
 
 Interactive sessions, queues, issue boards, schedulers, and hosted workers may all start the same
-phase machine. Those entrypoints map their request into the canonical mission and capabilities;
-they do not redefine plan approval, merge authorization, or completion.
+phase machine. Those entrypoints map their request into the canonical mission and capabilities; they
+do not redefine completion, recovery budgets, or workstream join semantics. A host may expose
+`--yolo` or an equivalent request field for autonomous routine transitions.
 
 ## Flags
 
@@ -150,16 +151,22 @@ they do not redefine plan approval, merge authorization, or completion.
 | `--pr-only` | Stop once the verified PR is open (`done_state: pr-ready`). |
 | `--skip-frame` | Skip `frame`; only when an approved plan is already in context. |
 | `--no-verify` | Waive the approved verification shape — only when explicitly requested. |
+| `--yolo` | Auto-advance routine transitions and bounded in-scope recovery; surface meaningful human decisions. |
 
 Default with no flags is the full loop to **stable production**.
 
 ## Human gates
 
-- **Plan approval** after `frame`, before `build`.
-- **Merge decision** in `land` (and any shared-environment action the runtime can't perform).
+- **Routine gates** — plan approval and between-child proceed prompts in gated mode; YOLO advances
+  these automatically.
+- **Meaningful decisions** — scope diversion, safety/policy, unresolved red-team or code-review
+  findings, blocked execution, exhausted recovery budget, and merge/release authorization when
+  target policy does not permit automation.
 
 Gates pause the loop; they never shrink the mission. After the human answers, the orchestrator
-resumes toward the same `done_state`.
+resumes toward the same `done_state`. Recovery is bounded by default to 2 attempts per finding, 3
+per subtask, and 8 per mission. Independent workstreams fan out only with validated disjoint
+ownership, join before ordered merge, and are reviewed on the merged result.
 
 Container reuse, cache policy, concurrency, and gate parking are host execution concerns, not
 lifecycle state. They stay on the host's run request and never enter `mission` or `halts`.

@@ -112,8 +112,10 @@ workstreams:
    `then` means "keep going" — the orchestrator continues unless a human gate, a `halts` flag,
    or a real blocker applies. Opening a PR is a waypoint, not the finish line, unless
    `done_state` is `pr-ready`.
-3. **Human gates pause, they do not shrink the mission.** After the human answers, work resumes
-   toward the same `done_state`.
+3. **Human gates pause, they do not shrink the mission.** In gated mode, routine plan and
+   between-child approvals pause. In YOLO mode, routine transitions auto-advance; only meaningful
+   scope, safety, policy, unresolved-review, blocker, or exhausted-budget decisions surface to a
+   human. After the human answers, work resumes toward the same `done_state`.
 4. **Completion is checked against `done_when`.** The orchestrator only finishes when `then`
    is `complete` *and* every `done_when` condition is observably satisfied.
 5. **Frame outputs survive the gate.** Before plan approval, `outputs` names the durable mission,

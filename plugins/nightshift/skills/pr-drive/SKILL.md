@@ -26,11 +26,13 @@ spin, guess reviewer intent, or treat absence of a durable monitor as completion
 Validate feedback against the approved plan, diff, repository rules, check evidence, and latest
 verification.
 
-- **Fix** — actionable and in scope: return a focused build rewind with evidence.
+- **Fix** — actionable and in scope: return a focused build rewind with evidence. In YOLO mode,
+  apply the bounded recovery policy and continue automatically while the finding remains in scope.
 - **Respond** — incorrect, duplicate, already handled, or out of scope: request a supported reply
   operation with evidence.
 - **Rewind** — changes the goal or exposes a design gap: route to the owning phase.
-- **Escalate** — requires a product, risk, policy, or authorization decision: `needs_human`.
+- **Escalate** — requires a product, risk, policy, or authorization decision: `needs_human`. A
+  repeated or disputed finding also escalates instead of looping indefinitely.
 
 Rerun a likely infrastructure flake at most once when the capability supports it. A missing secret,
 provider outage, or unavailable write operation is a blocker, not a code fix.

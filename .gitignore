@@ -1,2 +1,3 @@
 # Interactive AIDLC fallback bundles are durable workspace evidence, not package contents.
 /nightshift/
+/.worktrees/
