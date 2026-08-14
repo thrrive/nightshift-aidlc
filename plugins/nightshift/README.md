@@ -164,6 +164,25 @@ methodology and contracts; hosts supply model access, tools, workspaces, verific
 reviewed-change operations, release evidence, and optional memory capabilities. Either side can
 evolve without forcing a rewrite of the other.
 
+## Optional local Mission Control
+
+The public package also includes a small, read-only Mission Control explorer for seeing missions
+from local repositories. It discovers v2 mission bundles, shows subtasks nested under their parent
+mission, and renders the human Markdown artifacts. It does not run agents, create jobs, start
+containers, or expose the private execution runtime.
+
+Start it from this checkout:
+
+```bash
+python3 control-plane/server.py \
+  --port 8091 \
+  --mission-root "$PWD"
+```
+
+Open <http://127.0.0.1:8091/missions>. Add more local repositories with another
+`--mission-root /path/to/repo` option. The full setup, token option, discovery layouts, and
+security notes are in [`control-plane/README.md`](control-plane/README.md).
+
 ## What is included
 
 - fourteen focused lifecycle skills and six thin command wrappers;
