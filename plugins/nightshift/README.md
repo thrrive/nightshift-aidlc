@@ -257,7 +257,7 @@ Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`,
 
 ## Status
 
-`1.0.0-rc.2` is the current stable-v1 candidate. It preserves the canonical v1 mission and
+`1.0.0-rc.3` is the current stable-v1 candidate. It preserves the canonical v1 mission and
 outcome contract while adding the human-first, collision-safe v2 evidence bundle, durable frame
 artifacts, evidence-backed review, and executable backward-compatibility checks. Stable promotion
 requires two fresh external missions from this exact tag, including a rewind and a human gate.

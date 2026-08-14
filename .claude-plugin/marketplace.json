@@ -8,7 +8,7 @@
     {
       "name": "nightshift",
       "description": "Portable requirements, build, verification, review, and landing phase machine.",
-      "version": "1.0.0-rc.2",
+      "version": "1.0.0-rc.3",
       "source": "./plugins/nightshift"
     }
   ]
