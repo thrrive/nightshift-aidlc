@@ -46,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "edb392bbcb86bd2b321a00719af76ea965c5e3ff4273c1eddb52d43397c2fe29"
+      "sha256": "51f7c2b05b46a551a722e1b8358e6904f0adc965482e05b1f0396017f598f82e"
     },
     {
       "path": "SECURITY.md",
@@ -162,7 +162,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "edb392bbcb86bd2b321a00719af76ea965c5e3ff4273c1eddb52d43397c2fe29"
+      "sha256": "51f7c2b05b46a551a722e1b8358e6904f0adc965482e05b1f0396017f598f82e"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",

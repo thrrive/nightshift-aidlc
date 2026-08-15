@@ -224,6 +224,28 @@ gates; unavailable required capabilities fail honestly instead of being silently
 Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`, and
 `docs/host-capabilities.md` for the full behavior and extension seams.
 
+## Progress a mission
+
+When a host exposes the mission registry, inspect durable work with:
+
+```bash
+psdlc missions list
+psdlc missions show <mission-id>
+```
+
+After a plan is approved or a gated child summary is ready, explicitly start the next eligible
+subtask with:
+
+```bash
+psdlc missions next <mission-id>
+```
+
+This starts one dependency-ready child and persists the mission/job transition. It refuses when a
+child is already running, dependencies are blocked, or the mission is complete. It does not bypass
+plan approval, verification, review, merge, or release gates. A `mode: yolo` mission can continue
+automatically between routine child summaries; the command remains useful for paused or resumed
+gated missions.
+
 ## Resources
 
 - [From Prompts to Harnesses](https://mihirsambhus.substack.com/p/from-prompts-to-harnesses) — the
