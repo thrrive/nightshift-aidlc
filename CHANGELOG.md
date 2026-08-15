@@ -2,6 +2,12 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.5
+
+- Add the `missions` skill and command wrapper for inspecting durable missions.
+- Add the explicit `psdlc missions next <mission-id>` contract for starting one eligible subtask.
+- Document gated progression, dependency checks, YOLO behavior, and installation of the candidate.
+
 ## 1.0.0-rc.4
 
 - Add the host-neutral hierarchical mission workflow contract: ordered subtasks, gated versus YOLO
