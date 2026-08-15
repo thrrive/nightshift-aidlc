@@ -45,7 +45,7 @@ After the public repository exists, replace the local marketplace with the Git s
 a separate environment:
 
 ```bash
-codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.4
+codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.5
 codex plugin add nightshift@nightshift-aidlc
 ```
 
@@ -65,5 +65,5 @@ session.
 Read `COMPATIBILITY.md` before changing pinned major versions. The package has no runtime service,
 credential, or database migration; hosts supply capabilities independently.
 
-For stable-v1 qualification, pin `v1.0.0-rc.4` exactly. Promotion to `v1.0.0` changes release
+For stable-v1 qualification, pin `v1.0.0-rc.5` exactly. Promotion to `v1.0.0` changes release
 metadata and evidence only; it does not change the canonical v1 contract tested by the candidate.
