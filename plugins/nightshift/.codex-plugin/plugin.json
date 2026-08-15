@@ -1,6 +1,6 @@
 {
   "name": "nightshift",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "description": "Portable AIDLC phase machine for taking a software change from requirements to an evidence-backed done state.",
   "author": {
     "name": "Mihir Sambhus",

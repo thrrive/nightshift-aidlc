@@ -2,10 +2,12 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
-## Unreleased
+## 1.0.0-rc.4
 
 - Add the host-neutral hierarchical mission workflow contract: ordered subtasks, gated versus YOLO
   continuation, per-step model planning, and estimate-versus-observed usage/cost publication.
+- Add bounded recovery loops for red-team, self-review, verification, and code-review findings.
+- Add meaningful-human escalation rules and parallel workstream/subagent join semantics.
 
 ## 1.0.0-rc.3
 

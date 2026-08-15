@@ -6,7 +6,7 @@
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "2af39abffa2ae2929a7a05ea4cdfe5d078a2d7e9ca538153594c2578fbfb02ed"
+      "sha256": "b2e47911a3b2a4992c3d29ce8fed754fee1a74c86ad57119c769f0afa7e3cd1a"
     },
     {
       "path": ".github/workflows/package.yml",
@@ -18,7 +18,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "dd90033268f2a184a8d19c16c16061104bdaf6f51cb6a3c6d0e8dd5fae82f032"
+      "sha256": "e7fd39edc413ae983fbab7798b383c4ad25c60c966be16d7dadfe76f6b392c40"
     },
     {
       "path": "COMPATIBILITY.md",
@@ -34,7 +34,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "74a1781ad0e0846a354bd9ba0b286fdc367646995ec8d7c41706250e0e41b7e4"
+      "sha256": "782405c5eced6e33bbac584086b532136ea0ad49ddd8fcfffe2a01a36c43fcf8"
     },
     {
       "path": "LICENSE",
@@ -126,15 +126,15 @@
     },
     {
       "path": "plugins/nightshift/.claude-plugin/plugin.json",
-      "sha256": "3c6e32943ca704852dfc667061b8e6e94896a2bdde6aeef571db7f4fb9c4f41c"
+      "sha256": "cc44636fc9d7001797337166334557a8fbebddb5625aebf87c178db82a1a36cf"
     },
     {
       "path": "plugins/nightshift/.codex-plugin/plugin.json",
-      "sha256": "ed894170cc05a3f70b44c127ca7f1cc720cd23187c512766c18438d1c8b79e0d"
+      "sha256": "0fbe13a3a405addb7657199c3577aa0188a4f2ac9d187d161773f5e14162971d"
     },
     {
       "path": "plugins/nightshift/CHANGELOG.md",
-      "sha256": "dd90033268f2a184a8d19c16c16061104bdaf6f51cb6a3c6d0e8dd5fae82f032"
+      "sha256": "e7fd39edc413ae983fbab7798b383c4ad25c60c966be16d7dadfe76f6b392c40"
     },
     {
       "path": "plugins/nightshift/COMPATIBILITY.md",
@@ -150,7 +150,7 @@
     },
     {
       "path": "plugins/nightshift/INSTALL.md",
-      "sha256": "74a1781ad0e0846a354bd9ba0b286fdc367646995ec8d7c41706250e0e41b7e4"
+      "sha256": "782405c5eced6e33bbac584086b532136ea0ad49ddd8fcfffe2a01a36c43fcf8"
     },
     {
       "path": "plugins/nightshift/LICENSE",
