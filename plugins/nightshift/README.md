@@ -96,7 +96,7 @@ resume state, and escalation rules.
 
 ## Skill hierarchy
 
-The kit contains fourteen focused skills. `aidlc` is the parent skill and the only lifecycle router;
+The kit contains fifteen focused skills. `aidlc` is the parent skill and the only lifecycle router;
 the indented skills are the phases and specialists it composes. The directories remain separately
 loadable for hosts that already have the required handoff, but invoking a child does not transfer
 ownership of mission transitions away from `aidlc`.
@@ -116,6 +116,7 @@ ownership of mission transitions away from `aidlc`.
 └── `land`                    reviewed change → requested done state
     ├── `pr-drive`            checks and review feedback → fixes or route-backs
     └── `release-gate`        review, verification, and release evidence
+`missions`                    inspect missions and start the next eligible subtask
 ```
 
 `aidlc` carries one unchanged `mission` through this hierarchy. Host runtimes may add a mission
@@ -180,7 +181,7 @@ evolve without forcing a rewrite of the other.
 
 ## What is included
 
-- fourteen focused lifecycle skills and six thin command wrappers;
+- fifteen focused lifecycle skills and seven thin command wrappers;
 - versioned v1 schemas for `mission`, `outcome`, evidence-backed `review`, and optional
   `workstreams`, plus additive human-first bundle and event evidence;
 - provider-neutral host-capability contracts for durable frame artifacts, workspace, verification,
@@ -222,6 +223,28 @@ gates; unavailable required capabilities fail honestly instead of being silently
 
 Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`, and
 `docs/host-capabilities.md` for the full behavior and extension seams.
+
+## Progress a mission
+
+When a host exposes the mission registry, inspect durable work with:
+
+```bash
+psdlc missions list
+psdlc missions show <mission-id>
+```
+
+After a plan is approved or a gated child summary is ready, explicitly start the next eligible
+subtask with:
+
+```bash
+psdlc missions next <mission-id>
+```
+
+This starts one dependency-ready child and persists the mission/job transition. It refuses when a
+child is already running, dependencies are blocked, or the mission is complete. It does not bypass
+plan approval, verification, review, merge, or release gates. A `mode: yolo` mission can continue
+automatically between routine child summaries; the command remains useful for paused or resumed
+gated missions.
 
 ## Resources
 
