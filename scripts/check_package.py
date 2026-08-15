@@ -24,8 +24,8 @@ def check_json() -> None:
 
 def check_skill_frontmatter() -> None:
     skills = sorted((PLUGIN / "skills").glob("*/SKILL.md"))
-    if len(skills) != 14:
-        raise ValueError(f"expected 14 skills, found {len(skills)}")
+    if len(skills) != 15:
+        raise ValueError(f"expected 15 skills, found {len(skills)}")
     for path in skills:
         text = path.read_text()
         match = re.search(r"^---\n.*?^name:\s*([^\n]+).*?^---$", text, re.MULTILINE | re.DOTALL)
@@ -53,7 +53,7 @@ def check_readme_skill_map() -> None:
 
 
 def check_commands() -> None:
-    expected = {"aidlc", "build", "frame", "intake", "land", "verify"}
+    expected = {"aidlc", "build", "frame", "intake", "land", "missions", "verify"}
     commands = {path.stem: path for path in (PLUGIN / "commands").glob("*.md")}
     if set(commands) != expected:
         raise ValueError(f"command wrappers disagree: {sorted(commands)}")
