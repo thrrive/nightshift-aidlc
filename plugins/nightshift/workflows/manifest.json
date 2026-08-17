@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "default_workflow": "nightshift-aidlc",
+  "workflows": [
+    {
+      "name": "nightshift-aidlc",
+      "definition": "aidlc.md",
+      "entry_skill": "/nightshift:aidlc",
+      "usage": "/nightshift:workflow nightshift-aidlc <change request>",
+      "fallback": "/nightshift:aidlc <change request>"
+    },
+    {
+      "name": "nightshift-missions-next",
+      "definition": "missions-next.md",
+      "entry_skill": "/nightshift:missions",
+      "usage": "/nightshift:workflow nightshift-missions-next <mission-id>",
+      "fallback": "/nightshift:missions <mission-id> --next"
+    }
+  ]
+}

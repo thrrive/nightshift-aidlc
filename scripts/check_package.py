@@ -24,8 +24,8 @@ def check_json() -> None:
 
 def check_skill_frontmatter() -> None:
     skills = sorted((PLUGIN / "skills").glob("*/SKILL.md"))
-    if len(skills) != 15:
-        raise ValueError(f"expected 15 skills, found {len(skills)}")
+    if len(skills) != 16:
+        raise ValueError(f"expected 16 skills, found {len(skills)}")
     for path in skills:
         text = path.read_text()
         match = re.search(r"^---\n.*?^name:\s*([^\n]+).*?^---$", text, re.MULTILINE | re.DOTALL)
@@ -53,7 +53,7 @@ def check_readme_skill_map() -> None:
 
 
 def check_commands() -> None:
-    expected = {"aidlc", "build", "frame", "intake", "land", "missions", "verify"}
+    expected = {"aidlc", "build", "frame", "intake", "land", "missions", "verify", "workflow"}
     commands = {path.stem: path for path in (PLUGIN / "commands").glob("*.md")}
     if set(commands) != expected:
         raise ValueError(f"command wrappers disagree: {sorted(commands)}")
@@ -131,8 +131,10 @@ def check_mission_template() -> None:
 
 def check_workflows() -> None:
     workflows = PLUGIN / "workflows"
+    manifest = workflows / "manifest.json"
     required = {
         workflows / "README.md",
+        manifest,
         workflows / "aidlc.md",
         workflows / "missions-next.md",
         workflows / "hosts" / "claude.md",
@@ -150,6 +152,19 @@ def check_workflows() -> None:
         lowered = text.lower()
         if "workflow" not in lowered or "entry_skill" not in lowered and "entrypoints" not in lowered:
             raise ValueError(f"host workflow mapping is incomplete: {path}")
+    data = load_json(manifest)
+    entries = data.get("workflows")
+    if data.get("schema_version") != 1 or not isinstance(entries, list) or not entries:
+        raise ValueError("workflow manifest is incomplete")
+    names = {entry.get("name") for entry in entries}
+    if data.get("default_workflow") not in names:
+        raise ValueError("workflow manifest default is not registered")
+    for entry in entries:
+        for key in ("name", "definition", "entry_skill", "usage", "fallback"):
+            if not entry.get(key):
+                raise ValueError(f"workflow manifest entry is missing {key}: {entry}")
+        if not (workflows / entry["definition"]).is_file():
+            raise ValueError(f"workflow definition is missing: {entry['definition']}")
 
 
 def check_integrity_manifest() -> None:

@@ -5,5 +5,7 @@ the workflow definitions and expose their `entry_skill` as the portable skill fa
 workflow is responsible for invoking the same skills and recording the same `execution_state`;
 it must not replace the mission, handoff, review, or host-capability contracts.
 
-If native workflow support is unavailable, invoke `/nightshift:aidlc` or
-`/nightshift:missions <mission-id> --next` and follow the referenced workflow file directly.
+When using the portable plugin dispatcher, invoke `/nightshift:workflow nightshift-aidlc <request>`
+or `/nightshift:workflow nightshift-missions-next <mission-id>`. If native workflow support and
+the dispatcher are unavailable, invoke `/nightshift:aidlc` or `/nightshift:missions <mission-id>
+--next` and follow the referenced workflow file directly.
