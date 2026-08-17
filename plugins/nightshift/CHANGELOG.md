@@ -2,6 +2,15 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.6
+
+- Add portable `workflows/` definitions for the full AIDLC lifecycle and explicit next-subtask
+  progression.
+- Add Claude and Codex host mappings, with deterministic-runner guidance when native named
+  workflows are unavailable.
+- Add the public `mission_registry.next_subtask` host-capability contract.
+- Replace public mission documentation's private CLI examples with skill-based invocation.
+
 ## 1.0.0-rc.5
 
 - Add the `missions` skill and command wrapper for inspecting durable missions.

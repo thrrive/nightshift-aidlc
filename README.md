@@ -2,6 +2,24 @@
 
 > **Give your agent an outcome—not just a prompt.**
 
+## Executive summary
+
+Nightshift AIDLC is the open-source, portable workflow and skill layer for agentic software delivery.
+It carries one durable mission through requirements, implementation, verification, review, and
+release gates. The package defines lifecycle rules, workflow state, evidence contracts, and the
+host boundary; Claude, Codex, or another compatible host supplies model access and execution.
+
+The architecture is deliberately split:
+
+- **Nightshift AIDLC** — portable skills, workflows, schemas, and host mappings.
+- **Host runtime** — adapters, tools, workspaces, mission storage, and deterministic execution.
+- **Human authority** — plan approval, scope and safety decisions, merge authorization, and
+  unresolved or exhausted review loops remain explicit gates.
+
+Use `v1.0.0-rc.6` to test the workflow bundle through a real Claude or Codex installation. This
+candidate adds named workflow definitions and the explicit next-subtask contract while keeping the
+stable mission and handoff fields compatible.
+
 Nightshift AIDLC is an open-source, portable agentic coding harness packaged as a composable skill
 kit. It takes a software change from a plain-language request to its requested done state. One
 durable `mission` moves through `frame → build → land`, gathering proof as it goes; only the
@@ -35,58 +53,29 @@ reusable engineering harness and concrete guardrails around the agent:
 
 Use it when you want more autonomy without lowering the bar for evidence or human control.
 
-## How it works
+## Architecture in one view
 
 ```mermaid
 flowchart LR
-    AIDLC["aidlc orchestrator<br/>holds mission and owns every transition"]
-    IN["intake<br/>create mission"]
-    subgraph FR["FRAME"]
-        direction TB
-        FI["investigate"] --> FC["clarify"] --> FB["blueprint"] --> FP["plan"] --> FRT["redteam"]
-        FRT -.->|material gap| FB
-        FRT -.->|plan gap| FP
-    end
-    PG{"human plan approval"}
-    subgraph BU["BUILD"]
-        direction TB
-        BI["implement"] --> BS["self-review"] --> BV["verify"]
-        BV -.->|product failure| BI
-    end
-    subgraph LA["LAND"]
-        direction TB
-        LP["pr-drive"] --> LV["verify kept green"] --> LG["release-gate"]
-    end
-    MG{"human merge decision"}
-    OB["observe production"]
-    DN["complete"]
-    AIDLC -.-> IN
-    AIDLC -.-> FR
-    AIDLC -.-> BU
-    AIDLC -.-> LA
-    IN --> FR --> PG
-    PG -->|approve| BU
-    PG -->|edit or reject| FR
-    BU --> LA --> MG
-    LA -.->|red signal with evidence| BU
-    MG -->|merge| OB --> DN
-    MG -->|changes required| BU
-    classDef orchestrator fill:#4f9b73,color:#000000,stroke:#7f8c8d
-    classDef phase fill:#628ecb,color:#000000,stroke:#7f8c8d
-    classDef gate fill:#c67b2f,color:#000000,stroke:#7f8c8d
-    classDef evidence fill:#7d68b1,color:#000000,stroke:#7f8c8d
-    class AIDLC orchestrator
-    class IN,FI,FC,FB,FP,FRT,BI,BS,LP phase
-    class PG,MG gate
-    class BV,LV,LG,OB,DN evidence
-    linkStyle default stroke:#7f8c8d,color:#7f8c8d
+    U["User intent"] --> O["aidlc<br/>orchestrator"]
+    O --> F["FRAME<br/>investigate · blueprint · plan · redteam"]
+    F --> G{"Plan approved?"}
+    G -->|yes| B["BUILD<br/>implement · self-review · verify"]
+    B --> L["LAND<br/>review · checks · release evidence"]
+    L --> D{"Done state proven?"}
+    D -->|yes| X["Complete"]
+    D -->|no: evidence| B
+    G -->|changes| F
+    O -.-> H["Human gates<br/>scope · safety · merge"]
+    H -.-> O
 ```
 
-This is the same phase machine documented in [`docs/lifecycle.md`](docs/lifecycle.md). Red-team
-findings revise the Frame; product failures stay inside Build; requirements, design, or plan gaps
-return to Frame; and red landing signals or requested changes return to Build. Each phase reports
-one explicit outcome: `advance`, `rewind`, `needs_human`, or `stuck`; the mission stays unchanged
-until its observable completion criteria are met.
+The public package is the workflow layer: skills perform phase work, workflow definitions own
+ordering and bounded loops, and schemas keep handoffs/evidence machine-readable. A host adapter is
+the execution layer: it binds model calls, tools, workspaces, mission storage, and verification to
+those contracts. Red-team findings revise Frame; product failures stay inside Build; landing signals
+with evidence return to Build. Every phase reports `advance`, `rewind`, `needs_human`, or `stuck`,
+while the mission itself remains unchanged.
 
 Independent, path-disjoint workstreams may fan out to isolated Codex or Claude subagents, join at a
 barrier, merge in declared order, and undergo review and verification on the merged result. Review
@@ -268,10 +257,11 @@ their deterministic runner.
 
 ## Status
 
-`1.0.0-rc.2` is the current stable-v1 candidate. It preserves the canonical v1 mission and
-outcome contract while adding the human-first, collision-safe v2 evidence bundle, durable frame
-artifacts, evidence-backed review, and executable backward-compatibility checks. Stable promotion
-requires two fresh external missions from this exact tag, including a rewind and a human gate.
+`1.0.0-rc.6` is the current stable-v1 candidate. It preserves the canonical v1 mission and
+outcome contract while adding portable workflow definitions, Claude/Codex host mappings, the
+explicit next-subtask capability contract, and the human-first v2 evidence bundle. Stable
+promotion requires two fresh external missions from this exact tag, including a rewind and a
+human gate.
 
 ## License
 
