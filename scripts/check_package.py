@@ -129,6 +129,29 @@ def check_mission_template() -> None:
         raise ValueError(f"MISSION template is incomplete: {', '.join(missing)}")
 
 
+def check_workflows() -> None:
+    workflows = PLUGIN / "workflows"
+    required = {
+        workflows / "README.md",
+        workflows / "aidlc.md",
+        workflows / "missions-next.md",
+        workflows / "hosts" / "claude.md",
+        workflows / "hosts" / "codex.md",
+    }
+    missing = [str(path.relative_to(ROOT)) for path in sorted(required) if not path.is_file()]
+    if missing:
+        raise ValueError(f"workflow bundle is incomplete: {', '.join(missing)}")
+    for path in (workflows / "aidlc.md", workflows / "missions-next.md"):
+        text = path.read_text()
+        if not text.startswith("---\n") or "entry_skill:" not in text or "state:" not in text:
+            raise ValueError(f"workflow metadata is incomplete: {path}")
+    for path in (workflows / "hosts" / "claude.md", workflows / "hosts" / "codex.md"):
+        text = path.read_text()
+        lowered = text.lower()
+        if "workflow" not in lowered or "entry_skill" not in lowered and "entrypoints" not in lowered:
+            raise ValueError(f"host workflow mapping is incomplete: {path}")
+
+
 def check_integrity_manifest() -> None:
     manifest = load_json(ROOT / "PACKAGE-MANIFEST.json")
     entries = manifest.get("files")
@@ -165,6 +188,7 @@ def main() -> int:
     check_versions()
     check_public_mirrors()
     check_mission_template()
+    check_workflows()
     check_integrity_manifest()
     check_boundary()
     print("Nightshift AIDLC package checks passed")

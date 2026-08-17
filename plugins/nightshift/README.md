@@ -241,6 +241,13 @@ For a visual, read-only mission browser, run the [local mission control](control
 and open <http://127.0.0.1:8091/missions>. It groups subtasks beneath their parent missions and
 renders the available durable documents without starting work.
 
+## Workflows
+
+Hosts that support named workflows can load the portable workflow bundle. It includes the full
+`aidlc` lifecycle and the explicit `missions-next` subtask action, with mappings for Claude and
+Codex. Hosts without a native workflow command use the same definitions through the skills and
+their deterministic runner.
+
 ## Resources
 
 - [From Prompts to Harnesses](https://mihirsambhus.substack.com/p/from-prompts-to-harnesses) — the

@@ -46,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "9c546316b8d0a39276f7dd31596015a73e34c52ea61fda5215cd520f70f3b54f"
+      "sha256": "09efc2cffc961fe558370d9a40e8d808fc8ba1aa963b93659d7519b292cbec46"
     },
     {
       "path": "SECURITY.md",
@@ -110,7 +110,7 @@
     },
     {
       "path": "docs/host-capabilities.md",
-      "sha256": "a6adfa53041dc3e8b5e4aae2a73105fd3d9d1038e60f1076f4513204ba84348e"
+      "sha256": "c19aef715469d6f635ce9b509e96e61bb27d3c6bc01fe6d83c95b5e3e6fbe4c0"
     },
     {
       "path": "docs/lifecycle.md",
@@ -162,7 +162,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "9c546316b8d0a39276f7dd31596015a73e34c52ea61fda5215cd520f70f3b54f"
+      "sha256": "09efc2cffc961fe558370d9a40e8d808fc8ba1aa963b93659d7519b292cbec46"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
@@ -226,7 +226,7 @@
     },
     {
       "path": "plugins/nightshift/docs/host-capabilities.md",
-      "sha256": "a6adfa53041dc3e8b5e4aae2a73105fd3d9d1038e60f1076f4513204ba84348e"
+      "sha256": "c19aef715469d6f635ce9b509e96e61bb27d3c6bc01fe6d83c95b5e3e6fbe4c0"
     },
     {
       "path": "plugins/nightshift/docs/lifecycle.md",
@@ -489,6 +489,26 @@
       "sha256": "2221fe4e3e14badfebf75526b943404abce293a531ef81a3e29065e85c392fc1"
     },
     {
+      "path": "plugins/nightshift/workflows/README.md",
+      "sha256": "a84cf17c3cfccaf156523272db1c8b1705a0a72e3a54a6cdbcc4660129a7d0bd"
+    },
+    {
+      "path": "plugins/nightshift/workflows/aidlc.md",
+      "sha256": "861118623cf3466a300f01a69671cbb252a93fe3f00e351c5a0fffc8b7078fa7"
+    },
+    {
+      "path": "plugins/nightshift/workflows/hosts/claude.md",
+      "sha256": "718451399465f439045cc9927d650bb925a239b38bfcbd02e95c9165c8bcb143"
+    },
+    {
+      "path": "plugins/nightshift/workflows/hosts/codex.md",
+      "sha256": "49da83d535be371832a24a93f8369a54af33314beee691af5f7b2698e01add18"
+    },
+    {
+      "path": "plugins/nightshift/workflows/missions-next.md",
+      "sha256": "e91ffca05bbced696e47a648b131530637663c834ae2cebb13dc5821b55b11e3"
+    },
+    {
       "path": "schemas/aidlc/v1/README.md",
       "sha256": "eb532e2f6ca85b98bc855c7d0b88111d81c8b39823aa877f43e9e46ed1fbf1f6"
     },
@@ -618,7 +638,7 @@
     },
     {
       "path": "scripts/check_package.py",
-      "sha256": "455a9dbbbfc77dbf2846fa4c841074e90ee49a7297b60f254b91714fea5bd912"
+      "sha256": "c55c8d6eb919b1dfc6b45fe7470a2575ae82017b428b66b6998f5d76aae95947"
     },
     {
       "path": "scripts/check_schemas.py",
