@@ -4,6 +4,9 @@ All notable package changes are recorded here. Releases follow semantic versioni
 
 ## 1.0.0-rc.6
 
+- Add the named `/nightshift:workflow` dispatcher and public workflow manifest.
+- Keep `/nightshift:aidlc` and `/nightshift:missions` as compatible direct skill entrypoints.
+- Document exact workflow, reinstall, and next-subtask invocation for Claude and Codex.
 - Add portable `workflows/` definitions for the full AIDLC lifecycle and explicit next-subtask
   progression.
 - Add Claude and Codex host mappings, with deterministic-runner guidance when native named

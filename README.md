@@ -16,8 +16,8 @@ The architecture is deliberately split:
 - **Human authority** — plan approval, scope and safety decisions, merge authorization, and
   unresolved or exhausted review loops remain explicit gates.
 
-Use `v1.0.0-rc.6` to test the workflow bundle through a real Claude or Codex installation. This
-candidate adds named workflow definitions and the explicit next-subtask contract while keeping the
+Use `v1.0.0-rc.6` to test the workflow dispatcher through a real Claude or Codex installation. This
+candidate adds the named workflow entrypoint while keeping the
 stable mission and handoff fields compatible.
 
 Nightshift AIDLC is an open-source, portable agentic coding harness packaged as a composable skill
@@ -83,9 +83,48 @@ recovery is bounded by default to 2 attempts per finding, 3 per subtask, and 8 p
 [execution workflow](https://github.com/thrrive/nightshift-aidlc/blob/main/plugins/nightshift/skills/aidlc/references/execution-workflow.md) for routing,
 resume state, and escalation rules.
 
+## Skill and workflow entrypoints
+
+Users normally start a named workflow, not an internal phase skill:
+
+```text
+/nightshift:workflow nightshift-aidlc Add a CSV export to the holdings page
+```
+
+The workflow dispatcher loads `workflows/manifest.json`, applies the portable workflow definition,
+and delegates phase work to the existing `aidlc` skill. The direct skill entrypoint remains
+supported for hosts that do not expose the dispatcher:
+
+```text
+/nightshift:aidlc Add a CSV export to the holdings page
+```
+
+Inspect durable missions with:
+
+```text
+/nightshift:missions
+```
+
+After a plan is approved, explicitly start one dependency-ready child with:
+
+```text
+/nightshift:workflow nightshift-missions-next <mission-id>
+```
+
+The equivalent direct skill command is `/nightshift:missions <mission-id> --next`. In `mode: yolo`,
+routine eligible transitions may happen automatically. Parallel workstreams are selected and
+joined by the host workflow runner; users should not launch duplicate `--next` commands.
+
+The workflow names and fallback commands are portable across hosts:
+
+| Workflow | Purpose | Skill fallback |
+| --- | --- | --- |
+| `nightshift-aidlc` | Full mission lifecycle | `/nightshift:aidlc <request>` |
+| `nightshift-missions-next` | Start one eligible child | `/nightshift:missions <mission-id> --next` |
+
 ## Skill hierarchy
 
-The kit contains fifteen focused skills. `aidlc` is the parent skill and the only lifecycle router;
+The kit contains sixteen focused skills. `aidlc` is the parent skill and the only lifecycle router;
 the indented skills are the phases and specialists it composes. The directories remain separately
 loadable for hosts that already have the required handoff, but invoking a child does not transfer
 ownership of mission transitions away from `aidlc`.
@@ -106,6 +145,7 @@ ownership of mission transitions away from `aidlc`.
     ├── `pr-drive`            checks and review feedback → fixes or route-backs
     └── `release-gate`        review, verification, and release evidence
 `missions`                    inspect missions and start the next eligible subtask
+`workflow`                    start a named workflow and delegate to its entry skill
 ```
 
 `aidlc` carries one unchanged `mission` through this hierarchy. Host runtimes may add a mission
@@ -170,7 +210,7 @@ evolve without forcing a rewrite of the other.
 
 ## What is included
 
-- fifteen focused lifecycle skills and seven thin command wrappers;
+- sixteen focused lifecycle skills and eight thin command wrappers;
 - versioned v1 schemas for `mission`, `outcome`, evidence-backed `review`, and optional
   `workstreams`, plus additive human-first bundle and event evidence;
 - provider-neutral host-capability contracts for durable frame artifacts, workspace, verification,
@@ -200,13 +240,14 @@ See `INSTALL.md` for published installation, upgrade, pinning, and uninstall com
 
 ## Run the lifecycle
 
-Use the namespaced entrypoint in a skills-compatible host:
+Use the named workflow entrypoint in a compatible host:
 
 ```text
-/nightshift:aidlc Add a CSV export to the holdings page
+/nightshift:workflow nightshift-aidlc Add a CSV export to the holdings page
 ```
 
-The default done state is stable production. Use `--frame-only` for an approved plan or `--pr-only`
+The default done state is stable production. The workflow delegates to `aidlc`; use
+`/nightshift:aidlc` directly when the host has no workflow dispatcher. Use `--frame-only` for an approved plan or `--pr-only`
 for a verified reviewed change. The lifecycle always retains its plan and merge authorization
 gates; unavailable required capabilities fail honestly instead of being silently bypassed.
 
@@ -215,7 +256,7 @@ Read `docs/lifecycle.md`, `docs/handoff-contract.md`, `docs/review-contract.md`,
 
 ## Inspect missions
 
-Use the `missions` skill to inspect durable mission records, parent/subtask relationships, current
+Use the `missions` skill or workflow to inspect durable mission records, parent/subtask relationships, current
 status, next actions, and available artifacts:
 
 ```text
@@ -232,10 +273,49 @@ renders the available durable documents without starting work.
 
 ## Workflows
 
-Hosts that support named workflows can load the portable workflow bundle. It includes the full
-`aidlc` lifecycle and the explicit `missions-next` subtask action, with mappings for Claude and
-Codex. Hosts without a native workflow command use the same definitions through the skills and
-their deterministic runner.
+The portable workflow bundle is under `plugins/nightshift/workflows`. Its manifest defines stable
+names, entry skills, and host-independent fallbacks. Start the full lifecycle with
+`nightshift-aidlc`; start one child with `nightshift-missions-next`. Hosts with a native workflow
+facility register those definitions. Other hosts use `/nightshift:workflow`, which loads the same
+definitions and delegates to the same skills. This keeps workflow behavior and skill behavior
+identical instead of maintaining two separate implementations.
+
+## Reinstall and invoke the release candidate
+
+Install the pinned `v1.0.0-rc.6` candidate for the workflow command.
+
+Claude, from a pinned source checkout:
+
+```bash
+git clone --branch v1.0.0-rc.6 https://github.com/thrrive/nightshift-aidlc.git nightshift-aidlc-rc6
+claude --plugin-dir ./nightshift-aidlc-rc6/plugins/nightshift \
+  --add-dir ./nightshift-aidlc-rc6/plugins/nightshift
+```
+
+Codex, from the published marketplace:
+
+```bash
+codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.6
+codex plugin remove nightshift@nightshift-aidlc 2>/dev/null || true
+codex plugin add nightshift@nightshift-aidlc
+```
+
+Restart the host, then start the full workflow:
+
+```text
+/nightshift:workflow nightshift-aidlc <change request>
+```
+
+Inspect missions and advance one child at a time:
+
+```text
+/nightshift:missions
+/nightshift:workflow nightshift-missions-next <mission-id>
+```
+
+The direct skill equivalents remain `/nightshift:aidlc <change request>` and
+`/nightshift:missions <mission-id> --next`. In YOLO mode, routine eligible child transitions may
+advance automatically; do not issue duplicate next-subtask commands while a child is running.
 
 ## Resources
 
