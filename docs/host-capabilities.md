@@ -156,6 +156,31 @@ An LLM event reports model, usage, cost source, cost, and duration when observab
 value is explicit and is never converted to numeric zero. Tool calls are separate events. Full
 event semantics and projection requirements are in [`mission-bundles.md`](mission-bundles.md).
 
+## Mission registry progression (optional)
+
+Purpose: start exactly one dependency-ready child for an approved durable mission. This capability
+backs the `missions-next` workflow and must be atomic.
+
+```yaml
+request:
+  mission_id: <immutable mission or bundle id>
+  action: next_subtask
+result:
+  status: started | unavailable | failed | held | blocked | complete
+  mission_id: <same immutable id>
+  subtask:
+    id: <started child id>
+    title: <child title>
+    goal: <child goal>
+    depends_on: [<completed child ids>]
+  workflow_state: <durable subtask workflow snapshot>
+  evidence: [<host-owned references>]
+```
+
+The host must refuse mutation when the plan is missing, a child is already running, dependencies
+are blocked, the mission is complete, or a human gate is unresolved. It must never infer the
+mission from conversation history or silently bypass lifecycle gates.
+
 ## Workspace (required for build)
 
 Purpose: prepare and identify the isolated location in which changes may be written.
