@@ -40,14 +40,14 @@ AIDLC_INBOUND_TOKEN='choose-a-local-token' \
 The browser remembers the token locally when one is configured. Keep the server on loopback
 unless you have separately secured the network path.
 
-## Terminal view
+## Inspect missions with the skill
 
-The repository also includes a small portable CLI for the same mission bundle data:
+When Mission Control is not running, use the `missions` skill in a compatible host:
 
-```bash
-./cli/psdlc missions --root "$PWD"
+```text
+$nightshift:missions
 ```
 
-Repeat `--root` for additional repositories. Use `--status proposed` to filter records or
-`--json` for machine-readable output. This command is read-only and works while Mission Control
-is stopped.
+In slash-command hosts, invoke the same skill as `/nightshift:missions`. It provides a concise,
+read-only summary of durable missions and subtasks using the host's available mission capability
+or the documented bundle store.
