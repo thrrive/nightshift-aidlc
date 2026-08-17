@@ -17,10 +17,10 @@ state from conversation history, temporary logs, or filename patterns alone.
 
 ## Start the next subtask
 
-For an explicit request to proceed, invoke the host capability equivalent of:
+For an explicit request to proceed, invoke this skill with the mission ID:
 
 ```text
-psdlc missions next <mission-id>
+/nightshift:missions <mission-id> --next
 ```
 
 The action resolves the mission to its running job, verifies that the persisted workflow is at an
