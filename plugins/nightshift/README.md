@@ -16,7 +16,7 @@ The architecture is deliberately split:
 - **Human authority** — plan approval, scope and safety decisions, merge authorization, and
   unresolved or exhausted review loops remain explicit gates.
 
-Use `v1.0.0-rc.6` to test the workflow dispatcher through a real Claude or Codex installation. This
+Use `v1.0.0-rc.7` to test the workflow dispatcher through a real Claude or Codex installation. This
 candidate adds the named workflow entrypoint while keeping the
 stable mission and handoff fields compatible.
 
@@ -282,20 +282,20 @@ identical instead of maintaining two separate implementations.
 
 ## Reinstall and invoke the release candidate
 
-Install the pinned `v1.0.0-rc.6` candidate for the workflow command.
+Install the pinned `v1.0.0-rc.7` candidate for the workflow command.
 
 Claude, from a pinned source checkout:
 
 ```bash
-git clone --branch v1.0.0-rc.6 https://github.com/thrrive/nightshift-aidlc.git nightshift-aidlc-rc6
-claude --plugin-dir ./nightshift-aidlc-rc6/plugins/nightshift \
-  --add-dir ./nightshift-aidlc-rc6/plugins/nightshift
+git clone --branch v1.0.0-rc.7 https://github.com/thrrive/nightshift-aidlc.git nightshift-aidlc-rc7
+claude --plugin-dir ./nightshift-aidlc-rc7/plugins/nightshift \
+  --add-dir ./nightshift-aidlc-rc7/plugins/nightshift
 ```
 
 Codex, from the published marketplace:
 
 ```bash
-codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.6
+codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.7
 codex plugin remove nightshift@nightshift-aidlc 2>/dev/null || true
 codex plugin add nightshift@nightshift-aidlc
 ```
@@ -337,7 +337,7 @@ advance automatically; do not issue duplicate next-subtask commands while a chil
 
 ## Status
 
-`1.0.0-rc.6` is the current stable-v1 candidate. It preserves the canonical v1 mission and
+`1.0.0-rc.7` is the current stable-v1 candidate. It preserves the canonical v1 mission and
 outcome contract while adding portable workflow definitions, Claude/Codex host mappings, the
 explicit next-subtask capability contract, and the human-first v2 evidence bundle. Stable
 promotion requires two fresh external missions from this exact tag, including a rewind and a

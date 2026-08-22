@@ -49,6 +49,11 @@ model payloads out of the portable event. Refresh `MISSION.md` after material st
 return its reference in `outputs`. A projection failure does not corrupt routing, but Build cannot
 claim its required durable human evidence is current until refresh succeeds.
 
+For a v1-only direct run, append the equivalent Build, subtask, retry, verification, and terminal
+records to the bundle-root `events.jsonl` fallback. Record each physical model call with observed
+model, input/output tokens, duration, and API-equivalent cost plus provenance; preserve unavailable
+values explicitly and keep retries as separate attempts.
+
 If a required capability is unavailable, return `stuck` with the smallest useful next step. If the
 subagent/task capability is unavailable, run validated workstreams sequentially and record that
 parallelism was unavailable; do not create concurrent writers without isolated ownership. Do not

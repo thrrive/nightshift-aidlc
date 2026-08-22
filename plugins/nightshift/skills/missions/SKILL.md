@@ -12,8 +12,11 @@ changing bundle files.
 ## Inspect
 
 Prefer the host's mission-registry or mission-observation capability. Show the mission ID, target,
-status, parent and child relationships, current gate, and durable bundle path. Do not infer live
-state from conversation history, temporary logs, or filename patterns alone.
+status, parent and child relationships, current gate, and durable bundle path. Include the mission
+start time, elapsed wall time, current stage, model calls, input/output tokens, attempt and retry
+counts, and known API-equivalent cost when the event ledger provides them. Report unavailable
+metrics explicitly. Do not infer live state from conversation history, temporary logs, or filename
+patterns alone.
 
 ## Start the next subtask
 
@@ -35,4 +38,5 @@ Do not edit mission artifacts directly and do not infer a subtask from conversat
 ## Output
 
 Keep inspection and progression results concise. Include the selected subtask, its dependencies,
-the new mission/job state, and any refusal or unavailable host capability.
+the new mission/job state, execution metrics, and any refusal or unavailable host capability. For a
+parent with children, include per-child timing and usage when available.

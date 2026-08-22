@@ -6,7 +6,7 @@
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "91be0acb2d22bb9795585b794d187adb0a17bf7e3244912785680ad475462c10"
+      "sha256": "7a2b83d3861ec87f6d6d505f856a81197b840754a7f017c8dcb5b9367ad8b745"
     },
     {
       "path": ".github/workflows/package.yml",
@@ -18,7 +18,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "cdcded9c37df788d78f7a8194ebd3f416fe5744d3fbe4fff9b8b15d635d7934c"
+      "sha256": "8d3b304eed4afbaac0b2e4d7311aeb404b8b5369ba8f43acdb6bf9638a088837"
     },
     {
       "path": "COMPATIBILITY.md",
@@ -34,7 +34,7 @@
     },
     {
       "path": "INSTALL.md",
-      "sha256": "0d261d6307aff4c16f042be6a249487bf54ff31960c1cbd2e5b9bf01abee302e"
+      "sha256": "52b5a819b494b5cf61743f760b8655febdac1655982e692d0bba9dbe8ffc9e63"
     },
     {
       "path": "LICENSE",
@@ -46,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "0949d1688012fa0e4243ab2209abc058dea4079408b8206132037ae55adb3347"
+      "sha256": "c3ca41e071a90efaddeee9813585ae22afc96ee4ec3e094bb2df7b500bfe7ba2"
     },
     {
       "path": "SECURITY.md",
@@ -102,7 +102,7 @@
     },
     {
       "path": "docs/frame-artifacts.md",
-      "sha256": "0364ffdc1d50448ce1bfe90d5947f56b02f26bcace8c04f713325415934c0a42"
+      "sha256": "7c705a7bf4f8bef6905eaa83c319a8c1e8c61fdc59590821ccda657ad541eeaa"
     },
     {
       "path": "docs/handoff-contract.md",
@@ -126,15 +126,15 @@
     },
     {
       "path": "plugins/nightshift/.claude-plugin/plugin.json",
-      "sha256": "31d7447e15a6455ff6c96f3ef6612ea6528150d5a3de539b48fb2ac5bf5bafc1"
+      "sha256": "845f5a0669647561d161d818169384ac5325a5f0cbd557f628eed90d07a42933"
     },
     {
       "path": "plugins/nightshift/.codex-plugin/plugin.json",
-      "sha256": "58e2353a74a5c3db61d2b6857bec0acce6d6866b405e8db451db9256fe5dfddc"
+      "sha256": "1d98f1dd57790666c809669900d9e487cc9d2f129c4e19d9454e57a566b0c0cd"
     },
     {
       "path": "plugins/nightshift/CHANGELOG.md",
-      "sha256": "cdcded9c37df788d78f7a8194ebd3f416fe5744d3fbe4fff9b8b15d635d7934c"
+      "sha256": "8d3b304eed4afbaac0b2e4d7311aeb404b8b5369ba8f43acdb6bf9638a088837"
     },
     {
       "path": "plugins/nightshift/COMPATIBILITY.md",
@@ -150,7 +150,7 @@
     },
     {
       "path": "plugins/nightshift/INSTALL.md",
-      "sha256": "0d261d6307aff4c16f042be6a249487bf54ff31960c1cbd2e5b9bf01abee302e"
+      "sha256": "52b5a819b494b5cf61743f760b8655febdac1655982e692d0bba9dbe8ffc9e63"
     },
     {
       "path": "plugins/nightshift/LICENSE",
@@ -162,7 +162,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "0949d1688012fa0e4243ab2209abc058dea4079408b8206132037ae55adb3347"
+      "sha256": "c3ca41e071a90efaddeee9813585ae22afc96ee4ec3e094bb2df7b500bfe7ba2"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
@@ -222,7 +222,7 @@
     },
     {
       "path": "plugins/nightshift/docs/frame-artifacts.md",
-      "sha256": "0364ffdc1d50448ce1bfe90d5947f56b02f26bcace8c04f713325415934c0a42"
+      "sha256": "7c705a7bf4f8bef6905eaa83c319a8c1e8c61fdc59590821ccda657ad541eeaa"
     },
     {
       "path": "plugins/nightshift/docs/handoff-contract.md",
@@ -410,7 +410,7 @@
     },
     {
       "path": "plugins/nightshift/skills/aidlc/SKILL.md",
-      "sha256": "bdffdfe3d099a12c6be3e9173b99f3ac2fbc46c7a2888e5ff0ac163277720985"
+      "sha256": "fac4b54719dc66d06c8ddcd972581c2e91f313cd26c7e5b847a810dcc9af213e"
     },
     {
       "path": "plugins/nightshift/skills/aidlc/references/execution-workflow.md",
@@ -425,16 +425,20 @@
       "sha256": "15b460748787e6a99021b6e2d67c7ae4f7fdbaa898e1f55ff38f6e8e5d2fa8cd"
     },
     {
+      "path": "plugins/nightshift/skills/aidlc/references/telemetry-contract.md",
+      "sha256": "6cda3a985498c066664d98a8e27f9ef5649109f6c42064d1aabe044ba7b92022"
+    },
+    {
       "path": "plugins/nightshift/skills/blueprint/SKILL.md",
       "sha256": "650c919790cdfe2f50c361476a6492b59294a04b8ab6da329b555caec9901ad1"
     },
     {
       "path": "plugins/nightshift/skills/build/SKILL.md",
-      "sha256": "93834ea60d6b18ce95c585aca8d7af4aef8dec371bfa57aef3ead84dac249b42"
+      "sha256": "aa088640ec0f1e67e959171fc31f6387cf6145f6f24938d2218b1f4c7b5f9cfa"
     },
     {
       "path": "plugins/nightshift/skills/frame/SKILL.md",
-      "sha256": "a6961ca5f2196a873ad00a218c2f3d9315003e84afc1f74fb7e1e8dea5f0ce29"
+      "sha256": "3e42dedadf177045b08ba42321dfe96e0a4e43fa4eb2c05aa563f86ec78a1c40"
     },
     {
       "path": "plugins/nightshift/skills/implement/SKILL.md",
@@ -454,7 +458,7 @@
     },
     {
       "path": "plugins/nightshift/skills/missions/SKILL.md",
-      "sha256": "d27bfb39b0cc1f4d9057433d6c1b5ac7edbe6a758f80038d2a331ee662629604"
+      "sha256": "e88ba2786c8b478b358099bb4714e27e5b26d86b44060d0c15da642306b5f3a3"
     },
     {
       "path": "plugins/nightshift/skills/plan/SKILL.md",

@@ -60,6 +60,7 @@ Persist each artifact as soon as its owning step completes:
   plan.md
   redteam-review.json
   handoff.yaml
+  events.jsonl                 # direct-run lifecycle and usage fallback
 ```
 
 `mission.json` carries the canonical unchanged mission. The Markdown files contain the complete
@@ -70,6 +71,10 @@ paths in its `outputs` field.
 Rewinds update the same logical files so the bundle remains coherent. A host may retain version
 history or additional provenance, but the user-facing bundle always represents the current review
 subject. Do not place credentials, raw secret-bearing logs, or unrelated repository content in it.
+
+When the host lacks v2 mission evidence, `events.jsonl` is the append-only v1 telemetry fallback.
+It records lifecycle steps, child identifiers, retries, observed model usage, duration, and known
+cost without changing the canonical mission or handoff schema. Unknown metrics stay unavailable.
 
 In v2, rewinds append immutable attempts to `events.jsonl` and `reviews/`; the generated
 `MISSION.md` shows current state and prior attempts. A new same-ask invocation never reuses a bundle.
