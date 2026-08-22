@@ -2,6 +2,12 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.7
+
+- Add a portable direct-run telemetry fallback for v1 mission bundles.
+- Record lifecycle, subtask, retry, model, token, duration, and known-cost evidence for inspection.
+- Show execution metrics in the durable missions skill while keeping unavailable values explicit.
+
 ## 1.0.0-rc.6
 
 - Add the named `/nightshift:workflow` dispatcher and public workflow manifest.

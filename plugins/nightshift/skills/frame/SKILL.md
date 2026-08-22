@@ -61,13 +61,18 @@ records. Refresh the generated `MISSION.md` after every material event. If the h
 per-call model, token, cost, or duration data, record explicit unavailable provenance rather than
 omitting the logical step or rendering zero.
 
+For a v1-only direct run, append the equivalent lifecycle and step records to the bundle-root
+`events.jsonl` fallback. Include `subtask_id` and `step_attempt` for child work and retries, and
+record observed model, token, duration, and cost fields for physical model calls; unknown values
+remain explicitly unavailable.
+
 ## Artifacts
 
 Before requesting plan approval, persist the selected format completely. In v2, confirm that
 `MISSION.md`, `.aidlc/bundle.json`, `.aidlc/mission.json`, `.aidlc/events.jsonl`,
 `.aidlc/latest-outcome.json`, and the immutable review attempt exist. In v1, persist
 `mission.json`, `investigation.md`, `blueprint.md`, `plan.md`, `redteam-review.json`, and
-`handoff.yaml`. Prefer a target-declared feature-docs location; otherwise use the selected
+`handoff.yaml`, and for a direct v1 run `events.jsonl`. Prefer a target-declared feature-docs location; otherwise use the selected
 invocation-root fallback. Scratch, temporary, or conversation-only content is not the durable copy.
 If no durable write is available, return `needs_human` with inline recovery content and ask for a
 destination or explicit waiver. Tell the user the exact human document and machine root at the gate.

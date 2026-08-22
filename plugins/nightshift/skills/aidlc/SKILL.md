@@ -25,6 +25,10 @@ start the first eligible child after approval, and keep planned versus observed 
 It contains the canonical mission mapping, transition loop, phase ownership, and human gates. Also
 read the full [`handoff contract`](../../docs/handoff-contract.md) before routing and the
 [`host-capability contract`](../../docs/host-capabilities.md) before requesting effects.
+Read [`references/telemetry-contract.md`](references/telemetry-contract.md) before the first
+phase. Record mission start before invoking `frame`. If the host does not expose v2 mission
+evidence, use the v1 `events.jsonl` fallback beside the peer-file bundle and append lifecycle,
+subtask, model, token, duration, retry, and cost evidence as it becomes observable.
 
 When `frame` selects `aidlc-mission-bundle/v2`, retain its exact `bundle_ref`, `mission_id`, and
 mission digest for the entire lifecycle. Request the mission-evidence capability after each major
