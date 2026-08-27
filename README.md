@@ -189,9 +189,9 @@ bundle only when the caller supplies its exact mission ID or bundle reference.
 
 Read the **[human-first mission-bundle contract](docs/mission-bundles.md)** for identity, event,
 telemetry, redaction, projection, and compatibility semantics. The
-**[durable frame-artifact contract](docs/frame-artifacts.md)** retains the six-file v1 format for
-older hosts. Format support is negotiated explicitly; the stable v1 mission and outcome routing
-fields do not change.
+**[durable frame-artifact contract](docs/frame-artifacts.md)** retains the v1 peer-file format for
+older hosts, with `events.jsonl` as the direct-run telemetry fallback. Format support is negotiated
+explicitly; the stable v1 mission and outcome routing fields do not change.
 
 Storage precedence remains: the target's declared feature-docs path, a user-selected durable
 destination, then the invocation-directory fallback. Temporary directories and agent scratch space
@@ -218,7 +218,45 @@ evolve without forcing a rewrite of the other.
 - manifests for Claude Code and Codex plugin marketplaces;
 - compatibility, provenance, contribution, and security policies.
 
-## Install from a source checkout
+## Install from scratch
+
+Nightshift AIDLC is a skill/workflow package. It does not install a separate daemon, database, or
+agent model. You need Python 3.11+ for the optional local Mission Control browser and either
+Claude Code or Codex for interactive execution. Git is required for pinned source installs.
+
+### Claude Code
+
+Install the current RC8 plugin from the public marketplace:
+
+```bash
+claude plugin marketplace add thrrive/nightshift-aidlc
+claude plugin install nightshift@nightshift-aidlc
+claude plugin update nightshift@nightshift-aidlc
+```
+
+Or use an exact, reproducible source checkout:
+
+```bash
+git clone --branch v1.0.0-rc.8 https://github.com/thrrive/nightshift-aidlc.git nightshift-aidlc-rc8
+claude --plugin-dir ./nightshift-aidlc-rc8/plugins/nightshift \
+  --add-dir ./nightshift-aidlc-rc8/plugins/nightshift
+```
+
+### Codex
+
+Install the current RC8 plugin from the public marketplace:
+
+```bash
+codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.8
+codex plugin remove nightshift@nightshift-aidlc 2>/dev/null || true
+codex plugin add nightshift@nightshift-aidlc
+```
+
+Restart Claude Code or Codex after installing or upgrading so the new skill definitions are loaded.
+
+### Local source checkout
+
+For development or a local unpublished checkout:
 
 Clone this repository, then use the host-specific plugin directory:
 
@@ -232,9 +270,6 @@ For Codex, register the checkout as a local marketplace and install the plugin:
 codex plugin marketplace add .
 codex plugin add nightshift@nightshift-aidlc
 ```
-
-After the public repository exists, both hosts can add `thrrive/nightshift-aidlc` as a Git
-marketplace instead of a local path.
 
 See `INSTALL.md` for published installation, upgrade, pinning, and uninstall commands.
 
@@ -270,6 +305,73 @@ current environment.
 For a visual, read-only mission browser, run the [local mission control](control-plane/README.md)
 and open <http://127.0.0.1:8091/missions>. It groups subtasks beneath their parent missions and
 renders the available durable documents without starting work.
+
+## Local Mission Control
+
+The repository includes a small, read-only browser for inspecting durable mission bundles. It is
+separate from the execution runtime: it does not start agents, approve plans, create GitHub Issues,
+or mutate mission files.
+
+Start it from this checkout:
+
+```bash
+python3 control-plane/server.py \
+  --host 127.0.0.1 \
+  --port 8091 \
+  --mission-root "/path/to/your/mission-root"
+```
+
+Open <http://127.0.0.1:8091/missions>. Repeat `--mission-root` for additional project roots. Keep
+the browser on loopback unless you configure an inbound token:
+
+```bash
+AIDLC_INBOUND_TOKEN='choose-a-local-token' \
+  python3 control-plane/server.py --host 127.0.0.1 --port 8091 \
+  --mission-root "/Users/you/Projects"
+```
+
+Mission Control reads v2 bundles under `nightshift/missions/*/.aidlc/mission.json` and legacy v1
+bundles under `nightshift/*/mission.json`. It groups subtasks beneath their parent and renders
+available mission documents. Refresh after a mission creates or updates its bundle.
+
+The [control-plane issue #6](https://github.com/thrrive/nightshift-aidlc/issues/6) records the
+dashboard’s end-to-end acceptance flow. The screenshot from that issue is included below.
+
+![Nightshift Mission Control](https://github.com/user-attachments/assets/24ee2768-4df7-4da3-b84e-7914fc7d773f)
+
+## Full execution control plane
+
+The public package contains portable skills and the read-only Mission Control browser. The full
+execution control plane lives in the companion `sdlc_harness` runtime. It owns jobs, isolated
+workspaces, streamed agent events, approvals, retries, parallel workstreams, verification, and
+merge/release gates.
+
+From the `sdlc_harness` checkout:
+
+```bash
+python3 runtime/control-plane/server.py \
+  --host 127.0.0.1 \
+  --port 8080 \
+  --simulate
+```
+
+Run and watch a mission:
+
+```bash
+python3 cli/psdlc run --server http://127.0.0.1:8080 \
+  --target net-worth-tracker --watch \
+  "Add a CSV export to the holdings page"
+```
+
+Useful commands include `psdlc status <job-id>`, `psdlc logs <job-id> --follow`,
+`psdlc approve <job-id> --watch`, `psdlc retry <job-id> --watch`, and
+`psdlc ship <job-id> --watch`. The runtime streams phase, subtask, usage, verification, retry, and
+human-gate events through SSE and persists them in the job's `events.jsonl`.
+
+Direct interactive `/nightshift:workflow` runs require the live host bridge for immediate updates:
+Codex uses `codex app-server` and `turn/steer`; Claude Code uses streaming NDJSON and an open input
+stream. Without that bridge, the durable mission remains inspectable but live updates arrive only
+when the current skill turn returns.
 
 ## Workflows
 
@@ -329,7 +431,7 @@ advance automatically; do not issue duplicate next-subtask commands while a chil
   rewind paths.
 - [`docs/handoff-contract.md`](docs/handoff-contract.md) — the durable mission and outcome contract.
 - [`docs/mission-bundles.md`](docs/mission-bundles.md) — collision-safe mission identity, the
-  `MISSION.md` projection, attempt history, and model/tool/cost evidence.
+`MISSION.md` projection, attempt history, and model/tool/cost evidence.
 - [`docs/review-contract.md`](docs/review-contract.md) — evidence strength, adversarial lenses,
   findings, remediation, and fail-closed review decisions.
 - [`docs/host-capabilities.md`](docs/host-capabilities.md) — the portable boundary between skills

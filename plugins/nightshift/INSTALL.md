@@ -67,3 +67,35 @@ credential, or database migration; hosts supply capabilities independently.
 
 For stable-v1 qualification, pin `v1.0.0-rc.8` exactly. Promotion to `v1.0.0` changes release
 metadata and evidence only; it does not change the canonical v1 contract tested by the candidate.
+
+## Local Mission Control
+
+The public checkout includes a read-only mission browser. It requires Python 3.11+ and does not
+run agents or mutate mission files:
+
+```bash
+python3 control-plane/server.py \
+  --host 127.0.0.1 \
+  --port 8091 \
+  --mission-root "/path/to/your/mission-root"
+```
+
+Open <http://127.0.0.1:8091/missions>. Repeat `--mission-root` for additional project roots. Keep
+the server on loopback; for a shared bind, set `AIDLC_INBOUND_TOKEN`. The browser discovers v2
+`nightshift/missions/*/.aidlc/mission.json` and legacy v1 `nightshift/*/mission.json` bundles.
+
+## Full execution runtime
+
+The public skill kit is not the full execution service. For streamed jobs, isolated workspaces,
+approvals, retries, verification, and merge/release gates, use the companion `sdlc_harness`:
+
+```bash
+python3 runtime/control-plane/server.py --host 127.0.0.1 --port 8080 --simulate
+python3 cli/psdlc run --server http://127.0.0.1:8080 \
+  --target net-worth-tracker --watch "Describe the change here"
+```
+
+Use `psdlc status`, `psdlc logs <job-id> --follow`, and `psdlc approve <job-id> --watch` to follow
+the SSE event stream and human gates. Direct interactive workflows require a host bridge for live
+updates: Codex uses `codex app-server`/`turn/steer`, and Claude Code uses streaming NDJSON with an
+open input stream.
