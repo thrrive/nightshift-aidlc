@@ -29,6 +29,10 @@ Read [`references/telemetry-contract.md`](references/telemetry-contract.md) befo
 phase. Record mission start before invoking `frame`. If the host does not expose v2 mission
 evidence, use the v1 `events.jsonl` fallback beside the peer-file bundle and append lifecycle,
 subtask, model, token, duration, retry, and cost evidence as it becomes observable.
+Also read [`references/host-progress.md`](references/host-progress.md). Emit a concise user-visible
+update at every phase/subtask boundary and surface `needs_human` as an immediate interactive
+question. When a live bridge exists, route progress and the answer through it; otherwise use the
+current session and provide the durable resume reference.
 
 When `frame` selects `aidlc-mission-bundle/v2`, retain its exact `bundle_ref`, `mission_id`, and
 mission digest for the entire lifecycle. Request the mission-evidence capability after each major

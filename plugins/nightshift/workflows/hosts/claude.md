@@ -9,3 +9,8 @@ When using the portable plugin dispatcher, invoke `/nightshift:workflow nightshi
 or `/nightshift:workflow nightshift-missions-next <mission-id>`. If native workflow support and
 the dispatcher are unavailable, invoke `/nightshift:aidlc` or `/nightshift:missions <mission-id>
 --next` and follow the referenced workflow file directly.
+
+For live progress and intervention, bind the workflow to Claude's streaming NDJSON session. Forward
+mission boundary events to the active session and inject operator replies through its open input
+stream. If no streaming bridge is available, the skill must print progress and the exact human
+question in the current session and provide the command/reference needed to resume.
