@@ -2,6 +2,12 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.8
+
+- Require concise live progress updates at workflow and phase boundaries.
+- Surface `needs_human` as an immediate interactive question with a durable resume reference.
+- Define shared Codex app-server and Claude streaming-NDJSON host bridge behavior.
+
 ## 1.0.0-rc.7
 
 - Add a portable direct-run telemetry fallback for v1 mission bundles.

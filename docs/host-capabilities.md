@@ -40,6 +40,29 @@ Capabilities return structured results and evidence references. Display text is 
 the only retained result. A host may implement several capabilities in one service, but skills must
 address them by purpose so implementations remain replaceable.
 
+## Live workflow progress and human gates (optional)
+
+Purpose: deliver mission boundary updates to the active interactive host and route a human answer
+back to the same running workflow. This is separate from durable mission evidence: an event ledger
+can survive a session without being a live notification channel.
+
+```yaml
+request:
+  mission_id: <immutable mission or bundle id>
+  operation: subscribe | present-gate | resume
+  event: <safe boundary event, when subscribing or presenting a gate>
+result:
+  status: subscribed | presented | resumed | unavailable | failed
+  session_ref: <host session or thread reference>
+  evidence: []
+```
+
+The host must preserve mission and event identity, render progress at phase/subtask boundaries, and
+present `needs_human` immediately with the exact decision required. Codex may bind this capability
+to `codex app-server` notifications and `turn/steer`; Claude may bind it to streaming NDJSON and an
+open input stream. A one-shot CLI without an open control channel is unavailable, so the skill
+falls back to an in-session progress message and explicit resume reference.
+
 ## Subagent fan-out (optional for parallel workstreams)
 
 Purpose: execute validated, path-disjoint `workstreams` concurrently without changing the one

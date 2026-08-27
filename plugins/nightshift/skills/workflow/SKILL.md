@@ -21,6 +21,9 @@ Accept a workflow name followed by its request arguments:
 
 Load `workflows/manifest.json`, reject unknown or malformed names, then load the selected workflow
 definition. Delegate to its `entry_skill` without rewriting the workflow's routing or gates.
+Before delegation, announce the mission and workflow name. Require the entry skill to emit
+boundary updates in the current host response channel and to surface any `needs_human` decision
+immediately; do not batch progress until the final handoff.
 
 The `nightshift-aidlc` workflow delegates to `/nightshift:aidlc` for a complete mission. The
 `nightshift-missions-next` workflow accepts exactly one mission ID and delegates to
