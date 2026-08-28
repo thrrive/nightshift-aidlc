@@ -21,8 +21,10 @@ machine-readable record.
    checks. Inspect for omitted surfaces as well as erroneous changed lines.
 3. Run the five review lenses. Include security/isolation, rollout/observability, diff hygiene,
    compatibility, error paths, and adversarial lifecycle behavior.
-4. Examine test oracles, not just test presence. State the concrete defect each important changed
-   test would catch and use a negative-space probe for high-risk behavior when practical.
+4. Complete the `validation_matrix`: run and record deterministic regression-safety and
+   acceptance-behavior checks, then reason separately about acceptance criteria, design quality,
+   and test validity. State the concrete defect each important test would catch and use a
+   negative-space probe for high-risk behavior when practical.
 5. Bind behavioral claims only to checks the host observed against the pinned subject. A cited
    command, path, or model-written report cannot promote a claim to `PROVEN`.
 6. Give each finding a stable ID and disposition. Return in-scope defects to `implement` through

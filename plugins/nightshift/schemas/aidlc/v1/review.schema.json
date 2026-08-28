@@ -12,6 +12,7 @@
     "decision",
     "evidence_complete",
     "proof_ceiling",
+    "validation_matrix",
     "lenses",
     "claims",
     "findings",
@@ -58,6 +59,30 @@
     },
     "evidence_complete": {"type": "boolean"},
     "proof_ceiling": {"$ref": "#/$defs/proof_state"},
+    "validation_matrix": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "allOf": [
+        {"contains": {"properties": {"id": {"const": "regression-safety"}}}},
+        {"contains": {"properties": {"id": {"const": "acceptance-behavior"}}}},
+        {"contains": {"properties": {"id": {"const": "acceptance-criteria"}}}},
+        {"contains": {"properties": {"id": {"const": "design-quality"}}}},
+        {"contains": {"properties": {"id": {"const": "test-validity"}}}}
+      ],
+      "items": {
+        "type": "object",
+        "required": ["id", "mode", "state", "note", "evidence"],
+        "properties": {
+          "id": {"type": "string", "enum": ["regression-safety", "acceptance-behavior", "acceptance-criteria", "design-quality", "test-validity"]},
+          "mode": {"type": "string", "enum": ["deterministic", "reasoning"]},
+          "state": {"$ref": "#/$defs/proof_state"},
+          "note": {"type": "string", "minLength": 1},
+          "evidence": {"$ref": "#/$defs/evidence"}
+        },
+        "additionalProperties": false
+      }
+    },
     "lenses": {
       "type": "array",
       "minItems": 5,

@@ -22,6 +22,10 @@ edits or function signatures. The plan and the implementer fill in the mechanics
 - **Verification shape** — choose browser, API, CLI, library, or a justified custom form and
   describe the observable result that counts as proof. Name the user flow, request/response,
   command contract, public API, or other behavior the build must exercise.
+- **Pre-production validation** — plan separate deterministic regression-safety and
+  acceptance-behavior checks, then reason separately about acceptance criteria, design quality,
+  and test validity. Record environmental caveats instead of treating unavailable execution as
+  proof.
 
 ## Output
 

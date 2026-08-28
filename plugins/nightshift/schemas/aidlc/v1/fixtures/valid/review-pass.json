@@ -22,6 +22,13 @@
     "decision": "PASS",
     "evidence_complete": true,
     "proof_ceiling": "PROVEN",
+    "validation_matrix": [
+      {"id": "regression-safety", "mode": "deterministic", "state": "PROVEN", "note": "Existing behavior remains green.", "evidence": ["check:regression"]},
+      {"id": "acceptance-behavior", "mode": "deterministic", "state": "PROVEN", "note": "The export flow works end to end.", "evidence": ["check:export-download"]},
+      {"id": "acceptance-criteria", "mode": "reasoning", "state": "PROVEN", "note": "The acceptance condition maps to the implementation.", "evidence": ["diff:src/export.py"]},
+      {"id": "design-quality", "mode": "reasoning", "state": "PROVEN", "note": "The endpoint preserves the existing boundary.", "evidence": ["diff:src/export.py"]},
+      {"id": "test-validity", "mode": "reasoning", "state": "PROVEN", "note": "The check detects content and media-type defects.", "evidence": ["check:export-download"]}
+    ],
     "lenses": [
       {
         "id": "requirements-correctness",

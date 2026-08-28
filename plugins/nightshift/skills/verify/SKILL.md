@@ -27,6 +27,13 @@ application or that every host uses the same runner.
      `status: unproven`, with the smallest useful next step.
 5. Retain reports, logs, traces, screenshots, and other returned evidence references in the handoff.
 
+Run the two deterministic checks as separate proof rows, even when one command covers both:
+regression-safety exercises existing behavior and acceptance-behavior exercises the changed flow
+in isolation. Record environmental caveats on the acceptance row. The other three rows are
+reasoning, not substitutes for execution: map every acceptance criterion, inspect design and
+security boundaries, and explain which tests catch the intended defect. Never collapse an
+unavailable deterministic check into a reasoning-only pass.
+
 For a v2 bundle, append the verification result against the exact revision and refresh
 `MISSION.md`. Persist only safe references and concise classifications; raw logs may contain
 credentials or user data and are not portable event payloads. An unavailable verification remains

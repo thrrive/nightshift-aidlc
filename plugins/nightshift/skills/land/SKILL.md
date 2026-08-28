@@ -38,6 +38,13 @@ let the orchestrator route earlier work.
 7. After merge, complete immediately for a no-release `merged` mission. Otherwise observe the
    configured release and health evidence until every `done_when` condition is satisfied.
 
+Before the merge gate, reconcile the complete review surface: the primary feature pull request,
+any companion API-test pull request, and any other change explicitly declared by the plan. Keep
+their dependency order and head revisions in the handoff. Process actionable review comments and
+failed checks for each, then refresh deterministic regression and acceptance evidence. After merge,
+perform the configured release change, rollout observation, and issue-tracker update; do not claim
+completion while any declared follow-up remains unobserved or unreported.
+
 For a v2 bundle, append each observed revision, check/review classification, verification refresh,
 rewind, merge gate, authorized merge, release observation, and terminal outcome. Preserve the
 model/tool split and explicit unavailable telemetry used by earlier phases. Refresh `MISSION.md`
