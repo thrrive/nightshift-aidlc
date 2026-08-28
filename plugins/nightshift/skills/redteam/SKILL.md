@@ -21,11 +21,14 @@ decision rules.
    claim's boundary and required proof; do not treat plan prose as its own evidence.
 3. Run the five independent lenses in the protocol. Use fresh context or reviewer fan-out when the
    host supports it, but never claim independence that did not occur.
-4. Record evidence-bound findings with stable IDs. A vague concern is not a finding; cite the
+4. Challenge every `validation_matrix` row separately. Require host-observed evidence for the
+   deterministic regression and acceptance rows, and an explicit code- and artifact-bound argument
+   for the three reasoning rows. Record caveats and leave unavailable proof unproven.
+5. Record evidence-bound findings with stable IDs. A vague concern is not a finding; cite the
    artifact, repository fact, invariant, or failure scenario that makes it actionable.
-5. Route every material finding to the earliest artifact that can resolve it. Re-run all affected
+6. Route every material finding to the earliest artifact that can resolve it. Re-run all affected
    lenses after remediation and retain the finding history.
-6. Persist the complete review record as `redteam-review.json` in `frame`'s durable bundle. Missing,
+7. Persist the complete review record as `redteam-review.json` in `frame`'s durable bundle. Missing,
    malformed, partial, all-error, or scratch-only output is an evidence hold, never a clean pass.
 
 ## Routing

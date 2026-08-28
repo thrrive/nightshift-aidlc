@@ -2,6 +2,14 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.9
+
+- Add a five-dimension pre-production validation matrix to review records and schemas.
+- Separate deterministic regression and acceptance checks from reasoning about acceptance criteria,
+  design quality, and test validity.
+- Strengthen planning, red-team, self-review, verification, and landing guidance for companion
+  pull requests, review feedback, release observation, and issue-tracker follow-up.
+
 ## 1.0.0-rc.8
 
 - Require concise live progress updates at workflow and phase boundaries.

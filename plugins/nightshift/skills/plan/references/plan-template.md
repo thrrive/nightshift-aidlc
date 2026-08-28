@@ -22,7 +22,8 @@ Name only the affected surfaces: web, API, worker, database, mobile, infrastruct
 ## Pull-request scope
 
 Use one coherent change by default. If multiple reviewed changes are necessary, explain why and
-define their order.
+define their order. Name the primary feature pull request and any companion API-test pull request,
+their dependency, shared acceptance evidence, and the review/check signal required for each.
 
 ## Verification
 
@@ -30,6 +31,18 @@ Choose the approved browser, API, CLI, library, or custom shape. State the behav
 observable acceptance conditions, and expected evidence. Identify the repository-owned check for
 that shape or plan the smallest focused check needed. Prefer browser proof for user-facing web
 behavior; do not require it for unrelated targets.
+
+### Pre-production validation matrix
+
+State the planned proof for each dimension. Mark the first two as deterministic checks and the
+remaining three as reviewer reasoning. Name the exact command, flow, artifact, or oracle and
+record environmental caveats instead of treating unavailable execution as a pass.
+
+- `regression-safety` — existing behavior that must remain green.
+- `acceptance-behavior` — end-to-end behavior in the target shape.
+- `acceptance-criteria` — mapping from every criterion to implementation and evidence.
+- `design-quality` — patterns, abstractions, boundaries, security, and extension points.
+- `test-validity` — tests, oracle sensitivity, and any negative-space probe.
 
 ## Rollout and observability
 
@@ -45,8 +58,9 @@ State what runs before commit and what CI must pass.
 
 ## Definition of done
 
-Use a short, objectively verifiable checklist. Include the approved verification shape passing
-unless the mission explicitly waives verification.
+Use a short, objectively verifiable checklist. Include the approved verification shape passing,
+all five validation-matrix rows resolved, every declared pull request reviewed, and any configured
+release/rollout and issue-tracker update completed unless the mission explicitly waives that step.
 
 ## Out of scope
 

@@ -25,6 +25,21 @@ Every review covers these five lenses. Independence means a deliberate second pe
 necessarily five model calls. A host may assign lenses to fresh-context agents or different model
 families; a single capable reviewer may run them separately when fan-out is unavailable.
 
+Every review also records five pre-production validation dimensions in `validation_matrix`:
+
+| Dimension | Mode | Question |
+|---|---|---|
+| `regression-safety` | deterministic | Does existing behavior remain intact under regression checks? |
+| `acceptance-behavior` | deterministic | Does the changed flow work end to end, with caveats recorded? |
+| `acceptance-criteria` | reasoning | Does each acceptance criterion map to implementation and evidence? |
+| `design-quality` | reasoning | Are patterns, boundaries, abstractions, security, and extension points appropriate? |
+| `test-validity` | reasoning | Do the tests demonstrate the claim and detect the intended defect? |
+
+Deterministic rows require host-observed commands, requests, browser flows, or equivalent
+execution. Reasoning rows require an explicit argument tied to inspected code and artifacts. A
+missing dimension, unrecorded caveat, or unavailable deterministic check is `UNPROVEN` or
+`CONDITIONAL`, never an inferred pass.
+
 1. `requirements-correctness` — requirements, invariants, edge cases, consumers, and scope.
 2. `architecture-security` — boundaries, authorization, isolation, compatibility, and rollout.
 3. `tests-oracles` — test coverage and whether assertions would detect the predicted defect.
