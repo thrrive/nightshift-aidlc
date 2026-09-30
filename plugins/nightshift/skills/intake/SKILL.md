@@ -1,13 +1,13 @@
 ---
 name: intake
-description: "Turn a freeform, plain-language change request into a structured mission (ask, done_state, done_when, halts) for the aidlc orchestrator. Runs once at the start of a job, before the phase loop. Asks for clarification when the request is too vague to define done."
+description: "Major SDLC phase that turns a plain-language request into an approved implementation plan. Resolves the mission, then composes investigate → blueprint → plan → redteam. Stops for plan approval and does not write product code."
 ---
 
-# /intake — prompt → mission
+# /intake — request → approved plan
 
-Convert the user's freeform request into the `mission` the `aidlc` orchestrator carries through
-the whole loop. This is the only place a vague request gets sharpened; once `intake` returns,
-later phases trust the mission and do not re-litigate the goal.
+Own the pre-implementation phase. Convert the user's freeform request into the `mission` the
+`aidlc` orchestrator carries through the whole loop, then investigate, design, plan, and red-team
+the work. Do **not** edit product code, commit, push, or open PRs.
 
 ## Inputs
 
@@ -47,7 +47,18 @@ later phases trust the mission and do not re-litigate the goal.
    estimates only; actual model usage and cost remain host-observed ledger data. Keep run mode and
    other host performance options out of the canonical mission.
 
-## Output — when the mission is clear
+## Turn the mission into a plan
+
+Once the mission is clear, resolve one durable bundle using the
+[`frame-artifact contract`](../../docs/frame-artifacts.md). Then run **investigate**,
+**blueprint**, **plan**, and **redteam** in that order. Clarify genuine ambiguities before
+blueprint; do not guess at a costly product decision. Rewind and re-review any material finding.
+
+Persist the complete investigation, blueprint, plan, review, and handoff before the approval gate.
+The plan must include the implementation sequence, files or components expected to change, proof
+shape, risks, and observable definition of done.
+
+## Output — when the plan is ready
 
 ```yaml
 mission:
@@ -59,9 +70,13 @@ mission:
     - <observable condition>
   halts: []
 outcome: advance
-then: frame          # or build, when --skip-frame
+then: build
 note: <one line: the goal as you understood it>
 ```
+
+Present the human-readable plan and approval question as the final visible content of the response.
+Do not append a YAML handoff, a summary, or an invitation to start Build after it. Keep the
+canonical handoff in the durable bundle for the orchestrator.
 
 ## Output — when clarification is needed
 

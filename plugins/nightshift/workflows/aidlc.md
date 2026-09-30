@@ -1,6 +1,6 @@
 ---
 name: nightshift-aidlc
-description: "Run one Nightshift mission from intake through frame, build, land, and completion."
+description: "Run one Nightshift mission from intake through build, land, and completion."
 entry_skill: /nightshift:aidlc
 state: execution_state
 ---
@@ -11,7 +11,7 @@ Run exactly one mission through these ordered stages:
 
 1. Load the routing, execution-workflow, handoff, and host-capability contracts.
 2. Resolve or create the durable mission and bundle before investigation.
-3. Run `intake`, then `frame` (`investigate → blueprint → plan → redteam`).
+3. Run `intake` (`mission → investigate → blueprint → plan → redteam`).
 4. Stop at the plan-approval gate unless the mission is explicitly YOLO or frame-only.
 5. Run `build` (`implement → self-review → verify`) against the approved plan.
 6. Run `land` (`pr-drive → verify → release-gate`) until the requested done state is proven.

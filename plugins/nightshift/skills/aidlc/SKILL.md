@@ -1,6 +1,6 @@
 ---
 name: aidlc
-description: "Single entrypoint for the full AI software-development lifecycle. Orchestrates frame → build → land against any target repo, carries one mission across phases, routes handoffs forward or back, and halts at human gates. Use for any non-trivial change that should reach production."
+description: "Single entrypoint for the full AI software-development lifecycle. Orchestrates intake → build → land against any target repo, carries one mission across phases, routes handoffs forward or back, and halts at human gates. Use for any non-trivial change that should reach production."
 ---
 
 # /aidlc — lifecycle orchestrator
@@ -26,7 +26,7 @@ It contains the canonical mission mapping, transition loop, phase ownership, and
 read the full [`handoff contract`](../../docs/handoff-contract.md) before routing and the
 [`host-capability contract`](../../docs/host-capabilities.md) before requesting effects.
 Read [`references/telemetry-contract.md`](references/telemetry-contract.md) before the first
-phase. Record mission start before invoking `frame`. If the host does not expose v2 mission
+phase. Record mission start before invoking `intake`. If the host does not expose v2 mission
 evidence, use the v1 `events.jsonl` fallback beside the peer-file bundle and append lifecycle,
 subtask, model, token, duration, retry, and cost evidence as it becomes observable.
 Also read [`references/host-progress.md`](references/host-progress.md). Emit a concise user-visible
@@ -34,18 +34,22 @@ update at every phase/subtask boundary and surface `needs_human` as an immediate
 question. When a live bridge exists, route progress and the answer through it; otherwise use the
 current session and provide the durable resume reference.
 
-When `frame` selects `aidlc-mission-bundle/v2`, retain its exact `bundle_ref`, `mission_id`, and
+When `intake` selects `aidlc-mission-bundle/v2`, retain its exact `bundle_ref`, `mission_id`, and
 mission digest for the entire lifecycle. Request the mission-evidence capability after each major
 phase handoff and human gate to append the transition, store the latest validated outcome, and
 refresh `MISSION.md`. A fresh invocation never supplies `resume_ref`; only an explicit user/host
 resume reference may reopen a bundle.
 
-At entry, adopt the `mission` from `intake` or create it exactly as the routing contract specifies.
-Carry it unchanged. Default to `stable-production`; only lower the done state when the user asks.
+At entry, start with `intake`. It resolves the mission and produces the approval-ready plan; carry
+the resulting `mission` unchanged through Build and Land. Default to `stable-production`; only
+lower the done state when the user asks.
+
+If the host offers an optional local Mission Control browser, ask once whether the user wants it
+started for this run. Do not start it by default or treat its absence as a blocker.
 
 ## Start with prior lessons
 
-Before `frame`, request a small set of confirmed cross-session lessons through the optional
+Before `intake`, request a small set of confirmed cross-session lessons through the optional
 **prior-memory read** host capability. Carry relevant project and global lessons as context so the
 run does not repeat a known mistake. Treat every lesson as point-in-time: re-verify any path, flag,
 or behavior against the current repository before acting. If the capability is absent, unavailable,
@@ -66,7 +70,12 @@ values remain `unavailable`; a known `$0` requires the same source provenance as
 Do not place raw prompts, model responses, tool arguments/results, credentials, or secret-bearing
 logs in the portable ledger or projection.
 
-Whenever you pause or finish, end the response with a fenced YAML handoff that uses the exact
+At the Intake approval gate, present the plan and the approval question last. Do not append a
+handoff dump, implementation commentary, or a new next-step prompt after the plan; the user's
+next visible choice is approval, refinement, or rejection. Persist the canonical handoff in the
+durable bundle instead.
+
+Whenever you pause or finish outside that approval presentation, end the response with a fenced YAML handoff that uses the exact
 canonical field names from `docs/handoff-contract.md`. Do not replace `mission`, `outcome`, `then`,
 `rewind_to`, `outputs`, `note`, or `blockers` with prose aliases. At a routine human gate, include
 the phase handoff unchanged and explain the pending gate immediately before it.
@@ -98,7 +107,7 @@ in the mission evidence.
 
 ## Overrides
 
-`frame`, `build`, `land`, and every subskill can be overridden per repo/user/runtime. Always
+`intake`, `build`, `land`, and every subskill can be overridden per repo/user/runtime. Always
 invoke the resolved skill by name so overrides take effect. If a capability a phase needs is
 unavailable, that phase should return `stuck` with the smallest useful next step — don't
 improvise around a missing capability.
