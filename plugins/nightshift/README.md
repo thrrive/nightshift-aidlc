@@ -70,6 +70,9 @@ up the real state instead of reconstructing it from conversation history. Read t
 
 ## Install
 
+**Latest release candidate:** [`v1.0.0-rc.11`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.11).
+Use it when you want the Intake-first lifecycle and the simplified developer experience.
+
 ### Claude Code
 
 ```bash
@@ -94,6 +97,24 @@ codex --plugin-dir plugins/nightshift
 
 See [INSTALL.md](INSTALL.md) for host-specific setup and [COMPATIBILITY.md](COMPATIBILITY.md) for
 the capability contract.
+
+### Update to the latest release candidate
+
+After the marketplace is installed, update and restart your agent host so it loads the new skills:
+
+```bash
+# Claude Code
+claude plugin update nightshift@nightshift-aidlc
+
+# Codex
+codex plugin marketplace upgrade nightshift-aidlc
+codex plugin remove nightshift@nightshift-aidlc
+codex plugin add nightshift@nightshift-aidlc
+```
+
+For a reproducible Codex install pinned to this candidate, use
+`codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.11`. See
+[INSTALL.md](INSTALL.md) for the complete upgrade and local-checkout paths.
 
 ## Optional Mission Control
 

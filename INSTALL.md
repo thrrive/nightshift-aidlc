@@ -3,6 +3,13 @@
 The release artifact is a marketplace repository containing the `nightshift` plugin under
 `plugins/nightshift`. Pin a release tag in environments that require reproducible behavior.
 
+## Latest release candidate
+
+The current release candidate is
+[`v1.0.0-rc.11`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.11). It
+contains the Intake-first lifecycle and the simplified public documentation. Update through your
+installed marketplace, then restart the host; a running agent session does not reload skills.
+
 ## Claude Code
 
 For a local source checkout:
@@ -26,7 +33,7 @@ claude plugin marketplace add thrrive/nightshift-aidlc
 claude plugin install nightshift@nightshift-aidlc
 ```
 
-Upgrade an installed public plugin and restart Claude Code:
+Upgrade an installed public plugin, then restart Claude Code:
 
 ```bash
 claude plugin update nightshift@nightshift-aidlc
@@ -45,11 +52,11 @@ After the public repository exists, replace the local marketplace with the Git s
 a separate environment:
 
 ```bash
-codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.10
+codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.11
 codex plugin add nightshift@nightshift-aidlc
 ```
 
-To upgrade a Git marketplace and reinstall the plugin from its refreshed snapshot:
+To update a Git marketplace to the latest release candidate and reinstall the plugin:
 
 ```bash
 codex plugin marketplace upgrade nightshift-aidlc
@@ -57,15 +64,20 @@ codex plugin remove nightshift@nightshift-aidlc
 codex plugin add nightshift@nightshift-aidlc
 ```
 
-Restart the host after installation or upgrade so the new skill definitions are loaded in a fresh
-session.
+Restart the host after installation or update so the new skill definitions are loaded in a fresh
+session. For an exact pinned Codex install, use the `--ref v1.0.0-rc.11` command above. For a
+local exact checkout in either host, clone the tag first:
+
+```bash
+git clone --branch v1.0.0-rc.11 https://github.com/thrrive/nightshift-aidlc.git
+```
 
 ## Compatibility
 
 Read `COMPATIBILITY.md` before changing pinned major versions. The package has no runtime service,
 credential, or database migration; hosts supply capabilities independently.
 
-For stable-v1 qualification, pin `v1.0.0-rc.10` exactly. Promotion to `v1.0.0` changes release
+For stable-v1 qualification, pin `v1.0.0-rc.11` exactly. Promotion to `v1.0.0` changes release
 metadata and evidence only; it does not change the canonical v1 contract tested by the candidate.
 
 ## Local Mission Control
