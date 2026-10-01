@@ -68,7 +68,8 @@ installations; new work should start with `intake`. `workflow` is an optional ho
 
 ## Optional workflows
 
-Use a workflow when your host supports named workflows and you want a stable, autonomous lifecycle execution. The default `/nightshift:aidlc` command and
+Use a workflow when your host supports named workflows and you want a stable, shareable name for
+the lifecycle—not because it unlocks extra autonomy. The default `/nightshift:aidlc` command and
 the `nightshift-aidlc` workflow use the same Intake → Build → Land gates. Workflows are especially
 useful for team runbooks, a host-managed runner, or a paused mission that needs an explicit next
 action.
@@ -115,7 +116,7 @@ up the real state instead of reconstructing it from conversation history. Read t
 
 ## Install
 
-**Latest release candidate:** [`v1.0.0-rc.13`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.13).
+**Latest release candidate:** [`v1.0.0-rc.14`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.14).
 Use it when you want the Intake-first lifecycle and the simplified developer experience.
 
 ### Claude Code
@@ -158,7 +159,7 @@ codex plugin add nightshift@nightshift-aidlc
 ```
 
 For a reproducible Codex install pinned to this candidate, use
-`codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.13`. See
+`codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.14`. See
 [INSTALL.md](INSTALL.md) for the complete upgrade and local-checkout paths.
 
 ## Optional Mission Control
