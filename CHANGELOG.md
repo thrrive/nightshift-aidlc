@@ -2,6 +2,11 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.13
+
+- Document named workflows as an optional layer, with invocation, durable mission inspection, and
+  a clear explanation of when they help and which human gates they retain.
+
 ## 1.0.0-rc.12
 
 - Show each major phase's bounded evidence/recovery loop directly in the public lifecycle visual.
