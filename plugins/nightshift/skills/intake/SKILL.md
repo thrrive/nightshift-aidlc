@@ -74,9 +74,10 @@ then: build
 note: <one line: the goal as you understood it>
 ```
 
-Present the human-readable plan and approval question as the final visible content of the response.
-Do not append a YAML handoff, a summary, or an invitation to start Build after it. Keep the
-canonical handoff in the durable bundle for the orchestrator.
+Present a concise framing summary, then the complete human-readable plan, then the approval
+question as the final visible content of the response. Do not append a YAML handoff, another
+summary, or an invitation to start Build after it. Keep the canonical handoff in the durable
+bundle for the orchestrator.
 
 ## Output — when clarification is needed
 

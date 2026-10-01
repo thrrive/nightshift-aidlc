@@ -6,7 +6,7 @@ The release artifact is a marketplace repository containing the `nightshift` plu
 ## Latest release candidate
 
 The current release candidate is
-[`v1.0.0-rc.13`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.13). It
+[`v1.0.0-rc.14`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.14). It
 contains the Intake-first lifecycle and the simplified public documentation. Update through your
 installed marketplace, then restart the host; a running agent session does not reload skills.
 
@@ -52,7 +52,7 @@ After the public repository exists, replace the local marketplace with the Git s
 a separate environment:
 
 ```bash
-codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.13
+codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.14
 codex plugin add nightshift@nightshift-aidlc
 ```
 
@@ -65,11 +65,11 @@ codex plugin add nightshift@nightshift-aidlc
 ```
 
 Restart the host after installation or update so the new skill definitions are loaded in a fresh
-session. For an exact pinned Codex install, use the `--ref v1.0.0-rc.13` command above. For a
+session. For an exact pinned Codex install, use the `--ref v1.0.0-rc.14` command above. For a
 local exact checkout in either host, clone the tag first:
 
 ```bash
-git clone --branch v1.0.0-rc.13 https://github.com/thrrive/nightshift-aidlc.git
+git clone --branch v1.0.0-rc.14 https://github.com/thrrive/nightshift-aidlc.git
 ```
 
 ## Compatibility
@@ -77,7 +77,7 @@ git clone --branch v1.0.0-rc.13 https://github.com/thrrive/nightshift-aidlc.git
 Read `COMPATIBILITY.md` before changing pinned major versions. The package has no runtime service,
 credential, or database migration; hosts supply capabilities independently.
 
-For stable-v1 qualification, pin `v1.0.0-rc.13` exactly. Promotion to `v1.0.0` changes release
+For stable-v1 qualification, pin `v1.0.0-rc.14` exactly. Promotion to `v1.0.0` changes release
 metadata and evidence only; it does not change the canonical v1 contract tested by the candidate.
 
 ## Local Mission Control

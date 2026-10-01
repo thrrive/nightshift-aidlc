@@ -70,10 +70,10 @@ values remain `unavailable`; a known `$0` requires the same source provenance as
 Do not place raw prompts, model responses, tool arguments/results, credentials, or secret-bearing
 logs in the portable ledger or projection.
 
-At the Intake approval gate, present the plan and the approval question last. Do not append a
-handoff dump, implementation commentary, or a new next-step prompt after the plan; the user's
-next visible choice is approval, refinement, or rejection. Persist the canonical handoff in the
-durable bundle instead.
+At the Intake approval gate, present a concise framing summary, then the complete plan, with the
+approval question last. Do not append a handoff dump, implementation commentary, or a new
+next-step prompt after the plan; the user's next visible choice is approval, refinement, or
+rejection. Persist the canonical handoff in the durable bundle instead.
 
 Whenever you pause or finish outside that approval presentation, end the response with a fenced YAML handoff that uses the exact
 canonical field names from `docs/handoff-contract.md`. Do not replace `mission`, `outcome`, `then`,

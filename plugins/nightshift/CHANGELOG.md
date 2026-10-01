@@ -2,6 +2,11 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.14
+
+- Make the Intake approval presentation unambiguous: show a concise framing summary, the complete
+  plan, and then the final approval question with no trailing lifecycle commentary.
+
 ## 1.0.0-rc.13
 
 - Document named workflows as an optional layer, with invocation, durable mission inspection, and
