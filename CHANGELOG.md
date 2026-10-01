@@ -2,6 +2,11 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.11
+
+- Publish the current release candidate and exact upgrade instructions prominently in the public
+  README and installation guide.
+
 ## 1.0.0-rc.10
 
 - Make **Intake** the supported request-to-approved-plan phase; preserve Frame only as a
