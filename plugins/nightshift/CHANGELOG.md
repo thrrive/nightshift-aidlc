@@ -2,6 +2,16 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.10
+
+- Make **Intake** the supported request-to-approved-plan phase; preserve Frame only as a
+  compatibility alias for existing installations.
+- Present the approval-ready plan as the final Intake output so an agent does not bury the human
+  decision under lifecycle metadata or an implementation prompt.
+- Ask before starting the optional local Mission Control browser; it is never a default side effect.
+- Replace the exhaustive public README with a developer-first quickstart, path chooser, lifecycle
+  visual, and Mission Control overview.
+
 ## 1.0.0-rc.9
 
 - Add a five-dimension pre-production validation matrix to review records and schemas.
