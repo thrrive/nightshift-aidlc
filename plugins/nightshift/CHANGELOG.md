@@ -2,6 +2,10 @@
 
 All notable package changes are recorded here. Releases follow semantic versioning.
 
+## 1.0.0-rc.12
+
+- Show each major phase's bounded evidence/recovery loop directly in the public lifecycle visual.
+
 ## 1.0.0-rc.11
 
 - Publish the current release candidate and exact upgrade instructions prominently in the public
