@@ -1,5 +1,5 @@
 ---
-description: "Run the full AI SDLC loop: frame, build with appropriate verification, then drive the reviewed change to its requested done state"
+description: "Run the full AI SDLC loop: intake, build with appropriate verification, then drive the reviewed change to its requested done state"
 argument-hint: "<what to build> [--frame-only] [--pr-only] [--skip-frame] [--no-verify]"
 ---
 

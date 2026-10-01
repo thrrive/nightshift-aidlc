@@ -46,7 +46,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "c499ce51e06f6cbd48a9b67616393e8b099797b8e3282a8648eaa32bdcbd6234"
+      "sha256": "f39186495452fe0082b2002a018ef5e0a5c7f62ff684c9f19e9d7d59a4ce041c"
     },
     {
       "path": "SECURITY.md",
@@ -162,7 +162,7 @@
     },
     {
       "path": "plugins/nightshift/README.md",
-      "sha256": "c499ce51e06f6cbd48a9b67616393e8b099797b8e3282a8648eaa32bdcbd6234"
+      "sha256": "f39186495452fe0082b2002a018ef5e0a5c7f62ff684c9f19e9d7d59a4ce041c"
     },
     {
       "path": "plugins/nightshift/SECURITY.md",
@@ -170,7 +170,7 @@
     },
     {
       "path": "plugins/nightshift/commands/aidlc.md",
-      "sha256": "11a0c94f5a948c7a5a4a00de94837431436d4464e55dfc0667f55b178b0ba237"
+      "sha256": "74ac46f326237e9006c0728c1a8d86c5e506377d547c9e9adaaa9bd7ad43521b"
     },
     {
       "path": "plugins/nightshift/commands/build.md",
@@ -182,7 +182,7 @@
     },
     {
       "path": "plugins/nightshift/commands/intake.md",
-      "sha256": "9475cadaf2abb50965c341617323be1bf1f90279a94ddf0eab44b7d35d3a65e4"
+      "sha256": "27aa3784650a398e80213b8c43a645487d85529c237bba68d3f0bd413af57ac5"
     },
     {
       "path": "plugins/nightshift/commands/land.md",
@@ -410,7 +410,7 @@
     },
     {
       "path": "plugins/nightshift/skills/aidlc/SKILL.md",
-      "sha256": "ef354bdf4601da26953eaccf21a11ae96001aed2049a7290f23491beef6fc048"
+      "sha256": "e379162a4b122ff5655283c527c397182a4675e08516bb9f479c3e3143d8b2a6"
     },
     {
       "path": "plugins/nightshift/skills/aidlc/references/execution-workflow.md",
@@ -450,7 +450,7 @@
     },
     {
       "path": "plugins/nightshift/skills/intake/SKILL.md",
-      "sha256": "e43658a719eca5e896728a96e0d0c5c8cafc8ecf7d8cfbb125671ea0f372abca"
+      "sha256": "898c90a3c52e1176ca91ebadacd1f47b2442498a17ce41ad3e11b99bef0c1229"
     },
     {
       "path": "plugins/nightshift/skills/investigate/SKILL.md",
@@ -510,7 +510,7 @@
     },
     {
       "path": "plugins/nightshift/workflows/aidlc.md",
-      "sha256": "861118623cf3466a300f01a69671cbb252a93fe3f00e351c5a0fffc8b7078fa7"
+      "sha256": "2e7f0e272da0e3e1b8f1c35e3c396323bc3459e25e4fd3addef53fd8400d71d6"
     },
     {
       "path": "plugins/nightshift/workflows/hosts/claude.md",
