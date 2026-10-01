@@ -68,8 +68,7 @@ installations; new work should start with `intake`. `workflow` is an optional ho
 
 ## Optional workflows
 
-Use a workflow when your host supports named workflows and you want a stable, shareable name for
-the lifecycle—not because it unlocks extra autonomy. The default `/nightshift:aidlc` command and
+Use a workflow when your host supports named workflows and you want a stable, autonomous lifecycle execution. The default `/nightshift:aidlc` command and
 the `nightshift-aidlc` workflow use the same Intake → Build → Land gates. Workflows are especially
 useful for team runbooks, a host-managed runner, or a paused mission that needs an explicit next
 action.
