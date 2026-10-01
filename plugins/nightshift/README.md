@@ -8,15 +8,28 @@ and a simple lifecycle:
 
 ```mermaid
 flowchart LR
-    A["Intake\nrequest → approved plan"] -->|you approve| B["Build\nimplement + prove"]
-    B --> C["Land\nreview + delivery gates"]
-    C --> D["Done\nrequested outcome"]
-    B -. design gap .-> A
-    C -. fix needed .-> B
+    subgraph I["Intake"]
+        I1[Investigate] --> I2[Design + plan] --> I3[Red-team]
+        I3 -. gap found .-> I1
+    end
+    subgraph B["Build"]
+        B1[Implement] --> B2[Self-review] --> B3[Prove]
+        B3 -. defect found .-> B1
+    end
+    subgraph L["Land"]
+        L1[PR + delivery checks] --> L2[Evidence + feedback]
+        L2 -. retry check .-> L1
+    end
+    I3 -->|you approve plan| B1
+    B3 --> L1
+    L2 -->|requested outcome proven| D[Done]
+    B3 -. design gap .-> I1
+    L2 -. code fix .-> B1
 ```
 
 The plan is the last thing shown in Intake. You approve, refine, or reject it before any product
-code is written.
+code is written. Each phase first works through its own bounded evidence loop; only a finding that
+belongs to an earlier phase crosses the boundary.
 
 ## Start here
 
@@ -70,7 +83,7 @@ up the real state instead of reconstructing it from conversation history. Read t
 
 ## Install
 
-**Latest release candidate:** [`v1.0.0-rc.11`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.11).
+**Latest release candidate:** [`v1.0.0-rc.12`](https://github.com/thrrive/nightshift-aidlc/releases/tag/v1.0.0-rc.12).
 Use it when you want the Intake-first lifecycle and the simplified developer experience.
 
 ### Claude Code
@@ -113,7 +126,7 @@ codex plugin add nightshift@nightshift-aidlc
 ```
 
 For a reproducible Codex install pinned to this candidate, use
-`codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.11`. See
+`codex plugin marketplace add thrrive/nightshift-aidlc --ref v1.0.0-rc.12`. See
 [INSTALL.md](INSTALL.md) for the complete upgrade and local-checkout paths.
 
 ## Optional Mission Control
